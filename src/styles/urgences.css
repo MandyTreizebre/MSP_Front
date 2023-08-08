@@ -1,0 +1,12 @@
+.container_urgences {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    gap: 40px;
+    background: #f9ecd5;
+    height: 300px;
+}
+
+
+
