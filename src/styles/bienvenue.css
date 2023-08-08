@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    width: 80%;
+    justify-content: center;
+    margin: 20px auto;
+}
+
+.img_medecin {
+    width: 500px;
+    height: 450px;
+}
+
+.div_color {
+    background-color: #195f63;
+    width: 400px;
+    height: 350px;
+    margin: 50px -40px;
+}
+
+h1 {
+    color: white; 
+    font-family: louisgeorge;
+    text-align: center;
+    padding: 100px 10px
+}

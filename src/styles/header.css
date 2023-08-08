@@ -1,0 +1,23 @@
+#logo {
+    width: 100px
+}
+
+.menu {
+    display: flex;
+    justify-content: space-between;
+}
+
+.navigation {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-right: 30px;
+}
+
+.navigation a {
+    text-decoration: none;
+    color: #195f63;
+    font-family: louisgeorge;
+    font-size: 1.1rem;
+}
+
