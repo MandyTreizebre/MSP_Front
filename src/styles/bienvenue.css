@@ -2,7 +2,7 @@
     display: flex;
     width: 80%;
     justify-content: center;
-    margin: 20px auto;
+    margin: 20px auto 0;
 }
 
 .img_medecin {
