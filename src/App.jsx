@@ -3,19 +3,25 @@ import Home from './containers/Home'
 import Header from './components/Header'
 import Footer from './components/Footer'
 
+import { useRef } from 'react'
+
 import {Routes, Route} from 'react-router-dom'
 
 
 function App() {
 
+  const homeRef = useRef(null)
+
+  const scrollToProfessionals = () => {
+    homeRef.current.scrollToProfessionals()
+  }
 
   return (
     <>
-      <Header />
+      <Header scrollToProfessionals={scrollToProfessionals} />
       <Routes>
-        <Route exact path="/" element={Home} />
+        <Route exact path="/" element={<Home ref={homeRef} />} />
       </Routes>
-      <Home />
       <Footer />
     </>
   )
