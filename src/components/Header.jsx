@@ -8,7 +8,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faGear} from '@fortawesome/free-solid-svg-icons'
 
 
-const Header = () =>{
+const Header = ({scrollToProfessionals}) =>{
     return (
         <header>
             <nav className='menu'>
@@ -17,7 +17,7 @@ const Header = () =>{
                 </div>
                 <div className='navigation'>
                     <Link to="/">Accueil</Link>
-                    <Link to="/rendez-vous">Rendez-vous</Link>
+                    <Link to="#" onClick={scrollToProfessionals}>Rendez-vous</Link>
                     <Link to="/notre-msp">Notre MSP</Link>
                     <Link to="/infos-sante">Informations santé</Link>
                     <Link to="/contact">Contact</Link>
