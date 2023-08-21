@@ -4,7 +4,48 @@
     padding: 0;
 }
 
+:root {
+    --green-color: #10403b;
+    --title-font: louisgeorge, Arial, Helvetica, sans-serif;
+    --common-font: ubuntu, Arial, Helvetica, sans-serif
+}
+
+
+/********** STYLES GLOBAUX ***********/
+h1, h2, h3 {
+    font-family: var(--title-font);
+    text-align: center;
+    font-size: 1.7rem;
+}
+
+#bouton {
+    width: auto;
+    padding: 15px;
+    border: 0;
+    background-color: var(--green-color);
+    border-radius: 7px;
+    transition: all 0.3s ease-in-out;
+    color: white;
+    font-family: var(--common-font);
+    font-size: 1rem;
+}
+
+#bouton:hover {
+    transform: scale(1.1);
+}
+
+p {
+    font-family: var(--common-font);
+    font-size: 1.1rem;
+    line-height: 2em;
+}
+
+/********** POLICES ***********/
 @font-face {
     font-family: "louisgeorge";
     src: url(./assets/fonts/louisgeorge.ttf);
+}
+@font-face {
+    font-family: "ubuntu";
+    src: url(./assets/fonts/ubuntu.ttf);
 }
