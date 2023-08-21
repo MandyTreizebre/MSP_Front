@@ -1,0 +1,39 @@
+.section_spe {
+    width: 60%;
+    margin: 100px auto;
+    text-align: center;
+}
+
+.container_spe {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    justify-content: center;
+    margin: 20px;
+}
+
+#img_spe {
+    width: 280px;
+    height: 200px;
+    border-radius: 15px 15px 0 0;
+}
+
+.cards_spe {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.9s cubic-bezier(.25,.8,.25,1);
+    padding: 0 0 15px 0;
+    border-radius: 15px;
+}
+
+.cards_spe a {
+    text-decoration: none;
+    color: var(--green-color);
+}
+
+.cards_spe:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.cards_spe p {
+    padding-top: 10px;
+}

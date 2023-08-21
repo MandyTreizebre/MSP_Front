@@ -1,0 +1,16 @@
+.container_msp {
+    width: 70%;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.container_msp p {
+    width: 90%;
+    text-align: justify;
+}
+
+

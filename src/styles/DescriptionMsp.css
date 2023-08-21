@@ -1,0 +1,29 @@
+.img_description_msp {
+    width: 300px;
+    border-radius: 15px;
+}
+
+.container_description_msp {
+    display: flex;
+    justify-content: center;
+    width: 70%;
+    margin: auto;
+    gap: 30px;
+}
+
+.container_description_msp h2 {
+    margin-bottom: 20px;
+}
+
+.container_article {
+    text-align: center;
+    width: 300px;
+    margin-bottom: 50px;
+}
+
+.container_article li {
+    list-style-type: none;
+    line-height: 2;
+    font-family: var(--common-font);
+}
+

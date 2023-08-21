@@ -1,12 +1,56 @@
 .container_urgences {
     display: flex;
-    flex-direction: column;
+    width: 70%;
+    margin: 150px auto;
     justify-content: center;
     text-align: center;
     gap: 40px;
-    background: #f9ecd5;
-    height: 300px;
+}
+
+.column1, .column2 {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.column1 {
+    align-items: flex-end;
+}
+
+.column2 {
+    align-items: flex-start;
+}
+
+.column3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+    margin: auto;
+}
+
+.column3 p{
+    width: 50%;
+    margin: auto;
 }
 
 
+.img1 {
+    width: 260px;
+    border-radius: 15px;
+}
 
+.img2 {
+    width: 300px;
+    border-radius: 15px;
+}
+
+.img3 {
+    width: 340px;
+    border-radius: 15px;
+}
+
+.img4 {
+    width: 200px;
+    border-radius: 15px;
+}

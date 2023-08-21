@@ -1,0 +1,31 @@
+#img_contact {
+    width: 500px;
+}
+
+.container_contact {
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+    width: 70%;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+}
+
+form input {
+    width: 200%;
+    height: 40px;
+    border-radius: 10px;
+    border: 2px solid rgb(218, 213, 213);
+}
+
+form label {
+    display: flex; 
+    flex-direction: column;
+    gap: 10px;
+}
+
