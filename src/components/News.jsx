@@ -1,19 +1,28 @@
 import React, {useState, useEffect} from "react"
-import { getAllActus } from "../api/Actualites"
-import { config } from "../config"
 import { Link } from "react-router-dom"
-import '../styles/Actualites.css'
 
+/*Importation du fichier config (vers le back)*/
+import { config } from "../config"
+
+/*Importation de la fonction displayAllNews pour appeler les actualités*/ 
+import { displayAllNews } from "../api/News"
+
+/*Importation du style*/
+import '../styles/news.css'
+
+/*Importation du composant de la biblio carousel et des styles du carousel*/
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
 
-const Actualites = () => {
-    const [actualites, setActualites] = useState([])
+const News = () => {
+  /*Déclaration de l'état news avec un tableau vide comme valeur initiale*/
+    const [news, setNews] = useState([])
 
   useEffect(()=>{
-        getAllActus()
+        displayAllNews()
         .then((res)=>{
-            setActualites(res.result)
+          /*Mise à jour de news avec les données obtenues par displayAllNews*/
+            setNews(res.result)
         })
         .catch(err => console.log(err))
     }, [])
@@ -73,14 +82,14 @@ const Actualites = () => {
   swipeable
 >
 
-
-    {actualites.map((actu)=>{
+  {/* Map sur les éléments du tableau news et affichage des éléments*/}
+    {news.map((event)=>{
         return (
-            <div key={actu.id} className="box_actus">
-                <img src={config.pict_url+actu.image} id="img_actus" />
-                <h3>{actu.titre}</h3>
-                <p>{actu.details}</p>
-                <Link to={actu.lien}><button id="bouton">En savoir plus</button></Link>
+            <div key={event.id} className="box_news">
+                <img src={config.pict_url+event.picture} id="img_news" />
+                <h3>{event.title}</h3>
+                <p>{event.details}</p>
+                <Link to={event.external_link}><button className="general_button">En savoir plus</button></Link>
             </div>
         )
     })}
@@ -89,4 +98,4 @@ const Actualites = () => {
         );
 }
 
-export default Actualites
+export default News

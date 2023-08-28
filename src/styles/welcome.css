@@ -1,14 +1,14 @@
-.container_bienvenue {
+.container_welcome {
     display: flex;
     width: 70%;
     justify-content: center;
-    margin: 60px auto;
-    gap: 40px;
+    margin: 4rem auto;
+    gap: 2.5rem;
 }
 
-.img_medecin {
-    width: 500px;
-    height: 450px;
+.img_presentation {
+    max-width: 100%;
+    height: auto;
     border-radius: 20px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
@@ -19,6 +19,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 60px;
+    gap: 4rem;
     text-align: justify;
 }

@@ -1,8 +1,8 @@
 import axios from 'axios'
 import {config} from '../config'
 
-export function getOtherPros(){
-    return axios.get(`${config.api_url}/autres-pros`)
+export function displayExternalProfessionals(){
+    return axios.get(`${config.api_url}/external-professionals`)
     .then((res)=>{
         return res.data
     })
@@ -11,8 +11,8 @@ export function getOtherPros(){
     })
 }
 
-export function addOtherPro(){
-    return axios.post(`${config.api_url}/ajout-autre-pro`)
+export function addExternalProfessional(){
+    return axios.post(`${config.api_url}/save-external-professional`)
     .then((res)=>{
         return res.data
     })
@@ -21,8 +21,8 @@ export function addOtherPro(){
     })
 }
 
-export function updateOtherPro(id){
-    return axios.put(`${config.api_url}/modif/autre-pro/${id}`)
+export function updateExternalProfessional(id){
+    return axios.put(`${config.api_url}/update/external-pro/${id}`)
     .then((res)=>{
         return res.data
     })
@@ -31,8 +31,8 @@ export function updateOtherPro(id){
     })
 }
 
-export function deleteOtherPro(id){
-    return axios.delete(`${config.api_url}/suppr/autre-pro/${id}`)
+export function deleteExternalPro(id){
+    return axios.delete(`${config.api_url}/delete/external-pro/${id}`)
     .then((res)=>{
         return res.data
     })

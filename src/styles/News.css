@@ -1,8 +1,8 @@
-#img_actus {
+#img_news {
     border-radius: 15px 15px 0 0;
 }
 
-.box_actus {
+.box_news {
     width: 350px;
     min-height: 600px;
     text-align: center;
@@ -15,7 +15,7 @@
     position: relative;
 }
 
-.box_actus > * {
+.box_news > * {
     flex-grow: 1; /* Étirer le contenu pour occuper l'espace vertical */
 }
 
@@ -24,7 +24,7 @@
     height: 700px;
 }
 
-.box_actus button {
+.box_news button {
     border-radius: 7px;
     position: absolute;
     bottom: 10px; /* Positionnement depuis le bas */

@@ -1,0 +1,17 @@
+@media (max-width: 767px) {
+    .navigation {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        padding: 15px;
+    }
+
+    #logo {
+        max-width: 25vw;
+        min-width: 25vw;
+    }
+
+    .burger-icon {
+        display: block;
+    }
+}

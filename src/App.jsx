@@ -1,14 +1,16 @@
 import './App.css'
-import Home from './containers/Home'
+
+/*Importation des components*/
 import Header from './components/Header'
 import Footer from './components/Footer'
 
-
-
-import {Routes, Route} from 'react-router-dom'
+/*Importation des containers*/
+import Home from './containers/Home'
 import Msp from './containers/Msp'
+import Dentistes from './containers/Dentistes'
 import Contact from './containers/Contact'
 
+import {Routes, Route} from 'react-router-dom'
 
 function App() {
 
@@ -18,7 +20,8 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home/>} />
         <Route exact path="/notre-msp" element={<Msp/>} />
-        <Route exact path="/contact" element={<Contact />} />
+        <Route exact path="/contact" element={<Contact/>} />
+        <Route exact path="/Dentistes/:speciality_id" element={<Dentistes/>} />
       </Routes>
       <Footer />
     </>
