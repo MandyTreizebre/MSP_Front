@@ -1,4 +1,4 @@
-.container_msp {
+.container_presentation_msp {
     width: 70%;
     margin: 50px auto;
     display: flex;
@@ -8,7 +8,7 @@
     gap: 40px;
 }
 
-.container_msp p {
+.container_presentation_msp p {
     width: 90%;
     text-align: justify;
 }

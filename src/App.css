@@ -18,7 +18,7 @@ h1, h2, h3 {
     font-size: 1.7rem;
 }
 
-#bouton {
+.general_button {
     width: auto;
     padding: 15px;
     border: 0;
@@ -28,9 +28,10 @@ h1, h2, h3 {
     color: white;
     font-family: var(--common-font);
     font-size: 1rem;
+    cursor: pointer;
 }
 
-#bouton:hover {
+.general_button:hover {
     transform: scale(1.1);
 }
 

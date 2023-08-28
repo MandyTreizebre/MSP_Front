@@ -1,18 +1,8 @@
 import axios from 'axios'
 import {config} from '../config'
 
-export function getAllHours(){
-    return axios.get(`${config.api_url}/horaires`)
-    .then((res)=>{
-        res.data
-    })
-    .catch((err)=>{
-        return err
-    })
-}
-
-export function getHoursByPro(fk_pro_id){
-    return axios.get(`${config.api_url}/pro/horaires/${fk_pro_id}`)
+export function displayOpeningHours(){
+    return axios.get(`${config.api_url}/opening-hours`)
     .then((res)=>{
         return res.data
     })
@@ -21,8 +11,8 @@ export function getHoursByPro(fk_pro_id){
     })
 }
 
-export function addHours(){
-    return axios.post(`${config.api_url}/ajout/horaires`)
+export function getOpeningHoursByPro(fk_pro_id){
+    return axios.get(`${config.api_url}/pro/opening-hours/${fk_pro_id}`)
     .then((res)=>{
         return res.data
     })
@@ -31,8 +21,8 @@ export function addHours(){
     })
 }
 
-export function updateHours(id){
-    return axios.put(`${config.api_url}/modif/horaires/${id}`)
+export function saveOneOpeningHours(){
+    return axios.post(`${config.api_url}/save/opening-hours`)
     .then((res)=>{
         return res.data
     })
@@ -41,8 +31,18 @@ export function updateHours(id){
     })
 }
 
-export function deleteHours(id){
-    return axios.delete(`${config.api_url}/suppr/horaires/${id}`)
+export function updateOneOpeningHours(id){
+    return axios.put(`${config.api_url}/update/opening-hours/${id}`)
+    .then((res)=>{
+        return res.data
+    })
+    .catch((err)=>{
+        return err
+    })
+}
+
+export function deleteOneOpeningHours(id){
+    return axios.delete(`${config.api_url}/delete/opening-hours/${id}`)
     .then((res)=>{
         return res.data
     })

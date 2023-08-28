@@ -1,4 +1,4 @@
-.container_other_pros {
+.container_external_pros {
     display: flex;
     width: 50%;
     margin: auto;
@@ -9,7 +9,7 @@
     margin-bottom: 50px;
 }
 
-.card_other_pros {
+.card_external_pros {
     text-align: center;
     padding: 5px;
     border-radius: 15px;
@@ -24,16 +24,16 @@
     position: relative;
 }
 
-.card_other_pros p {
+.card_external_pros p {
     position: absolute;
     top: 5px;
 }
 
-.card_other_pros:hover {
+.card_external_pros:hover {
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
-#img_other_pros {
+#img_external_pros {
     width: 150px;
     margin-top: 30px;
 }

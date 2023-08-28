@@ -2,6 +2,7 @@
     width: 60%;
     margin: 100px auto;
     text-align: center;
+    scroll-behavior: smooth;
 }
 
 .container_spe {

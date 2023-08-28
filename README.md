@@ -16,3 +16,7 @@ Currently, two official plugins are available:
 Doc : https://react-slick.neostack.com/docs/get-started
 
 INtsllaer à la place npm i react multi-carousel
+
+# Installation pour les formulaires 
+
+npm install react-hook-form

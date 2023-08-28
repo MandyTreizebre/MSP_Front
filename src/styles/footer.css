@@ -2,6 +2,7 @@ footer {
     background-color: #195f63;
     background-image: url("../../bg-footer.png");
     text-align: center;
+    margin-top: 50px;
 }
 
 .container_link {
