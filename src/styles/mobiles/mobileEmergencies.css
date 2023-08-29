@@ -1,0 +1,31 @@
+@media (max-width: 767px) {
+    .container_emergencies {
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .column3 h2 {
+        font-size: 1.4rem;
+    }
+    .column3 p {
+        width: 80%;
+        font-size: 1rem;
+    }
+
+    .img1 {
+        width: 150px;
+    }
+
+    .img2 {
+        width: 180px;
+    }
+
+    .img3 {
+        width: 200px;
+    }
+    
+    .img4 {
+        width: 120px;
+    }
+}

@@ -1,4 +1,4 @@
-/*Imports*/
+/*Importing modules and styles*/
 import { Link } from "react-router-dom";
 
 import cabinetDoctor from '../assets/images/cabmedecins1.jpg'
@@ -7,6 +7,8 @@ import officePsychotherapist from '../assets/images/bureau-psychologue.jpg'
 import pharmacy from '../assets/images/pharmacie-beauvy.jpg'
 
 import '../styles/emergencies.css'
+import '../styles/mobiles/mobileEmergencies.css'
+import '../styles/tablets/tabletEmergencies.css'
 
 const Emergencies = () => {
     return (

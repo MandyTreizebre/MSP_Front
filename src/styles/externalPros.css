@@ -1,21 +1,21 @@
 .container_external_pros {
     display: flex;
-    width: 50%;
+    width: 60vw;
     margin: auto;
     flex-wrap: wrap;
     gap: 20px;
     justify-content: space-around;
     align-items: center;
     margin-bottom: 50px;
+    margin-top: 50px;
 }
 
 .card_external_pros {
     text-align: center;
-    padding: 5px;
     border-radius: 15px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     transition: all 0.9s cubic-bezier(.25,.8,.25,1);
-    width: 220px;
+    width: 250px;
     height: 250px;
     display: flex;
     flex-direction: column;
@@ -26,7 +26,9 @@
 
 .card_external_pros p {
     position: absolute;
+    font-size: 1rem;
     top: 5px;
+    left: 20px;
 }
 
 .card_external_pros:hover {

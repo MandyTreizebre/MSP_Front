@@ -4,6 +4,8 @@
 import {Link} from 'react-router-dom'
 import imgDoctor from '../assets/images/medecin.jpg'
 import '../styles/welcome.css'
+import '../styles/tablets/tabletWelcome.css'
+import '../styles/mobiles/mobileWelcome.css'
 
 
 const Welcome = () =>{

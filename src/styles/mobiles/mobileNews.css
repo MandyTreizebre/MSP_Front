@@ -1,0 +1,14 @@
+@media (max-width: 767px) {
+    .react-multiple-carousel__arrow {
+        display: none;
+    }
+
+    .box_news h3 {
+        font-size: 1.4rem;
+    }
+
+    .box_news p {
+        font-size: 1rem;
+    }
+
+}

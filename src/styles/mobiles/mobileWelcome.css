@@ -1,0 +1,24 @@
+@media (max-width: 767px) {
+    .container_welcome {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .div_presentation {
+        width: 80%;
+    }
+
+    .div_presentation h1 {
+        font-size: 1.4rem;
+    }
+
+    .div_presentation p {
+        font-size: 1rem;
+    }
+
+    .img_presentation {
+        display: none;
+}
+}
