@@ -9,6 +9,8 @@ import { displayAllNews } from "../api/News"
 
 /*Importation du style*/
 import '../styles/news.css'
+import '../styles/mobiles/mobileNews.css'
+import '../styles/tablets/tabletNews.css'
 
 /*Importation du composant de la biblio carousel et des styles du carousel*/
 import Carousel from 'react-multi-carousel'
@@ -42,6 +44,7 @@ const News = () => {
   itemClass=""
   keyBoardControl
   minimumTouchDrag={80}
+  partialVisbile
   pauseOnHover
   renderArrowsWhenDisabled={false}
   renderButtonGroupOutside={false}
@@ -53,23 +56,23 @@ const News = () => {
         min: 1024
       },
       items: 3,
-      partialVisibilityGutter: 40
+      partialVisibilityGutter: 0
     },
     mobile: {
       breakpoint: {
-        max: 464,
-        min: 0
+        max: 767,
+        min: 0,
       },
       items: 1,
-      partialVisibilityGutter: 30
+      partialVisibilityGutter: 0
     },
     tablet: {
       breakpoint: {
         max: 1024,
-        min: 464
+        min: 768,
       },
       items: 2,
-      partialVisibilityGutter: 30
+      partialVisibilityGutter: 70
     }
   }}
   rewind={false}

@@ -1,6 +1,6 @@
 .container_welcome {
     display: flex;
-    width: 70%;
+    width: 90vw;
     justify-content: center;
     margin: 4rem auto;
     gap: 2.5rem;

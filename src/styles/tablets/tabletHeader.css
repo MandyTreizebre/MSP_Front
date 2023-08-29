@@ -1,14 +1,33 @@
 @media screen and (min-width: 768px) and (max-width: 1024px) {
     .navigation {
-        display: flex;
-        flex-direction: column;
-        height: auto;
-        padding: 15px;
+        display: none;
     }
 
     #logo {
-        max-width: 25vw;
-        min-width: 25vw;
+        width: 20vw;
+    }
+
+    #mobile_tablet_trigger {
+        display: flex;
+        justify-content: center;
+        padding: 15px;
+        width: 100vw;
+        background-color: #10403b13;
+    }
+
+    .trigger-icon {
+        font-size: 24px; 
+        cursor: pointer;
+    }
+
+    .navigation.is-open {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+
+    .navigation a {
+        font-size: 1.1rem;
     }
 }
     

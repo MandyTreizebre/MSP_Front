@@ -1,4 +1,4 @@
-.container_header {
+.container_banner {
     height: 30vh;
     background: url('../assets//images/paysage2.jpg') center;
     background-size: cover;
@@ -8,9 +8,9 @@
 }
 
 #logo {
-    max-width: 12vw;
-    min-width: 12vw;
-    
+    width: 12vw;
+    max-width: 100%;
+    height: auto;
 }
 
 .navigation {
@@ -29,7 +29,7 @@
     font-size: 1.2rem;
 }
 
-.burger-icon {
+#mobile_tablet_trigger {
     display: none;
 }
 

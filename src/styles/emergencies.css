@@ -1,6 +1,6 @@
 .container_emergencies {
     display: flex;
-    width: 70%;
+    width: 90vw;
     max-width: 1200px;
     margin: 6rem auto;
     justify-content: center;

@@ -31,7 +31,7 @@ const Specializations = () => {
                     return (
                         <div key={spe.id} className="cards_spe">
                             <Link to={`${spe.name_spe}/${spe.id}`}>
-                                <img src={config.pict_url+spe.picture} id="img_spe"/>
+                                <img src={config.pict_url+spe.picture} id="img_spe" alt={spe.name_spe}/>
                                 <p>{spe.name_spe}</p>
                             </Link>
                         </div>

@@ -1,5 +1,5 @@
 .section_spe {
-    width: 60%;
+    width: 100vw;
     margin: 100px auto;
     text-align: center;
     scroll-behavior: smooth;
@@ -7,10 +7,12 @@
 
 .container_spe {
     display: flex;
+    width: 80%;
+    max-width: 60vw;
     flex-wrap: wrap;
-    gap: 50px;
+    gap: 2rem;
     justify-content: center;
-    margin: 20px;
+    margin: 40px auto;
 }
 
 #img_spe {
@@ -37,4 +39,5 @@
 
 .cards_spe p {
     padding-top: 10px;
+    font-weight: bold;
 }
