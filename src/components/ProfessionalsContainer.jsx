@@ -1,68 +1,53 @@
 import "../styles/professionalsContainer.css"
 
 const ProfessionalsContainer = ({professionals}) => {
+
+    const groupedProfessionals = professionals.reduce((grouped, professional) => {
+        const key = `${professional.lastname} ${professional.firstname}`;
+        if (!grouped[key]) {
+            grouped[key] = {};
+        }
+
+        // Group schedules by day
+        const dayKey = professional.day_name;
+        if (!grouped[key][dayKey]) {
+            grouped[key][dayKey] = professional;
+        }
+
+        return grouped;
+    }, {});
+
+    console.log("groupedProfessionals", groupedProfessionals);
+
     return (
-        <>
-            <section>
-                {professionals.map((professional, index) => (
-                    <div key={index} className="container_professionals">
-                        <div className="column-left">
-                            {professional.lastname && <p>{professional.lastname}</p>}
-                            {professional.firstname && <p>{professional.firstname}</p>}
-                            {professional.address && <p>{professional.address}</p>}
-                            {professional.zip && <p>{professional.zip}</p>}
-                            {professional.city && <p>{professional.city}</p>}
-                            {professional.phone && <p>{professional.phone}</p>}
-                            {professional.details && <p>{professional.details}</p>}
+        <section>
+        {Object.keys(groupedProfessionals).map((key, index) => (
+            <div key={index} className="container_professionals">
+                <div className="column-left">
+                    <h3>{key}</h3>
+                    <p>{groupedProfessionals[key]["Lundi"].address}</p>
+                    <p>{groupedProfessionals[key]["Lundi"].zip} {groupedProfessionals[key]["Lundi"].city}</p>
+                    <p><span className="bold">{groupedProfessionals[key]["Lundi"].phone}</span></p>
+                    {groupedProfessionals[key]["Lundi"].details && (
+                        <p>{groupedProfessionals[key]["Lundi"].details}</p>
+                    )}
+                </div> 
+                    <div className="column-right">
+                        <div className="schedule">
+                            <h3>Horaires :</h3>
+                            {Object.keys(groupedProfessionals[key]).map((dayKey, idx) => (
+                                    <div key={idx} className="line_hours">
+                                        <p><span className="bold">{dayKey}</span> :</p>
+                                        <p>
+                                           {groupedProfessionals[key][dayKey].h_start_morning} - {groupedProfessionals[key][dayKey].h_end_morning} / {groupedProfessionals[key][dayKey].h_start_afternoon} - {groupedProfessionals[key][dayKey].h_end_afternoon}
+                                        </p>
+                                    </div>
+                                ))}
                         </div>
-                        <div className="column-right">
-                            <div className="box_day">
-                                <p>Lundi</p>
-                                {professional.monday_h_start_morning !== "00:00:00"  && <p>{professional.monday_h_start_morning}</p>}
-                                {professional.monday_h_end_morning !== "00:00:00" && <p>{professional.monday_h_end_morning}</p>}
-                                {professional.monday_h_start_afternoon !== "00:00:00" && <p>{professional.monday_h_start_afternoon}</p>}
-                                {professional.monday_h_end_afternoon !== "00:00:00" && <p>{professional.monday_h_end_afternoon}</p>}
-                            </div>
-                            <div className="box_day">
-                                <p>Mardi</p>
-                                {professional.tuesday_h_start_morning !== "00:00:00" && <p>{professional.tuesday_h_start_morning}</p>}
-                                {professional.tuesday_h_end_morning !== "00:00:00" && <p>{professional.tuesday_h_end_morning}</p>}
-                                {professional.tuesday_h_start_afternoon !== "00:00:00" && <p>{professional.tuesday_h_start_afternoon}</p>}
-                                {professional.tuesday_h_end_afternoon !== "00:00:00" && <p>{professional.tuesday_h_end_afternoon}</p>}
-                            </div>
-                            <div className="box_day">
-                                <p>Mercredi</p>
-                                {professional.wednesday_h_start_morning !== "00:00:00" && <p>{professional.wednesday_h_start_morning}</p>}
-                                {professional.wednesday_h_end_morning !== "00:00:00" && <p>{professional.wednesday_h_end_morning}</p>}
-                                {professional.wednesday_h_start_afternoon !== "00:00:00" && <p>{professional.wednesday_h_start_afternoon}</p>}
-                                {professional.wednesday_h_end_afternoon !== "00:00:00" && <p>{professional.wednesday_h_end_afternoon}</p>}
-                            </div>
-                            <div className="box_day">
-                                <p>Jeudi</p>
-                                {professional.thursday_h_start_morning !== "00:00:00" && <p>{professional.thursday_h_start_morning}</p>}
-                                {professional.thursday_h_end_morning !== "00:00:00" && <p>{professional.thursday_h_end_morning}</p>}
-                                {professional.thursday_h_start_afternoon !== "00:00:00" && <p>{professional.thursday_h_start_afternoon}</p>}
-                                {professional.thursday_h_end_afternoon !== "00:00:00" && <p>{professional.thursday_h_end_afternoon}</p>}
-                            </div>
-                            <div className="box_day">
-                                <p>Vendredi</p>
-                                {professional.friday_h_start_morning !== "00:00:00" && <p>{professional.friday_h_start_morning}</p>}
-                                {professional.friday_h_end_morning !== "00:00:00" && <p>{professional.friday_h_end_morning}</p>}
-                                {professional.friday_h_start_afternoon !== "00:00:00" && <p>{professional.friday_h_start_afternoon}</p>}
-                                {professional.friday_h_end_afternoon !== "00:00:00" && <p>{professional.friday_h_end_afternoon}</p>}
-                            </div>
-                            <div className="box_day">
-                                <p>Samedi</p>
-                                {professional.saturday_h_start_morning !== "00:00:00" &&<p>{professional.saturday_h_start_morning}</p>}
-                                {professional.saturday_h_end_morning !== "00:00:00" &&<p>{professional.saturday_h_end_morning}</p>}
-                                {professional.saturday_h_start_afternoon !== "00:00:00" &&<p>{professional.saturday_h_start_afternoon}</p>}
-                                {professional.saturday_h_end_afternoon !== "00:00:00" &&<p>{professional.saturday_h_end_afternoon}</p>}
-                            </div>
-                        </div>
-                    </div>
-                ))}
-            </section>
-        </>
+                </div>
+            </div>
+        ))}
+    </section>
     )
 }
 

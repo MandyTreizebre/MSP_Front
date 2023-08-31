@@ -1,0 +1,14 @@
+.container_dentists {
+    margin: auto;
+    text-align: center;
+    padding: 30px;
+}
+
+.container_dentists p {
+    width: 70vw;
+    margin: 25px auto;
+}
+
+.container_dentists h1 {
+    font-size: 2rem;
+}

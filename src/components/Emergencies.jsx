@@ -22,9 +22,9 @@ const Emergencies = () => {
                 <img src={pharmacy} className="img4" alt="Facade de la pharmacie Beauvy" />
             </div>
             <div className="column3">
-                <h2>Urgences et continuité des soins</h2>
+                <h2>Permanence des Soins et Urgences Médicales : Des Soins à Tout Moment</h2>
                 <p> 
-                    L'objectif de la maison de santé est de vous assurer une prise en charge rapide quand vous en avez besoin.<br />
+                    L'objectif de la maison de santé est de vous assurer une assistance rapide et efficace lorsque vous en avez le plus besoin.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam<br />
                     Cependant toutes les urgences restent gérées par le 15.
                 </p>
             <Link to="/urgences-et-gardes"><button className="general_button">Trouver les professionnels de gardes</button></Link>

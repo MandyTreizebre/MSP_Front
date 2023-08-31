@@ -11,6 +11,7 @@
 .column1, .column2 {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 1rem;
 }
 
@@ -31,27 +32,27 @@
 }
 
 .column3 p{
-    width: 60%;
+    width: 90%;
     margin: auto;
 }
 
 
 .img1 {
-    width: 260px;
+    width: 240px;
     border-radius: 15px;
 }
 
 .img2 {
-    width: 300px;
+    width: 280px;
     border-radius: 15px;
 }
 
 .img3 {
-    width: 340px;
+    width: 320px;
     border-radius: 15px;
 }
 
 .img4 {
-    width: 200px;
+    width: 180px;
     border-radius: 15px;
 }

@@ -7,7 +7,7 @@ import Footer from './components/Footer'
 /*Importation des containers*/
 import Home from './containers/Home'
 import Msp from './containers/Msp'
-import Dentistes from './containers/Dentistes'
+import Dentists from './containers/Dentists'
 import Contact from './containers/Contact'
 
 import {Routes, Route} from 'react-router-dom'
@@ -21,7 +21,7 @@ function App() {
         <Route exact path="/" element={<Home/>} />
         <Route exact path="/notre-msp" element={<Msp/>} />
         <Route exact path="/contact" element={<Contact/>} />
-        <Route exact path="/Dentistes/:speciality_id" element={<Dentistes/>} />
+        <Route exact path="/Dentistes/:speciality_id" element={<Dentists/>} />
       </Routes>
       <Footer />
     </>
