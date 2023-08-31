@@ -94,6 +94,7 @@ const News = () => {
                 <p>{event.details}</p>
                 <Link to={event.external_link}><button className="general_button">En savoir plus</button></Link>
             </div>
+          
         )
     })}
 

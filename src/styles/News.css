@@ -15,7 +15,7 @@
     position: relative;
 }
 
-.box_news > * {
+/.box_news > * {
     flex-grow: 1; /* Étirer le contenu pour occuper l'espace vertical */
 }
 

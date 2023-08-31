@@ -50,3 +50,13 @@ export function deleteOneOpeningHours(id){
         return err
     })
 }
+
+export function essaiPros(speciality_id) {
+    return axios.get(`${config.api_url}/essai/${speciality_id}`)
+    .then((res)=>{
+        return res.data
+    })
+    .catch((err)=>{
+        return err
+    })
+}
