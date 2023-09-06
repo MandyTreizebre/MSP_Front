@@ -1,7 +1,7 @@
 /*Importing modules and styles*/
 import { Link } from "react-router-dom";
 
-import cabinetDoctor from '../assets/images/cabmedecins1.jpg'
+import cabinetDoctor from '../assets/images/cabmedecins.jpg'
 import buildingPhysiotherapist from '../assets/images/photo_2022-10-31_05-22-24.jpg'
 import officePsychotherapist from '../assets/images/bureau-psychologue.jpg'
 import pharmacy from '../assets/images/pharmacie-beauvy.jpg'

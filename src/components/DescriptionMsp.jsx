@@ -2,12 +2,13 @@
 import medicalTeam from "../assets/images/equipe-medecins.jpg"
 import healthyFood from "../assets/images/healthy.jpg"
 import nature from "../assets/images/nature.jpg"
-
+import doctorOffice from "../assets/images/cabmedecin2.jpg"
 /*Importation du style*/
 import "../styles/descriptionMsp.css"
 
 const DescriptionMsp = () => {
     return (
+        <>
         <section className="container_description_msp">
             <article className="container_article">
                 <h2>Notre ambition</h2>
@@ -38,6 +39,13 @@ const DescriptionMsp = () => {
                 </ul>
             </article>
         </section>
+
+        <section className="container2">
+            <h2>Lorem ipsum dolor <span>sit amet</span></h2>
+            <img src={doctorOffice} alt="cabinet du docteur Regnier" id="imgOffice" />
+            <p>"Lorem ipsum dolor sit amet, consectetur <span>adipiscing elit</span>, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in <span>reprehenderit in voluptate</span> velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat <span>cupidatat non proident</span>, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+        </section>
+        </>
     )
 }
 
