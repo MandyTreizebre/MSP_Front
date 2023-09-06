@@ -1,16 +1,25 @@
+.pict1 {
+    width: 500px;
+    height: 400px;
+    margin-top: 30px;
+    border-radius: 15px;
+}
 .container_presentation_msp {
-    width: 70%;
-    margin: 50px auto;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    gap: 40px;
+    height: 350px;
+    gap: 100px;
+    margin: 30px 0 100px 0;
 }
 
-.container_presentation_msp p {
-    width: 90%;
-    text-align: justify;
+.bloc_right {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
 }
+
 
 
