@@ -58,7 +58,7 @@ const Header = () =>{
                 <Link to="/notre-msp">Notre MSP</Link>
                 <Link to="/infos-sante">Informations santé</Link>
                 <Link to="/contact">Contact</Link>
-                <Link to="urgences-gardes">Urgences et gardes</Link>
+                <Link to="/professionnels-de-garde">Urgences et gardes</Link>
                 <Link to="/administrateur" ><FontAwesomeIcon icon={faGear} /></Link>
             </nav>
         </header>

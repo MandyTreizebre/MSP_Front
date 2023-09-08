@@ -21,6 +21,7 @@ import Contact from './containers/Contact'
 
 
 import {Routes, Route} from 'react-router-dom'
+import Guards from './components/Guards'
 
 
 
@@ -47,7 +48,7 @@ function App() {
         <Route exact path="/Podologue/:speciality_id" element={<Podiatrist/>} />
         <Route exact path="/Psychologue/:speciality_id" element={<Psychologist/>} />
         <Route exact path="/Psychomotricienne/:speciality_id" element={<Psychomotrician/>} />
-
+        <Route exact path="/professionnels-de-garde" element={<Guards/>} />
 
       </Routes>
       <Footer />

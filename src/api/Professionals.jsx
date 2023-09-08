@@ -69,5 +69,15 @@ export function displaySpecializations(){
     })
     .catch((err)=>{
         return err
+    })  
+}
+
+export function displayProfessionalsGuards(){
+    return axios.get(`${config.api_url}/professionnels-de-garde`)
+    .then((res)=>{
+        return res.data
+    })
+    .catch((err)=>{
+        return err
     })
 }
