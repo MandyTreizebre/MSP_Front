@@ -1,5 +1,5 @@
 import { essaiPros } from "../api/OpeningHours"
-import ProfessionalsContainer from "../components/ProfessionalsContainer"
+import ProfessionalsContainer from "../containers/ProfessionalsContainer"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 
@@ -15,7 +15,6 @@ const Psychologist = () => {
         essaiPros(params.speciality_id)
         .then((res)=>{
             setPsychologist(res.result)
-            console.log("CONSOLE RESULT DE INFIRMIERS =>", res.result)
         })
         .catch(err => console.log(err))
     }, [])

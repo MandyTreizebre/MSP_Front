@@ -39,7 +39,6 @@ const ProfessionalsContainer = ({ professionals }) => {
     return grouped;
   }, {});
 
-  console.log("groupedProfessionals", groupedProfessionals);
 
   return (
 
