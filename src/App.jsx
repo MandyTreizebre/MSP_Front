@@ -39,15 +39,15 @@ function App() {
         <Route exact path="/" element={<Home/>} />
         <Route exact path="/notre-msp" element={<Msp/>} />
         <Route exact path="/contact" element={<Contact/>} />
-        <Route exact path="/Dentistes/:speciality_id" element={<Dentists/>} />
-        <Route exact path="/Médecins/:speciality_id" element={<Doctors/>} />
-        <Route exact path="/Infirmiers/:speciality_id" element={<Nurses/>} />
-        <Route exact path="/Kinésithérapeutes/Ostéopathes/:speciality_id" element={<Physiotherapists/>} />
-        <Route exact path="/Laboratoire/:speciality_id" element={<Laboratory/>} />
-        <Route exact path="/Pharmacies/:speciality_id" element={<Pharmacy/>} />
-        <Route exact path="/Podologue/:speciality_id" element={<Podiatrist/>} />
-        <Route exact path="/Psychologue/:speciality_id" element={<Psychologist/>} />
-        <Route exact path="/Psychomotricienne/:speciality_id" element={<Psychomotrician/>} />
+        <Route exact path="/dentistes/:speciality_id" element={<Dentists/>} />
+        <Route exact path="/medecins/:speciality_id" element={<Doctors/>} />
+        <Route exact path="/infirmiers/:speciality_id" element={<Nurses/>} />
+        <Route exact path="/kines-osteos/:speciality_id" element={<Physiotherapists/>} />
+        <Route exact path="/laboratoire/:speciality_id" element={<Laboratory/>} />
+        <Route exact path="/pharmacies/:speciality_id" element={<Pharmacy/>} />
+        <Route exact path="/podologue/:speciality_id" element={<Podiatrist/>} />
+        <Route exact path="/psychologue/:speciality_id" element={<Psychologist/>} />
+        <Route exact path="/psychomotricienne/:speciality_id" element={<Psychomotrician/>} />
         <Route exact path="/professionnels-de-garde" element={<Guards/>} />
 
       </Routes>

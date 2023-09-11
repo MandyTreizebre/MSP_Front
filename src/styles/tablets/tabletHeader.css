@@ -18,6 +18,7 @@
     .trigger-icon {
         font-size: 24px; 
         cursor: pointer;
+        color: var(--green-color)
     }
 
     .navigation.is-open {

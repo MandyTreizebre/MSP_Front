@@ -29,6 +29,21 @@
     font-size: 1.2rem;
 }
 
+.navigation a:after {
+    content: '';
+    display: block;
+    margin: auto;
+    height: 1px;
+    width: 0;
+    background: transparent;
+    transition: width .5s ease, background-color .5s ease;
+}
+
+.navigation a:hover:after {
+    width: 100%;
+    background: var(--green-color);
+}
+
 #mobile_tablet_trigger {
     display: none;
 }

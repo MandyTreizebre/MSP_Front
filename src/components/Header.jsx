@@ -5,6 +5,7 @@ import { useRef, useState } from 'react'
 import '../styles/header.css'
 import '../styles/tablets/tabletHeader.css'
 import '../styles/mobiles/mobileHeader.css'
+
 import Logo from '../assets/images/logo.png'
 
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
@@ -28,7 +29,7 @@ const Header = () =>{
                     <img 
                     src={Logo} 
                     id="logo" 
-                    alt= "Logo de la Maison de santé" 
+                    alt= "Logo de la Maison de santé de Varennes-Sur-Allier" 
                     />
                 </Link>
             </div>
