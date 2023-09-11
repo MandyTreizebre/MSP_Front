@@ -7,13 +7,15 @@
 :root {
     --green-color: #10403b;
     --title-font: louisgeorge, Arial, Helvetica, sans-serif;
-    --common-font: ubuntu, Arial, Helvetica, sans-serif
+    --common-font: ubuntu, Arial, Helvetica, sans-serif;
+    --green-span-color: #10403b86
 }
 
 
 /********** STYLES GLOBAUX ***********/
 h1, h2, h3 {
     font-family: var(--title-font);
+    color: var(--green-color);
     text-align: center;
     font-size: 1.7rem;
 }
@@ -39,6 +41,11 @@ p {
     font-family: var(--common-font);
     font-size: 1.1rem;
     line-height: 2em;
+}
+
+.bold {
+    font-weight: bold;
+    color: var(--green-color)
 }
 
 /********** POLICES ***********/

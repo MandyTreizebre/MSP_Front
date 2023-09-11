@@ -5,6 +5,10 @@
         flex-wrap: wrap;
     }
 
+    .column3 p {
+        line-height: 2.5em;
+    }
+    
     .img1 {
         width: 170px;
     }

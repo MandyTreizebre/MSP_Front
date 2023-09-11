@@ -61,7 +61,7 @@ const ProfessionalsContainer = ({ professionals }) => {
                 </span>
               </p>
               {groupedProfessionals[key].coordinates.details && (
-                <div className="details">{groupedProfessionals[key].coordinates.details}</div>
+                <p className="details">{groupedProfessionals[key].coordinates.details}</p>
               )}
             </div>
           </div>
