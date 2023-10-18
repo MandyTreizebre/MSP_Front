@@ -1,4 +1,4 @@
-.container_professionals {
+.container-professionals {
     display: flex;
     width: 70vw;
     margin: 50px auto;
@@ -8,37 +8,48 @@
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     padding: 15px;
     border-radius: 15px;
-    background-image: url("../assets/images/essaipaysage.png");
 }
 
-.column-left {
+.column-pro {
     display: flex;
     flex-direction: column;
+    width: 25vw;
     gap: 25px;
     padding: 15px;
 }
 
-.column-left p {
+.column-pro p {
     line-height: 3rem;
 }
 
-.column-left h3 {
+.column-pro h3 {
     margin-bottom: 25px;
 }
 
-.column-right {
+.column-hours {
     display: flex;
     justify-content: center;
     gap: 20px;
 }
 
-.column-right h3 {
+.column-hours h3 {
     margin-bottom: 30px;
 }
 
-.line_hours {
+.line-hours {
     display: flex;
     justify-content: space-between;
     gap: 30px;
     margin-bottom: 10px;
+}
+
+/************styles for tablets and mobiles that share the same style*************/
+@media screen and (max-width: 1024px) {
+    .container-professionals {
+        flex-direction: column;
+        gap: 3vh;
+    }
+    .column-pro {
+        width: 40vw;
+    }
 }

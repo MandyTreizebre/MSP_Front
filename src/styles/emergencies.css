@@ -1,58 +1,100 @@
-.container_emergencies {
+/************DESKTOP STYLES*************/
+/********** MAIN CONTAINER ***********/
+.container-emergencies {
     display: flex;
-    width: 90vw;
-    max-width: 1200px;
-    margin: 6rem auto;
+    width: 80vw;
+    margin: 150px auto;
     justify-content: center;
     text-align: center;
-    gap: 2rem;
+    gap: 1vw;
 }
 
-.column1, .column2 {
+/********** COLUMNS WITH PICTURES ***********/
+.column-left, .column-middle {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 1rem;
+    gap: 1vw;
 }
 
-.column1 {
+.column-left {
     align-items: flex-end;
 }
 
-.column2 {
+.column-middle {
     align-items: flex-start;
 }
 
-.column3 {
+/********** COLUMN RIGHT WITH TEXT ***********/
+.column-right {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 2rem;
+    width: 40%;
+    gap: 4vh;
     margin: auto;
 }
 
-.column3 p{
+.column-right p{
     width: 90%;
     margin: auto;
 }
 
 
-.img1 {
-    width: 240px;
-    border-radius: 15px;
+/********** PICTURES ***********/
+.cabinet-doctor, .building-physiotherapist, .office-psychotherapist, .pharmacy {
+    border-radius: var(--border-image);
 }
 
-.img2 {
-    width: 280px;
-    border-radius: 15px;
+.cabinet-doctor {
+    width: 12vw;
 }
 
-.img3 {
-    width: 320px;
-    border-radius: 15px;
+.building-physiotherapist {
+    width: 15vw;
 }
 
-.img4 {
-    width: 180px;
-    border-radius: 15px;
+.office-psychotherapist {
+    width: 15vw;
+}
+
+.pharmacy {
+    width: 10vw;
+}
+
+/************styles for tablets and mobiles that share the same style*************/
+@media screen and (max-width: 1024px) {
+    .container-emergencies {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+}
+
+/************MOBILES STYLES*************/
+@media (max-width: 767px) {
+    .column-right h2 {
+        font-size: 1.4em;
+        margin-top: 20px;
+    }
+
+    .column-right p {
+        width: 80%;
+        font-size: 1em;
+    }
+
+    .cabinet-doctor {
+        width: 150px;
+    }
+
+    .building-physiotherapist {
+        width: 180px;
+    }
+
+    .office-psychotherapist {
+        width: 200px;
+    }
+    
+    .pharmacy {
+        width: 120px;
+    }
 }

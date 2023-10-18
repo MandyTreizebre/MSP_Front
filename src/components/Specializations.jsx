@@ -1,53 +1,48 @@
-/* COMPONENT UNDER NEWS */ 
-
-/*Importing modules, styles and pictures*/
 import {useState, useEffect, useRef} from "react"
-import { Link } from "react-router-dom";
-
-import "../styles/Specializations.css"
-
-/*Import config file (to back)*/
-import { config } from "../config";
-
-/*Importing the displaySpecializations function to call up news items*/
+import { Link } from "react-router-dom"
 import {displaySpecializations} from '../api/Professionals'
+import { config } from "../config"
 
+import "../styles/specializations.css"
 
 const Specializations = () => {
-    /*Creation of a reference to target the section id=specializations element, 
-    which enables click-to-appointment scrolling in the Header*/
-    const refSpe = useRef(null)
-  
-    /*Declaration of spes state with an empty array as initial value*/
-    const [spes, setSpes] = useState([])
+    const refSpe = useRef(null) // Reference for click-to-appointment scrolling
+    const [specializations, setSpecializations] = useState([])
+    const [error, setError] = useState(null)
 
     useEffect(()=>{
         displaySpecializations()
         .then((res)=>{
-            /*Spes updates with data from displaySpecializations*/
-            setSpes(res.result)
+            setSpecializations(res.result)
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+           console.log(err) 
+           setError("Une erreur s’est produite lors de la récupération des spécialisations.")
+        })
     }, [])
 
     return ( 
 
-        <section id="specializations" className="section_spe" ref={refSpe}>
+        <div id="specializations" className="container-spe" ref={refSpe}>
             <h2>Les professionnels de santé de la MSP</h2>
-            <div className="container_spe">
-                {/*Map on spes items and display of items*/}
-                {spes.map((spe)=>{
+            <section className="section-spe">
+                {specializations.map((spe)=>{
                     return (
-                        <div key={spe.id} className="cards_spe">
-                            <Link to={`${spe.key_url}/${spe.id}`} target="_blank" rel="noreferrer">
-                                <img src={config.pict_url+spe.picture} id="img_spe" alt={spe.name_spe}/>
-                                <p className="bold">{spe.name_spe}</p>
+                        <div key={spe.id} className="cards-spe">
+                            <Link to={`${spe.key_url}/${spe.id}`} 
+                                  target="_blank" 
+                                  rel="noreferrer"
+                                  aria-label="Visiter la page des professionnels (s'ouvre dans un nouvel onglet)"
+                            >
+                                <img src={config.pict_url+spe.picture} className="img-spe" alt={spe.name_spe}/>
+                                <p><strong>{spe.name_spe}</strong></p>
                             </Link>
                         </div>
                     )
                 })}
-            </div>
+                {error && <div className="error-message">{error}</div>}
             </section>
+        </div>
     )
 }
 

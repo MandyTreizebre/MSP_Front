@@ -51,9 +51,9 @@ const Guards = () => {
         .then((res)=>{
             setGuards(res.result)
 
-                const pharmacies = [];
-                const dentists = [];
-                const doctors = [];
+                const pharmacies = []
+                const dentists = []
+                const doctors = []
 
                 guards.forEach(professional => {
                     const startTimeMorningHHMM = professional.h_start_morning.substring(0, 5)

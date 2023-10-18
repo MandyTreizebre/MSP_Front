@@ -4,10 +4,14 @@ import App from './App.jsx'
 
 import {BrowserRouter} from 'react-router-dom'
 
+import { AdminProvider } from './components/AdminContext.jsx'
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </React.StrictMode>,
+      <AdminProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </AdminProvider>
+  </React.StrictMode>
 )

@@ -1,10 +1,12 @@
+/*Importing styles*/
 import "../styles/professionalsContainer.css";
 
 const ProfessionalsContainer = ({ professionals }) => {
 
+  
     function formatTime(timeString) {
         if(timeString === "00:00:00"){
-            return "";
+            return "Fermé";
         }
         const [hours, minutes] = timeString.split(':')
         return `${hours}h${minutes}`
@@ -41,12 +43,10 @@ const ProfessionalsContainer = ({ professionals }) => {
 
 
   return (
-
-    
     <section>
       {Object.keys(groupedProfessionals).map((key, index) => (
-        <div key={index} className="container_professionals">
-          <div className="column-left">
+        <div key={index} className="container-professionals">
+          <div className="column-pro">
             <h3>{key}</h3>
             {/* Afficher les coordonnées du professionnel (une seule fois) */}
             <div>
@@ -56,24 +56,24 @@ const ProfessionalsContainer = ({ professionals }) => {
                 {groupedProfessionals[key].coordinates.city}
               </p>
               <p>
-                <span className="bold">
+                <strong>
                   {groupedProfessionals[key].coordinates.phone}
-                </span>
+                </strong>
               </p>
               {groupedProfessionals[key].coordinates.details && (
                 <p className="details">{groupedProfessionals[key].coordinates.details}</p>
               )}
             </div>
           </div>
-          <div className="column-right">
+          <div className="column-hours">
             <div className="schedule">
               <h3>Horaires :</h3>
               {/* Afficher les horaires du professionnel par jour */}
               {Object.keys(groupedProfessionals[key].schedules).map(
                 (dayKey, idx) => (
-                  <div key={idx} className="line_hours">
+                  <div key={idx} className="line-hours">
                     <p>
-                      <span className="bold">{dayKey}</span> :
+                      <strong>{dayKey}</strong> :
                     </p>
                     {groupedProfessionals[key].schedules[dayKey].map(
                       (prof, idx) => (
@@ -91,7 +91,7 @@ const ProfessionalsContainer = ({ professionals }) => {
         </div>
       ))}
     </section>
-  );
-};
+  )
+}
 
-export default ProfessionalsContainer;
+export default ProfessionalsContainer

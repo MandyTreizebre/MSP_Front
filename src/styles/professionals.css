@@ -1,14 +1,14 @@
-.container_dentists {
+.container_pros {
     margin: auto;
     text-align: center;
     padding: 30px;
 }
 
-.container_dentists p {
+.container_pros p {
     width: 70vw;
     margin: 25px auto;
 }
 
-.container_dentists h1 {
+.container_pros h1 {
     font-size: 2rem;
 }

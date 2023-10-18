@@ -1,7 +1,7 @@
-.container_banner {
-    height: 30vh;
-    background: url('../assets//images/paysage2.jpg') center;
-    background-size: cover;
+/************DESKTOP STYLES*************/
+.container-banner { 
+    min-height: 20vh;
+    background: url('../assets//images//paysage.jpg') center / cover;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,26 +9,26 @@
 
 #logo {
     width: 12vw;
-    max-width: 100%;
-    height: auto;
 }
 
+/********** MENU ***********/
 .navigation {
     display: flex;
-    gap: 30px;
     justify-content: center;
     align-items: center;
-    height: 50px;
-    background-color: #10403b13;
+    gap: 2vw;
+    height: 5vh;
+    background-color: var(--light-green);
 }
 
 .navigation a {
     text-decoration: none;
     color: var(--green-color);
     font-family: var(--title-font);
-    font-size: 1.2rem;
+    font-size: 1.2em;
 }
 
+/*Highlighting links*/
 .navigation a:after {
     content: '';
     display: block;
@@ -44,7 +44,93 @@
     background: var(--green-color);
 }
 
-#mobile_tablet_trigger {
+/********** TRIGGER FOR MOBILE AND TABLETS ***********/
+#mobile-tablet-trigger {
     display: none;
 }
 
+.div-admin {
+    display: flex;
+    gap: 5vw;
+}
+
+.logout-button {
+    padding: 6px;
+    background-color: var(--green-color);
+    border-radius: 10px;
+    border: none; 
+    color: white;
+    cursor: pointer;
+}
+
+/************TABLETS STYLES*************/
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .navigation {
+        display: none;
+    }
+
+    #logo {
+        width: 20vw;
+    }
+
+    #mobile-tablet-trigger {
+        display: flex;
+        justify-content: center;
+        padding: 15px;
+        width: 100vw;
+        background-color: var(--light-green);
+    }
+
+    .trigger-icon {
+        font-size: 1.8em; 
+        cursor: pointer;
+        color: var(--green-color);
+    }
+
+    .navigation.is-open {
+        display: flex;
+        flex-direction: column;
+        height: 30vh;
+    }
+
+    .navigation.is-open a {
+        font-size: 1.1em;
+        padding: 2px;
+    }
+}
+
+/************MOBILES STYLES*************/
+@media (max-width: 767px) {
+    .navigation {
+        display: none;
+    }
+
+    #logo {
+        width: 20vw;
+    }
+
+    #mobile-tablet-trigger {
+        display: flex;
+        justify-content: center;
+        padding: 15px;
+        width: 100vw;
+        background-color: var(--light-green);
+    }
+   
+    .trigger-icon {
+        font-size: 1.5em; 
+        cursor: pointer;
+        color: var(--green-color);
+    }
+
+    .navigation.is-open {
+        display: flex;
+        flex-direction: column;
+        height: 25vh;
+    }
+
+    .navigation.is-open a {
+        font-size: 1em;
+        padding: 2px;
+    }
+}

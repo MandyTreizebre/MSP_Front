@@ -11,8 +11,8 @@ export function displayOpeningHours(){
     })
 }
 
-export function getOpeningHoursByPro(fk_pro_id){
-    return axios.get(`${config.api_url}/pro/opening-hours/${fk_pro_id}`)
+export function getOpeningHoursByPro(pro_id){
+    return axios.get(`${config.api_url}/pro/opening-hours/${pro_id}`)
     .then((res)=>{
         return res.data
     })
@@ -21,8 +21,10 @@ export function getOpeningHoursByPro(fk_pro_id){
     })
 }
 
-export function saveOneOpeningHours(){
-    return axios.post(`${config.api_url}/save/opening-hours`)
+/*OK VERIF*/
+export function saveOpeningHours(datas){
+    const token = window.localStorage.getItem('token')
+    return axios.post(`${config.api_url}/save/opening-hours`, datas, {headers: {"x-access-token": token}})
     .then((res)=>{
         return res.data
     })
@@ -31,8 +33,10 @@ export function saveOneOpeningHours(){
     })
 }
 
-export function updateOneOpeningHours(id){
-    return axios.put(`${config.api_url}/update/opening-hours/${id}`)
+/*OK VERIF*/
+export function editOpeningHoursByPro(datas, pro_id){
+    const token = window.localStorage.getItem('token')
+    return axios.put(`${config.api_url}/edit/opening-hours/${pro_id}`, datas,{headers: {"x-access-token": token}})
     .then((res)=>{
         return res.data
     })
@@ -51,8 +55,18 @@ export function deleteOneOpeningHours(id){
     })
 }
 
-export function essaiPros(speciality_id) {
-    return axios.get(`${config.api_url}/essai/${speciality_id}`)
+/*export function getProfessionalBySpe(speciality_id) {
+    return axios.get(`${config.api_url}/pro/${speciality_id}`)
+    .then((res)=>{
+        return res.data
+    })
+    .catch((err)=>{
+        return err
+    })
+}*/
+
+export function displayDays(){
+    return axios.get(`${config.api_url}/jours`)
     .then((res)=>{
         return res.data
     })
@@ -60,3 +74,4 @@ export function essaiPros(speciality_id) {
         return err
     })
 }
+

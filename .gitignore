@@ -25,3 +25,6 @@ dist-ssr
 
 # Dépendances 
 node_modules
+
+#Données sensibles
+.env

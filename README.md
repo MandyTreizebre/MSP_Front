@@ -10,13 +10,5 @@ Currently, two official plugins are available:
 
 # Installation nécessaire pour le slider 
 
-- npm install react-slick --save A SUPPRIMER 
-- npm install slick-carousel --save A SUPPPRIMER
+- npm install react-multi-carousel 
 
-Doc : https://react-slick.neostack.com/docs/get-started
-
-INtsllaer à la place npm i react multi-carousel
-
-# Installation pour les formulaires 
-
-npm install react-hook-form

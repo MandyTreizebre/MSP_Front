@@ -1,70 +1,88 @@
 import imgContact from "../assets/images/docteur-ordinateur.jpg"
+import { useRef, useState } from "react"
 
-import {useForm} from 'react-hook-form'
+import emailjs from '@emailjs/browser'
+import Modal from "../components/Modals/Modal"
 
 import "../styles/Contact.css"
 
 const Contact = () => {
+    const [openModal, setOpenModal] = useState(false)
+    const [message, setMessage] = useState('')
+    const maxCharacters = 500
 
-    const {
-        register, 
-        handleSubmit, 
-        formState: {errors},
-    } = useForm()
-    const onSubmit = (data) => console.log(data)
+    const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    const handleChange = (e) => {
+        const inputText = e.target.value
+        if(inputText.length <= maxCharacters){
+            setMessage(inputText)
+        }
+    }
+
+    const handleCloseModal = () => {
+        setOpenModal(false)
+    }
    
+    const form = useRef();
+
+    const sendEmail = (e) => {
+        e.preventDefault()
+
+    emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form.current, EMAILJS_PUBLIC_KEY)
+      .then((result) => {
+          if(result.status === 200){
+            setOpenModal(true)
+            setTimeout(()=> {
+                handleCloseModal()
+            }, 5000)
+          }
+          e.target.reset()
+      }, (error) => {
+          console.log(error.text)
+      })
+  }
     return (
         <>
-        <section className="container_contact">
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <section className="section_contact">
-                    <h1>Nous contacter</h1>
-                    <p>
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-                    </p>
-                </section>
-                
+            <section className="container-contact">
+                <form ref={form} onSubmit={sendEmail}>
+                    <div className="div-contact">
+                        <h1>Nous contacter</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                    </div>
+                    
+                    <label>Nom</label>
+                    <input type="text" 
+                        name="user_name"
+                        maxLength="50"
+                        required 
+                    />
 
-                <label>Nom :</label>
-                <input 
-                    {...register("lastname", {
-                        required: true 
-                    })} 
-                />
-                {errors.lastname && <span>Merci de complèter le champ Nom</span>}
+                    <label>Email</label>
+                    <input type="email" 
+                        name="user_email"
+                        maxLength="50"
+                        required 
+                    />
 
-                <label>Prénom :</label>
-                <input 
-                    {...register("firstname", {
-                        required: true,    
-                    })} 
-                />
-                {errors.firstname && <span>Merci de complèter le champ Prénom</span>}
+                    <label>Message</label>
+                    <textarea name="message" 
+                            maxLength={maxCharacters} 
+                            onChange={handleChange}
+                    />
+                    <div className="character-count">
+                        {maxCharacters - message.length} caractères restants
+                    </div>
 
-                <label>Email :</label>
-                <input
-                    {...register("mail", {
-                        required: true,
-                        pattern: {
-                            value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
-                            message: 'Merci de saisir une adresse email valide'
-                        }  
-                    })} 
-                />
-                {errors.mail && <span>Merci de complèter le champ Email</span>}
-
-                <label>Message :</label>
-                <textarea
-                    {...register("message", {
-                        required: true,
-                    })}
-                />
-                {errors.message && <span>Merci de complèter le champ Message</span>}
-
-                <input type="submit" />
-            </form>
-            <img src={imgContact} id="img_contact" />
-        </section>
+                    <input type="submit" 
+                        value="Envoyer" 
+                        className="general-button"/>
+                </form>
+                <img src={imgContact} className="img-contact" />
+            </section>
+            <Modal open={openModal} onClose={handleCloseModal} />
         </>
     )
 }

@@ -1,0 +1,88 @@
+/********** FIRST SECTION ***********/
+.presentation-informations {
+    width: 80%;
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+    text-align: center;
+}
+
+.presentation-informations {
+    margin-top: 30px;
+}
+
+/********** MAIN SECTION ***********/
+.section-informations {
+    width: 80%;
+    border-radius: 10px;
+    margin: 80px auto;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 4px 11px -2px #000000;
+    padding: 20px;
+}
+
+.section-informations a {
+    text-decoration: none;
+}
+
+/********** DIV WITH TITLE DESCRIPTION AND BUTTON ***********/
+.info {
+    display: flex;
+    height: auto;
+    flex-direction: column;
+    gap: 2vh;
+    align-items: flex-start;
+    margin-left: 15px;
+    padding: 20px;
+    text-align: justify;
+}
+
+.info p {
+    font-size: 1em;
+}
+
+/********** PICTURE ***********/
+.pict-information {
+    width: 100%;
+    height: auto;
+    border-radius: 10px 0 0 10px;
+}
+
+/********** STYLE FOR TABLET AND MOBILE ***********/
+@media screen and (min-width: 768px) and (max-width: 1024px), (max-width: 767px) {
+    .section-informations {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .info {
+        align-items: center;
+    }
+
+    .pict-information {
+        width: 30vw;
+        border-radius: 0px;
+    }
+
+}
+
+/********** SPECIFIC STYLE FOR TABLET ***********/
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .section-informations {
+        max-height: 100vh;
+    }
+}
+
+/********** SPECIFIC STYLE FOR MOBILE ***********/
+@media (max-width: 767px) {
+    .presentation-informations p {
+        font-size: 1em;
+    }
+
+    .section-informations {
+        max-height: 70vh;
+    }
+}
