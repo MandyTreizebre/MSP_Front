@@ -1,0 +1,49 @@
+.container-admin {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.container-admin h2 {
+    margin: 30px;
+}
+
+.title{
+    width: 7vw;
+}
+
+.details td {
+    text-align: center;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 25px auto;
+}
+
+table th, table td {
+    border: 1px solid black;
+    padding: 15px;
+}
+
+.admin-button {
+    text-decoration: none;
+    padding: 7px;
+    background-color: var(--green-color);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.actions {
+    width: 12vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.new-pro {
+    display: flex;
+    gap: 5vw;
+    justify-content: center;
+}

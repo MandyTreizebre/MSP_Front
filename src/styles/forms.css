@@ -1,0 +1,22 @@
+form {
+    margin: 20px auto;
+}
+
+form select {
+    width: 11vw;
+    height: 25px;
+    padding: 3px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+form button {
+    width: 12vw;
+    background-color: var(--green-color);
+    border-radius: 5px;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    margin: auto;
+}

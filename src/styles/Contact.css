@@ -1,31 +1,69 @@
-#img_contact {
-    width: 500px;
+.img-contact {
+    width: 400px;
     margin-top: 50px;
+    border-radius: 15px;
 }
 
-.container_contact {
+.div-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+}
+.container-contact {
     display: flex;
     justify-content: space-around;
-    margin: auto;
+    margin: 30px auto;
     width: 70%;
 }
 
-.section_contact {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
+.container-contact label {
+    font-family: var(--common-font);
+    text-decoration: underline;
 }
 
 form {
     display: flex;
     width: 40%;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
     justify-content: center;
 }
 
-form input, form textarea {
+form input {
+    max-width: 100%;
+    min-width: 100%;
     height: 40px;
     border-radius: 10px;
     border: 2px solid rgb(218, 213, 213);
 }
+
+form textarea {
+    height: 20vh;
+    max-height: 20vh;
+    min-height: 20vh;
+    font-size: 1.2em;
+    max-width: 100%;
+    min-width: 100%;
+    border-radius: 10px;
+    border: 2px solid rgb(218, 213, 213);
+}
+
+.character-count {
+    font-family: var(--common-font);
+}
+
+.general-button {
+    margin-top: 15px;
+}
+
+/************styles for tablets and mobiles that share the same style*************/
+@media screen and (max-width: 1024px) {
+    .container-contact img {
+        display: none;
+    }
+
+    form {
+        width: 80%;
+    }
+}
+

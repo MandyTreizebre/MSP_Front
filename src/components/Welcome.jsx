@@ -1,34 +1,32 @@
-/* FIRST COMPONENT UNDER THE HEADER */ 
-
-/*Importing modules, styles and pictures*/
 import {Link} from 'react-router-dom'
-
-import imgDoctor from '../assets/images/medecin.jpg'
+import doctorImage from '../assets/images/medecin.jpg'
 
 import '../styles/welcome.css'
-import '../styles/tablets/tabletWelcome.css'
-import '../styles/mobiles/mobileWelcome.css'
-
 
 const Welcome = () =>{
     return (
-        <section className="container_welcome"> {/* Global Section */}
-            <div className="div_presentation"> {/* Div containing the items on the left  */}
+        <div className="container-welcome"> 
+            <section className="section-presentation"> 
                 <h1>Bienvenue à la maison de santé de Varennes-Sur-Allier</h1>
                 <p>
-                    Au-delà de la structure immobilière, une maison de santé est avant tout une envie de <span className='bold'>32 professionnels de santé</span> de travailler ensemble. Cela s’est traduit par la création d’une association afin de s’organiser autour d’un projet de santé.
-                    Ce projet a été présenté devant plusieurs instances, ARS, CPAM, Ordres des médecins, kinés, infirmiers.. afin d’être labellisé pour obtenir le nom déposé de <span className='bold'>« Maison de Santé Pluriprofessionnelle »</span>.
+                    Au-delà de la structure immobilière, une maison de santé est avant tout une envie de <strong>32 professionnels de santé</strong> de travailler ensemble. Cela s’est traduit par la création d’une association afin de s’organiser autour d’un projet de santé.
+                    Ce projet a été présenté devant plusieurs instances, ARS, CPAM, Ordres des médecins, kinés, infirmiers.. afin d’être labellisé pour obtenir le nom déposé de <strong>« Maison de Santé Pluriprofessionnelle »</strong>.
                 </p>
-                <Link to="/notre-msp" target="_blank" rel="noreferrer">
-                    <button className="general_button">Découvrir notre MSP</button>
+                <Link to="/msp" 
+                      target="_blank" 
+                      rel="noreferrer"
+                      className="general-button"
+                      aria-label="Visiter la page www.sante-varennes-sur-allier/msp.fr (s'ouvre dans un nouvel onglet)"
+                >
+                    Découvrir notre MSP
                 </Link>
-            </div>
-            {/* Right image */}
-            <img className="img_presentation" 
-                 src={imgDoctor} 
+            </section>
+
+            <img id="img-right" 
+                 src={doctorImage} 
                  alt="Image d'un médecin tenant un stéthoscope" 
             />
-        </section>
+        </div>
     )
 }
 

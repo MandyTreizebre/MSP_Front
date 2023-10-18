@@ -4,25 +4,40 @@
     padding: 0;
 }
 
+/********** VARIABLES ***********/
 :root {
     --green-color: #10403b;
     --title-font: louisgeorge, Arial, Helvetica, sans-serif;
     --common-font: ubuntu, Arial, Helvetica, sans-serif;
-    --green-span-color: #10403b86
+    --green-span-color: #10403b86;
+    --light-green: #1d756e26;
+    --border-image: 15px;
 }
 
 
-/********** STYLES GLOBAUX ***********/
+/********** GLOBAL STYLES ***********/
 h1, h2, h3 {
     font-family: var(--title-font);
     color: var(--green-color);
     text-align: center;
-    font-size: 1.7rem;
 }
 
-.general_button {
+h1 {
+    font-size: 1.7em;
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+h3 {
+    font-size: 1.3em;
+}
+
+.general-button {
     width: auto;
-    padding: 15px;
+    text-decoration: none;
+    padding: 12px;
     border: 0;
     background-color: var(--green-color);
     border-radius: 7px;
@@ -33,18 +48,16 @@ h1, h2, h3 {
     cursor: pointer;
 }
 
-.general_button:hover {
+.general-button:hover {
     transform: scale(1.1);
 }
 
 p {
     font-family: var(--common-font);
-    font-size: 1.1rem;
     line-height: 2em;
 }
 
-.bold {
-    font-weight: bold;
+strong {
     color: var(--green-color)
 }
 

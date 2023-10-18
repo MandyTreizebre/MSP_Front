@@ -1,31 +1,36 @@
 footer {
-    background-color: #195f63;
-    background-image: url("../../bg-footer.png");
     text-align: center;
     margin-top: 50px;
 }
 
-.container_link {
-    
-    width: 20%;
+.container-link {
+    width: 90%;
     height: 200px;
     text-align: center;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 2vw;
     margin: auto;
+    border-top: 1px solid var(--green-color);
 }
 
 footer a {
     text-decoration: none;
-    color: white;
+    color: var(--green-color);
+    font-family: var(--common-font);
 }
 
 footer p {
-    background-color: white;
+    background-color: var(--light-green);
     padding: 5px;
+}
+
+footer hr {
+    width: 90%;
+    margin: auto;
+    color: var(--green-color);
 }
 
 

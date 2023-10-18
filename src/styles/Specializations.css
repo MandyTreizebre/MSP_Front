@@ -1,42 +1,60 @@
-.section_spe {
-    width: 80vw;
+/************DESKTOP STYLES*************/
+/********** MAIN SECTION ***********/
+.container-spe {
+    width: 100vw;
     margin: 100px auto;
     text-align: center;
-    scroll-behavior: smooth;
+    display: flex;
+    flex-direction: column;
 }
 
-.container_spe {
+/********** MAIN CONTAINER  ***********/
+.section-spe {
     display: flex;
-    width: 60vw;
-    max-width: 80vw;
+    width: 60%;
     flex-wrap: wrap;
     gap: 2rem;
     justify-content: center;
-    margin: 40px auto;
+    margin: 50px auto;
 }
 
-#img_spe {
-    width: 280px;
-    height: 200px;
-    border-radius: 15px 15px 0 0;
-}
-
-.cards_spe {
+/********** INDIVIDUALS CARDS ***********/
+.cards-spe {
+    flex: 1 1 calc(30% - 2rem); 
+    min-width: 200px;  
+    max-width: 300px;  
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     transition: all 0.9s cubic-bezier(.25,.8,.25,1);
     padding: 0 0 15px 0;
-    border-radius: 15px;
+    border-radius: var(--border-image);
 }
 
-.cards_spe a {
+.cards-spe a {
     text-decoration: none;
     color: var(--green-color);
 }
 
-.cards_spe:hover {
+.cards-spe:hover {
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
-.cards_spe p {
+.cards-spe p {
     padding-top: 10px;
+    font-size: calc(0.8em + 0.1vw);
+    word-wrap: break-word;
+}
+
+/********** PICTURES ***********/
+.img-spe {
+    width: 100%;      /* Ajustez la largeur à 100% de la largeur du parent (dans ce cas, .cards-spe) */
+    max-width: 300px;
+    height: 200px;
+    border-radius: 15px 15px 0 0;
+}
+
+/********** STYLE FOR MOBILE ***********/
+@media (max-width: 767px) {
+    .section_spe h2 {
+        font-size: 1.4em;
+    }
 }

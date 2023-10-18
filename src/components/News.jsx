@@ -1,37 +1,31 @@
-/* COMPONENT UNDER EMERGENCIES */ 
-
-/*Importing modules, styles and pictures*/
-import React, {useState, useEffect} from "react"
-import { Link } from "react-router-dom"
-
-import '../styles/news.css'
-import '../styles/mobiles/mobileNews.css'
-import '../styles/tablets/tabletNews.css'
-
-/*Import config file (to back)*/
-import { config } from "../config"
-
-/*Importing the displayAllNews function to call up news items*/
-import { displayAllNews } from "../api/News"
-
-/*Importing the carousel library component and carousel styles*/
+import React, {useState, useEffect} from 'react'
+import { Link } from 'react-router-dom'
 import Carousel from 'react-multi-carousel'
+
+import { displayAllNews } from '../api/News'
+import { config } from '../config'
+
 import 'react-multi-carousel/lib/styles.css'
+import '../styles/news.css'
 
 const News = () => {
-  /*Declaration of news state with an empty array as initial value*/
     const [news, setNews] = useState([])
+    const [error, setError] = useState(null)
 
-  useEffect(()=>{
+    useEffect(()=>{
         displayAllNews()
         .then((res)=>{
-          /*News updates with data from displayAllNews*/
             setNews(res.result)
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+            console.log(err)
+            setError("Une erreur s’est produite lors de la récupération des actualités.")
+        })
     }, [])
 
     return (
+      <>
+        <h2>Les actualités santé</h2>
         <Carousel
           additionalTransfrom={0}
           arrows
@@ -57,7 +51,7 @@ const News = () => {
                 max: 3000,
                 min: 1024
               },
-              items: 4,
+              items: 3,
               partialVisibilityGutter: 0
             },
             laptop: {
@@ -95,23 +89,26 @@ const News = () => {
           swipeable
         >
 
-  {/*Map on news items and display of items*/}
-    {news.map((event)=>{
-        return (
-            <div key={event.id} className="box_news">
-                <img src={config.pict_url+event.picture} id="img_news" alt={event.title} />
-                  <h3>{event.title}</h3>
-                  <p>{event.details}</p>
-                  <Link to={event.external_link} target='_blank' rel="noreferrer">
-                    <button className="general_button">Lire la suite</button>
-                  </Link>
-            </div>
-          
-        )
-    })}
-
-</Carousel>
-        );
+        {news.map((event)=>{
+            return (
+                <section key={event.id} className="box-news">
+                    <img src={config.pict_url + event.picture} className="img-news" alt={event.title} />
+                    <h3>{event.title}</h3>
+                    <p>{event.details}</p>
+                    <Link to={event.external_link} 
+                        target='_blank' 
+                        rel="noreferrer"
+                        aria-label="Visiter la page officielle (s'ouvre dans un nouvel onglet)"
+                    >
+                        <button className="general-button">Lire la suite</button>
+                    </Link>
+                </section>
+            )
+        })}
+        {error && <div className="error-message">{error}</div>}
+      </Carousel>
+    </>
+  )
 }
 
 export default News
