@@ -4,7 +4,7 @@ import "../../styles/modals.css"
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCircleCheck} from '@fortawesome/free-solid-svg-icons'
 
-const Modal = ({ open, onClose }) => {
+const Modal = ({ open, onClose, message }) => {
   useEffect(()=> {
     if(open) {
       const timer = setTimeout(()=>{
@@ -13,12 +13,12 @@ const Modal = ({ open, onClose }) => {
 
       return () => clearTimeout(timer)
     }
-  }, {open, onClose})
+  }, [open, onClose])
 
     if(!open) return null
 
   return (
-    <div className={`modal-container ${open ? 'modal-open' : ''}`}> <FontAwesomeIcon icon={faCircleCheck} /> Email envoyé</div>
+    <div className={`modal-container ${open ? 'modal-open' : ''}`}> <FontAwesomeIcon icon={faCircleCheck} />{message}</div>
   )
 }
 export default Modal

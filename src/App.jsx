@@ -1,42 +1,38 @@
-import {Routes, Route} from 'react-router-dom'
-import { useAdmin } from './components/AdminContext'
-import { Navigate } from 'react-router-dom'
-import './App.css'
+import {Routes, Route} from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { useEffect } from "react"
+import {checkCookie} from "../auth"
+import CheckAuth from "../CheckAuth"
+import "./App.css"
 
 /*Importation des components*/
-import Header from './components/Header'
-import Footer from './components/Footer'
-import HealthProfessionals from './components/HealthProfessionals'
-import InformationsByCategory from './components/InformationsByCategory'
-import Guards from './components/Guards'
+import Header from "./components/Header"
+import Footer from "./components/Footer"
+import HealthProfessionals from "./components/HealthProfessionals"
+import InformationsByCategory from "./components/InformationsByCategory"
+import Guards from "./containers/Guards"
+import NotFound from "./components/NotFound"
 
 /*Importation des containers*/
-import Home from './containers/Home'
-import Msp from './containers/Msp'
-import CategoriesInformations from './containers/CategoriesInformations'
-import Contact from './containers/Contact'
-import AddPro from './containers/admin/AddPro'
-import AdminPage from './containers/admin/AdminPage'
-import EditPro from './containers/admin/EditPro'
-import Login from './containers/admin/Login'
-import Register from './containers/admin/Register'
-import AddHoursPro from './containers/admin/AddHoursPro'
-import EditHoursPro from './containers/admin/EditHoursPro'
+import Home from "./containers/Home"
+import Msp from "./containers/Msp"
+import CategoriesInformations from "./containers/CategoriesInformations"
+import Contact from "./containers/Contact"
+import AddPro from "./containers/admin/AddPro"
+import Admin from "./containers/admin/Admin"
+import EditPro from "./containers/admin/EditPro"
+import Login from "./containers/admin/Login"
+import Register from "./containers/admin/Register"
+import AddHoursPro from "./containers/admin/AddHoursPro"
+import EditHoursPro from "./containers/admin/EditHoursPro"
 
-function ProtectedRoute({ component: Component }) {
-    const { admin, loading } = useAdmin()
-
-    if(loading) {
-      return <div>Chargement...</div>
-    }
-    if (admin) {
-      return <Component />
-    } else {
-      return <Navigate to="/" />
-    }
-}
 
 function App() {
+  const dispatch = useDispatch()
+
+  useEffect(()=>{
+    checkCookie(dispatch)
+  }, [dispatch])
 
   return (
     <>
@@ -64,37 +60,16 @@ function App() {
 
           <Route exact path="/login" element={<Login />} />
 
+          <Route exact path="*" element={<NotFound />} />
+
+
           {/*Route for Admin*/}
-          <Route
-              path="/admin" 
-              element={<ProtectedRoute component={AdminPage} />}
-          />
-
-          <Route 
-              path="/register" 
-              element={<ProtectedRoute component={Register} />}
-          />
-
-          <Route 
-              path="/ajouter/professionnel" 
-              element={<ProtectedRoute component={AddPro} />}
-          />
-
-          <Route 
-              path="/ajouter/horaires-professionnel" 
-              element={<ProtectedRoute component={AddHoursPro} />}
-          />
-
-          <Route
-              path="/editer/professionnel/:id" 
-              element={<ProtectedRoute component={EditPro} />}
-          />
-
-          <Route
-              path="/editer/horaires-professionnel/:id" 
-              element={<ProtectedRoute component={EditHoursPro} />}
-          />
-          
+          <Route path="/admin" element={<CheckAuth component={Admin}/>} />
+          <Route path="/register" element={<CheckAuth component={Register}/>} />
+          <Route path="/ajouter/professionnel" element={<CheckAuth component={AddPro}/>} />
+          <Route path="/ajouter/horaires-professionnel" element={<CheckAuth component={AddHoursPro}/>} />
+          <Route path="/editer/professionnel/:id" element={<CheckAuth component={EditPro}/>} />
+          <Route path="/editer/horaires-professionnel/:id" element={<CheckAuth component={EditHoursPro}/>} />
       </Routes>
       <Footer />
     </>

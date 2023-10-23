@@ -41,68 +41,72 @@ const Guards = () => {
     const currentDay = getCurrentDay()
     const actualDate = getCurrentDate()
 
-    console.log("CURRENT DAY =>", currentDay)
-
     const [currentHours, setCurrentHours] = useState(getCurrentHour())
 
-    useEffect(()=>{
-        setTimeout(()=> {
-            displayProfessionalsGuards()
-        .then((res)=>{
-            setGuards(res.result)
+    const categorizeProfessional = (professional, currentHour) => {
+        const startTimeMorningHHMM = professional.h_start_morning.substring(0, 5);
+        const endTimeMorningHHMM = professional.h_end_morning.substring(0, 5);
+        const startTimeAfternoonHHMM = professional.h_start_afternoon.substring(0, 5);
+        const endTimeAfternoonHHMM = professional.h_end_afternoon.substring(0, 5);
+    
+        if (professional.day_name === currentDay) {
+            const isInMorningSlot = startTimeMorningHHMM <= currentHour && currentHour <= endTimeMorningHHMM;
+            const isInAfternoonSlot = startTimeAfternoonHHMM <= currentHour && currentHour <= endTimeAfternoonHHMM;
+    
+            if (isInMorningSlot || isInAfternoonSlot) {
+                switch (professional.name_spe) {
+                    case 'Pharmacies':
+                        setPharmacies(prevPharmacies => [...prevPharmacies, professional])
+                        break;
+                    case 'Dentistes':
+                        setDentists(prevDentists => [...prevDentists, professional])
+                        break;
+                    case 'Médecins':
+                        setDoctors(prevDoctors => [...prevDoctors, professional])
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+    }
 
-                const pharmacies = []
-                const dentists = []
-                const doctors = []
-
-                guards.forEach(professional => {
-                    const startTimeMorningHHMM = professional.h_start_morning.substring(0, 5)
-                    const endTimeMorningHHMM = professional.h_end_morning.substring(0, 5)
-                    const startTimeAfternoonHHMM = professional.h_start_afternoon.substring(0, 5)
-                    const endTimeAfternoonHHMM = professional.h_end_afternoon.substring(0, 5)
-
-                    if (professional.day_name === currentDay) {
-                        if (startTimeMorningHHMM <= currentHour && currentHour <= endTimeMorningHHMM) {
-                            if (professional.name_spe === 'Pharmacies') {
-                                pharmacies.push(professional);
-                            } else if (professional.name_spe === 'Dentistes') {
-                                dentists.push(professional);
-                            } else if (professional.name_spe === 'Médecins') {
-                                doctors.push(professional);
-                            }
-                        }
-                        if (startTimeAfternoonHHMM <= currentHour && currentHour <= endTimeAfternoonHHMM) {
-                            if (professional.name_spe === 'Pharmacies') {
-                                pharmacies.push(professional);
-                            } else if (professional.name_spe === 'Dentistes') {
-                                dentists.push(professional);
-                            } else if (professional.name_spe === 'Médecins') {
-                                doctors.push(professional);
-                            }
-                        }
-                    }
-                })    
-
-                setPharmacies(pharmacies);
-                setDentists(dentists);
-                setDoctors(doctors);
-
-                console.log("PHARMACIES =>", pharmacies);
-                console.log("DENTISTS =>", dentists);
-                console.log("DOCTORS =>", doctors);
-                
-
-        })
-        .catch(err => console.log(err))
-        }, /*1000*/)
-
-        const interval = setInterval(()=> {
-            setCurrentHours(getCurrentHour())
-        }, /*6000*/)
-
-        return () => clearInterval(interval)
-    }, [guards])
-
+    useEffect(() => {
+        // Récupération initiale des données
+        fetchProfessionals();
+    
+        // Mise à jour régulière toutes les 6 secondes
+        const interval = setInterval(() => {
+            setCurrentHours(getCurrentHour());
+            categorizeProfessionals();
+        }, 6000);
+    
+        return () => clearInterval(interval);
+    }, [guards]); 
+    
+    const fetchProfessionals = async () => {
+        try {
+            const res = await displayProfessionalsGuards();
+            setGuards(res.result);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+    
+    const categorizeProfessionals = () => {
+        const pharmaciesList = [];
+        const dentistsList = [];
+        const doctorsList = [];
+    
+        guards.forEach(professional => {
+            categorizeProfessional(professional, currentHours, pharmaciesList, dentistsList, doctorsList);
+        });
+    
+        setDoctors(doctorsList);
+        setDentists(dentistsList);
+        setPharmacies(pharmaciesList);
+    };
+    
     
     return (
         <>
@@ -118,7 +122,7 @@ const Guards = () => {
                         <h2>Pharmacies :</h2>
                         <div className="pharmacies">
                             {pharmacies.map((pharmacy, index) => (
-                                <div key={index} className="bloc" >
+                                <div key={pharmacy.id ||index} className="bloc" >
                                     <h3>{pharmacy.lastname} {pharmacy.firstname}</h3>
                                     <p>{pharmacy.address}</p>
                                     <p>{pharmacy.zip} {pharmacy.city}</p>
@@ -135,7 +139,7 @@ const Guards = () => {
                         <h2>Dentistes :</h2>
                         <div className="dentists">
                             {dentists.map((dentist, index) => (
-                                <div key={index} className="bloc">
+                                <div key={dentist.id ||index} className="bloc">
                                     <h3>{dentist.lastname} {dentist.firstname}</h3>
                                     <p>{dentist.address}</p>
                                     <p>{dentist.zip} {dentist.city}</p>
@@ -152,7 +156,7 @@ const Guards = () => {
                         <h2>Médecins :</h2>
                         <div className="doctors">
                             {doctors.map((doctor, index) => (
-                                <div key={index} className="bloc">
+                                <div key={doctor.id || index} className="bloc">
                                         <h3>{doctor.lastname} {doctor.firstname}</h3>
                                         <p>{doctor.address}</p>
                                         <p>{doctor.zip} {doctor.city}</p>
