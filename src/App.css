@@ -61,6 +61,12 @@ strong {
     color: var(--green-color)
 }
 
+.error-message, .message-info {
+    text-align: center;
+    font-weight: bold;
+    color: red;
+}
+
 /********** POLICES ***********/
 @font-face {
     font-family: "louisgeorge";

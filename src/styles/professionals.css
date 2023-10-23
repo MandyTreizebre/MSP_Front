@@ -1,14 +1,14 @@
-.container_pros {
+.container-pros {
     margin: auto;
     text-align: center;
     padding: 30px;
 }
 
-.container_pros p {
+.container-pros p {
     width: 70vw;
     margin: 25px auto;
 }
 
-.container_pros h1 {
+.container-pros h1 {
     font-size: 2rem;
 }

@@ -1,20 +1,20 @@
 import imgContact from "../assets/images/docteur-ordinateur.jpg"
 import { useRef, useState } from "react"
-
 import emailjs from '@emailjs/browser'
 import Modal from "../components/Modals/Modal"
-
 import "../styles/Contact.css"
 
 const Contact = () => {
     const [openModal, setOpenModal] = useState(false)
     const [message, setMessage] = useState('')
-    const maxCharacters = 500
+    const maxCharacters = 500 /*Maximum characters allowed for the message*/
 
-    const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-    const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-    const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+    /*EmailJS configurations from environment variables*/
+    const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID 
+    const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID 
+    const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY 
 
+    /*Handler for message input, ensures character count doesn't exceed maxCharacters*/
     const handleChange = (e) => {
         const inputText = e.target.value
         if(inputText.length <= maxCharacters){
@@ -22,26 +22,29 @@ const Contact = () => {
         }
     }
 
+    /*Function to close the modal*/
     const handleCloseModal = () => {
         setOpenModal(false)
     }
    
-    const form = useRef();
+    /*Reference to the form for EmailJS*/
+    const form = useRef()
 
+    /*Function to send email using EmailJS*/
     const sendEmail = (e) => {
         e.preventDefault()
 
     emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form.current, EMAILJS_PUBLIC_KEY)
       .then((result) => {
           if(result.status === 200){
-            setOpenModal(true)
+            setOpenModal(true) /*Show the modal upon successful email submission*/
             setTimeout(()=> {
-                handleCloseModal()
+                handleCloseModal() /*Close the modal after 5 seconds*/
             }, 5000)
           }
-          e.target.reset()
+          e.target.reset() /*Reset the form fields*/
       }, (error) => {
-          console.log(error.text)
+          return(error.text) /*Handle errors (consider showing a UI feedback to the user)*/
       })
   }
     return (
@@ -53,6 +56,7 @@ const Contact = () => {
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
                     </div>
                     
+                    {/* Fields for the user to fill out */}
                     <label>Nom</label>
                     <input type="text" 
                         name="user_name"
@@ -80,9 +84,9 @@ const Contact = () => {
                         value="Envoyer" 
                         className="general-button"/>
                 </form>
-                <img src={imgContact} className="img-contact" />
+                <img src={imgContact} className="img-contact" alt="Photo d'un homme devant un ordinateur" />
             </section>
-            <Modal open={openModal} onClose={handleCloseModal} />
+            <Modal open={openModal} onClose={handleCloseModal} message="Message envoyé" />
         </>
     )
 }

@@ -1,26 +1,54 @@
 import {Link} from 'react-router-dom'
 import { useRef, useState } from 'react'
-import { useAdmin } from './AdminContext'
-
-import Logo from '../assets/images/logo.png'
-
+import { Navigate } from 'react-router-dom' 
+import { logout } from '../api/Admin'
+import {useSelector, useDispatch} from 'react-redux'
+import {selectAdmin, logoutAdmin} from '../slices/adminSlice'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faGear, faBars} from '@fortawesome/free-solid-svg-icons'
+import Logo from '../assets/images/logo.png'
 import '../styles/header.css'
 
 const Header = () =>{
-    // Reference for scrolling to specializations
+    /*Retrieve the admin login state from the Redux store*/
+    const {isLogged} = useSelector(selectAdmin)
+    /*Dispatch function to interact with the Redux store*/
+    const dispatch = useDispatch()
+    /*Reference for scrolling to specializations*/
     const refSpe = useRef(null)
+    /*State to manage the opening/closing of the navigation menu on mobile*/
     const [navIsOpen, setNavIsOpen] = useState(false)
-    const {admin, logout } = useAdmin()
+    const [redirect, setRedirect] = useState(false) 
 
-    //Function to toggle navigation on/off 
+    /*Function to handle admin logout*/
+    const handleLogout = () => {
+        logout()
+        .then(response => {
+            if (response.status === 200) {
+                console.log("MESSAGE RESPONSE DE LOGOUT",response.message) // Affichez le message de réussite
+                dispatch(logoutAdmin())
+                setRedirect(true) 
+            } else {
+                console.error("Erreur lors de la déconnexion:", response.message)
+            }
+        })
+        .catch(err => {
+            console.error("Erreur lors de la déconnexion:", err)
+        })
+    }
+
+    /*Function to toggle the navigation menu open/closed on mobile/tablet views*/
     const toggleMenu = () => {
         setNavIsOpen((open)=> !open)
     }
 
+    if (redirect) {
+        return <Navigate to="/login" /> 
+      }
+
     return (
         <header>
+            {/* Logo section with a link to the homepage */}
             <div className='container-banner'>
                 <Link to="/"
                       aria-label="Visiter la page d'accueil de la Maison de santé de Varennes-Sur-Allier" 
@@ -44,14 +72,14 @@ const Header = () =>{
             </button>
                 
             {/* 
-                Main navigation with "navigation" class and "is-open" conditional class when 
-                navIsOpen is true to manage navigation opening  
+                Main navigation section
+                - "is-open" class is added conditionally based on the navIsOpen state
+                - Useful for managing navigation opening on mobile/tablet views 
             */}    
             <nav className={`navigation ${navIsOpen ? "is-open" : ""}`}>
                 {/* navigation links */}
                 <Link to="/"
                       aria-label="Aller à la page d'accueil"
-                      rel="noreferrer"
                 >
                     Accueil
                 </Link>
@@ -63,40 +91,35 @@ const Header = () =>{
                     Rendez-vous
                 </Link>
                 <Link to="/msp" 
-                      rel="noreferrer"
                       aria-label="Visiter la page msp de la Maison de santé de Varennes-Sur-Allier" 
                 >
                     Notre MSP
                 </Link>
                 <Link to="/informations-sante" 
-                      rel="noreferrer"
                       aria-label="Visiter la page informations santé de la Maison de santé de Varennes-Sur-Allier" 
                 >
                     Informations santé
                 </Link>
                 <Link to="/contact" 
-                      rel="noreferrer"
                       aria-label="Visiter la page contact de la Maison de santé de Varennes-Sur-Allier" 
                 >
                     Contact
                 </Link>
                 <Link to="/gardes-urgences" 
-                      rel="noreferrer"
                       aria-label="Visiter la page des gardes et urgences de la Maison de santé de Varennes-Sur-Allier"
                 >
                     Urgences et gardes
                 </Link>
-                {admin ? (
+                {/* Conditionally render admin portal link and logout button if admin is logged in, 
+                    or login link with gear icon if admin is not logged in */}
+                {isLogged ? (
                     <>
                     <Link to="/admin">Portail Admin</Link>
-                    <button onClick={logout} className='logout-button'>Se déconnecter</button> 
+                    <button onClick={handleLogout} className='logout-button'>Se déconnecter</button> 
                     </>
-                       
-
                 ) : (
                     <Link to="/login" 
-                          rel="noreferrer"
-                          aria-label="Visiter la page de connexion de la Maison de santé de Varennes-Sur-Allier">
+                          aria-label="Page de connexion">
                           <FontAwesomeIcon icon={faGear} title="Administration" />
                     </Link>
                 )}

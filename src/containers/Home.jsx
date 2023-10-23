@@ -1,16 +1,10 @@
-/*Importation des components à afficher dans la Home*/ 
 import Welcome from "../components/Welcome"
 import Emergencies from "../components/Emergencies"
 import News from "../components/News"
 import Specializations from "../components/Specializations"
 import ExternalPros from "../components/ExternalPros"
 
-
-
-
-
 const Home = () => {
-    
     return (
         <>
         <Welcome />

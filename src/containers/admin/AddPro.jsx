@@ -1,19 +1,12 @@
-/*Importing modules*/
 import {useState, useEffect} from "react"
-import {Navigate} from "react-router-dom"
-
-/*Importing components*/
-import AddProForm from "../../components/Forms/AddProForm"
-/*import AddHoursForm from "../../components/AddHoursForm"*/
-import ModalAddPro from "../../components/Modals/ModalAddPro"
-/*import ModalAddHours from "../../components/Modals/ModalAddHours"*/
-
-/*Importing API functions*/
+import Cookies from 'js-cookie'
+const token = Cookies.get('token')
 import { saveOneProfessional, displaySpecializations } from "../../api/Professionals"
-import { displayDays } from "../../api/OpeningHours"
+import AddProForm from "../../components/Forms/AddProForm"
+import Modal from "../../components/Modals/Modal"
 
 const AddPro = (props) => {
-
+    /*Importing API handling functions*/
     const [lastname, setLastname] = useState("")
     const [firstname, setFirstname] = useState("")
     const [address, setAddress] = useState("")
@@ -23,117 +16,48 @@ const AddPro = (props) => {
     const [specializations, setSpecializations] = useState([])
     const [selectedSpecialization, setSelectedSpecialization] = useState("")
     const [details, setDetails] = useState("")
-
-
-    /*const [pro_id, setPro_id] = useState([])*/
-    /*const [selectedProId, setSelectedProId] = useState("")*/
-    const [day_id, setDay_id] = useState([])
-    /*const [selectedDayId, setSelectedDayId] = useState("")*/
-    /*const [h_start_morning, setHStartMorning] = useState("")*/
-    /*const [h_end_morning, setHEndMorning] = useState("")*/
-    /*const [h_start_afternoon, setHStartAfternoon] = useState("")*/
-    /*const [h_end_afternoon, setHEndAfternoon] = useState("")*/
-
-    /*const [hoursForm, setHoursForm] = useState(0)*/
-
-    /*const addHoursForm = () => {
-        setHoursForm(prev => prev + 1)
-    }*/
+    const [error, setError] = useState(null)
 
     const [openAddProModal, setOpenAddProModal] = useState(false)
-    /*const [openAddHoursModal, setOpenAddHoursModal] = useState(false)*/
-
+    
+    /*Function to handle modal closure*/
     const handleCloseModal = () => {
         setOpenAddProModal(false)
     }
-
-    /*const displayAddedProfessional = () => {
-        console.log("j'entre dans la fonction displayAddedProfessional")
-        displayAllProfessionals()
-        .then((res)=>{
-            console.log("RES dans le then", res)
-            setPro_id(res.result)
-            console.log("setPro_id", res.result)
-        })
-        .catch(err => console.log(err))
-    }*/
     
-    /*useEffect(()=> {
-        displayAddedProfessional()
-    }, [])*/
-
-    /*console.log('pro_id après displayAddedProfessionel', pro_id)*/
-
-    useEffect(()=>{
-        displayDays()
-        .then((res)=>{
-            setDay_id(res.result)
-        })
-        .catch(err => console.log(err))
-    }, [])
-
-    /*useEffect(()=>{
-        displayAllProfessionals()
-        .then((res)=>{
-            setPro_id(res.result)
-        })
-        .catch(err => console.log(err))
-    }, [])*/
-    
+    /*useEffect hook toget specializations when component mounts*/
     useEffect(()=> {
         displaySpecializations()
         .then((res)=>{
             setSpecializations(res.result)
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+            setError("Erreur lors du chargement des spécialisations")
+        })
     }, [])
     
-    const savePro = (datas) => {
-        console.log("j'entre la fonction savePro")
-        saveOneProfessional(datas)
+    /*Function to save professional data*/
+    const savePro = (datas, token) => {
+        saveOneProfessional(datas, token)
         .then((res)=>{
             if(res.status === 201){
-                setOpenAddProModal(true)
+                setOpenAddProModal(true) /*Open modal on successful save*/
                 setTimeout(()=>{
-                    handleCloseModal()
+                    handleCloseModal() /*Close modal after 5 seconds*/
                 }, 5000)
             }else {
-                console.log("echec", res)
+                setError("Erreur") /*Set error on unsuccessful save*/
+                console.log(error)
             }
         })
-        .catch(err=>console.log(err))
-    }
-
-    /*const saveHours = (datas) => {
-        saveOpeningHours(datas)
-        .then((res)=> {
-            if(res.status === 200){
-                setOpenAddHoursModal(true)
-                setTimeout(()=>{
-                    handleCloseModal()
-                }, 5000)
-            }else{
-                console.log("Echec envoi: ", res)
-            }
+        .catch(err=>{
+            setError("Erreur lors de la création du professionnel") /*Set error on API call failure*/
         })
-        .catch(err=>console.log(err))
     }
 
-    const handleSubmitHours = () => {
-
-        let datas = {
-            pro_id: selectedProId,
-            day_id: selectedDayId,
-            h_start_morning: h_start_morning,
-            h_end_morning: h_end_morning, 
-            h_start_afternoon: h_start_afternoon,
-            h_end_afternoon: h_end_afternoon
-        }
-        saveHours(datas)
-    }*/
-
+    /*Function to handle form submission*/
     const handleSubmit = () => {
-
+        /*Preparing data object for API call*/
         let datas = {
             lastname: lastname,
             firstname: firstname,
@@ -144,14 +68,16 @@ const AddPro = (props) => {
             details: details,
             speciality_id: selectedSpecialization
         }
-        savePro(datas)
+        savePro(datas, token) /*Invoking savePro function*/
     }
 
   return (
     <>
-        <section>
-            <h1>Ajouter un professionnel de santé</h1>    
+        <section className="form-container">
+            <h1>Ajouter un professionnel de santé</h1>
+            <p className="required-p">Les champs suivis d'un <span className="required-asterisk">*</span> sont obligatoires.</p>  
             <AddProForm
+                /*Passing down state and handlers as props to AddProForm component*/
                     lastname={lastname}
                     firstname={firstname}
                     address={address}
@@ -171,58 +97,10 @@ const AddPro = (props) => {
                     onChangeSpecializations={setSelectedSpecialization}
                     handleSubmit={handleSubmit}
                 />
-        
-            <ModalAddPro open={openAddProModal} onClose={handleCloseModal} />
+            {error && <div className="error-message">{error}</div>}
+            {/* Modal component for success message */}
+            <Modal open={openAddProModal} onClose={handleCloseModal} message="Professionnel ajouté" />
         </section>
-
-        {/*<section>
-            <h2>Horaires</h2>
-            <AddHoursForm
-                proList={pro_id}
-                dayList={day_id}
-                h_start_morning={h_start_morning}
-                h_end_morning={h_end_morning}
-                h_start_afternoon={h_start_afternoon}
-                h_end_afternoon={h_end_afternoon}
-                
-                onChangeProId={setSelectedProId}
-                onChangeDayId={setSelectedDayId}
-                onChangeHStartMorning={setHStartMorning}
-                onChangeHEndMorning={setHEndMorning}
-                onChangeHStartAfternoon={setHStartAfternoon}
-                onChangeHEndAfternoon={setHEndAfternoon}
-                handleSubmitHours={handleSubmitHours}
-            />
-
-            
-
-            {Array.from({length: hoursForm}).map((_, index)=> (
-                <AddHoursForm
-                    proList={pro_id}
-                    dayList={day_id}
-                    h_start_morning={h_start_morning}
-                    h_end_morning={h_end_morning}
-                    h_start_afternoon={h_start_afternoon}
-                    h_end_afternoon={h_end_afternoon}
-                    
-                    onChangeProId={setSelectedProId}
-                    onChangeDayId={setSelectedDayId}
-                    onChangeHStartMorning={setHStartMorning}
-                    onChangeHEndMorning={setHEndMorning}
-                    onChangeHStartAfternoon={setHStartAfternoon}
-                    onChangeHEndAfternoon={setHEndAfternoon}
-                    handleSubmitHours={handleSubmitHours}
-                />
-            ))}
-
-                <ModalAddHours open={openAddHoursModal} onClose={handleCloseModal} />
-
-                <button onClick={addHoursForm} 
-                    className="general_button"
-            >
-                Ajouter d'autres horaires
-            </button>
-            </section>*/}
     </>
   )
 }
