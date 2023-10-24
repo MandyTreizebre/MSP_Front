@@ -32,7 +32,7 @@ const Specializations = () => {
                     return (
                         <div key={index} className="cards-spe"> {/*Each card has a unique key for React optimization*/}
                             <Link to={`${spe.key_url}/${spe.id}`} 
-                                  aria-label="Visiter la page des professionnels"
+                                  aria-label={`Visiter la page des ${spe.name_spe}`}
                             >
                                 <img src={config.pict_url+spe.picture} className="img-spe" alt={spe.name_spe}/>
                                 <p><strong>{spe.name_spe}</strong></p>

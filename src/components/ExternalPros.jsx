@@ -33,9 +33,9 @@ const ExternalPros = () => {
                 {/* Conditional rendering: Check if externalPros array has data */}
                 {externalPros.length > 0 && (
                     /*Map over externalPros array to create a card for each professional*/
-                    externalPros.map((pro) => {
+                    externalPros.map((pro, index) => {
                         return (
-                            <div key={pro.id}>
+                            <div key={pro.id || index}>
                                 {/* Link to external professional's website */}
                                 <Link to={pro.link} 
                                       target="_blank" 

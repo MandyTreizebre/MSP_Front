@@ -86,7 +86,7 @@ const Header = () =>{
                 {/* Link to scroll smoothly to the specializations section */}
                 <Link to="#specializations" 
                     onClick={()=> refSpe.current.scrollIntoView({behavior: "smooth"})}
-                    aria-label="Aller à la section des spécialisations"
+                    aria-label="Parcourir les spécialisations"
                 >
                     Rendez-vous
                 </Link>
