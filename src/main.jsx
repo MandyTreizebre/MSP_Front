@@ -7,7 +7,6 @@ import {BrowserRouter} from "react-router-dom"
 
 import store from "./slices/store.jsx"
 
-/*import { AdminProvider } from './components/AdminContext.jsx'*/
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

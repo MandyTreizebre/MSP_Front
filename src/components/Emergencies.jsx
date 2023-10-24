@@ -39,12 +39,11 @@ const Emergencies = () => {
                     <strong>Cependant toutes les urgences restent gérées par le 15.</strong>
                 </p>
                 {/*Link to the on-call and emergencies page */}
-                <Link to="/gardes-urgences"
+                <Link to="/gardes-urgences" 
+                      className="general-button"
                       aria-label="Aller à la page des gardes et des urgences" 
-                >
-                    {/*redirect button */}
-                    <button className="general-button">Trouver les professionnels de gardes</button>
-                    
+                >   
+                    Trouver les professionnels de gardes
                 </Link>
             </section>
         </div>

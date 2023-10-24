@@ -68,6 +68,10 @@
         width: 100%;
         flex-wrap: wrap;
     }
+
+    .column-right {
+        width: 80%;
+    }
 }
 
 /************MOBILES STYLES*************/
@@ -78,7 +82,7 @@
     }
 
     .column-right p {
-        width: 80%;
+        width: 100%;
         font-size: 1em;
     }
 

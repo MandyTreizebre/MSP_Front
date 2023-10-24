@@ -12,6 +12,8 @@ import HealthProfessionals from "./components/HealthProfessionals"
 import InformationsByCategory from "./components/InformationsByCategory"
 import Guards from "./containers/Guards"
 import NotFound from "./components/NotFound"
+import DarkMode from "./components/DarkMode"
+
 
 /*Importation des containers*/
 import Home from "./containers/Home"
@@ -27,6 +29,7 @@ import AddHoursPro from "./containers/admin/AddHoursPro"
 import EditHoursPro from "./containers/admin/EditHoursPro"
 
 
+
 function App() {
   const dispatch = useDispatch()
 
@@ -34,8 +37,10 @@ function App() {
     checkCookie(dispatch)
   }, [dispatch])
 
+
   return (
     <>
+      <DarkMode />
       <Header />
       <Routes>
           <Route exact path="/" element={<Home/>} />
