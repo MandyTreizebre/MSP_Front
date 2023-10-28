@@ -12,7 +12,7 @@ const AddHoursPro = () => {
     const [selectedPro, setSelectedPro] = useState("")
     /*State for holding days and the selected day*/
     const [day, setDay] = useState([])
-    const [selectedDay, setSelectedDay] = useState("")
+    const [selectedDay, setSelectedDay] = useState(null)
     /*State for holding the selected working hours*/
     const [h_start_morning, setHStartMorning] = useState("")
     const [h_end_morning, setHEndMorning] = useState("")

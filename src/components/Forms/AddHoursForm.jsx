@@ -10,11 +10,10 @@ const AddHoursForm = (props) => {
 
     /*Handle number input changes*/
     const handleNumberInputChange = (setter) => (e) => {
-        const value = e.currentTarget.value;
-        const numberValue = parseInt(value, 10);
+        const value = e.currentTarget.value 
+        const numberValue = parseInt(value, 10) 
         /*Set the parsed number value or the original value if it's not a number*/
         setter(isNaN(numberValue) ? value : numberValue)
-        console.log("VALEUR ACTUELLE:",setter, numberValue, typeof(numberValue))
     }
 
     /*Function to handle hours input and format the value*/
@@ -54,14 +53,14 @@ const AddHoursForm = (props) => {
             </select>
     
             {/* Day selection dropdown */}
-            <label htmlFor="day">Sélectionner un jour <span className="required-asterisk">*</span></label>
+            <label htmlFor="day"> Jour <span className="required-asterisk">*</span></label>
             <select
                 name="day"
                 value={props.day_id}
                 onChange={handleNumberInputChange(props.onChangeDay)}
                 required
             >
-
+                <option value="">Sélectionner un jour</option>
                 {props.dayList.map(day=> (
                     <option key={day.id} value={day.id}>{day.day_name}</option>
                 ))}

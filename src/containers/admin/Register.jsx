@@ -129,6 +129,7 @@ const Register = () => {
                         e.preventDefault(e)
                         setShowPassword(!showPassword)
                     }}
+                className="general-button"
             >
                 {showPassword ? <FontAwesomeIcon className="eye-icon" icon={faEyeSlash}/> : <FontAwesomeIcon className="eye-icon" icon={faEye}/>}
             </button>
@@ -150,7 +151,7 @@ const Register = () => {
                    required
             />
             {/* Submit button */}
-            <input type="submit" name="Enregistrer"/>
+            <input type="submit" name="Enregistrer" className="general-button"/>
         </form>
         {/* Display any errors */}
         {error && <p className='error-message'>{error}</p>}

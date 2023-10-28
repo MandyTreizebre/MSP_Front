@@ -133,6 +133,7 @@ const AddProForm = (props) => {
                 onChange={handleInputChange(props.onChangeSpecializations)}
                 required
             >
+                <option value="">Sélectionnez une spécialisation</option>
                 {props.specializationsList.map(spe=> (
                     <option key={spe.id} value={spe.id}>{spe.name_spe}</option>
                 ))}

@@ -29,7 +29,6 @@ const EditHoursPro = () => {
 
     /*Effect hook to update time fields when selected day changes*/
     useEffect(() => {
-        console.log("Valeur de selectedDayId:", selectedDayId)
         const selectedHours = openingHours.find(oh => oh.day_id === selectedDayId) 
         if (selectedHours) {
             setHStartMorning(selectedHours.h_start_morning) 
@@ -55,7 +54,6 @@ const EditHoursPro = () => {
         getOpeningHoursByPro(params.id)
             .then((res) => {
                 setOpeningHours(res.result)
-                console.log("RES.RESULT de get opening hours by pro:", res.result)
             })
             .catch(err => {
                 setError("Une erreur est survenue lors de la récupération des horaires") 

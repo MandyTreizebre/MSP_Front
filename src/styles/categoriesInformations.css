@@ -57,37 +57,33 @@
 
 /********** STYLE FOR TABLET ***********/
 @media screen and (min-width: 768px) and (max-width: 1024px) {
-    .cards_informations {
+    .cards-informations {
         width: 20vw;
         display: flex;
         flex-direction: column;
     }
 
-    .cards_informations h3 {
+    .cards-informations h3 {
         font-size: 1.3em;
     }
 
-    .container_categories p{
+    .container-categories p{
         font-size: 1em;
     }
 }
 
 /********** STYLE FOR MOBILE ***********/
 @media (max-width: 767px) {
-    .cards_informations {
+    .cards-informations {
         width: 30vw;
     }
 
-    .container_category_informations {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        margin: auto;
+    .container-category-informations {
         gap: 5vw;
     }
 
-    .cards_informations h3,
-    .container_categories p {
+    .cards-informations h3,
+    .container-categories p {
         font-size: 1em;
     }
 }
