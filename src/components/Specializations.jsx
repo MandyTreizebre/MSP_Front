@@ -14,7 +14,6 @@ const Specializations = () => {
         displaySpecializations()
         .then((res)=>{
             setSpecializations(res.result) /*Setting the state with resul data*/
-            console.log("SPECIALIZATIONS =>", res.result)
         })
         .catch(err => {
             /*Setting error state in case of an error*/

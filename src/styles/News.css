@@ -1,9 +1,11 @@
+/* Main container style */
 .container {
     height: 700px;
     width: 75%;
     margin: auto;
 }
 
+/* Styling for news box */
 .box-news {
     max-width: 350px;
     min-height: 650px;
@@ -11,22 +13,25 @@
     display: flex;
     flex-direction: column;
     gap: 1vw;
-    border-radius: var(--border-image);
+    border-radius: var(--border-round);
     margin: auto;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     position: relative;
 }
 
+/* Ensuring direct children of .box-news expand to take up available space */
 .box-news > * {
     flex-grow: 1; /* Stretch content to occupy vertical space */
 }
 
+/* Styling for news images */
 .img-news {
     width: 100%;
     height: auto;
     border-radius: 15px 15px 0  0;
 }
 
+/* Styling for the link inside the news box */
 .news-link {
     width: 8vw;
     text-decoration: none;
@@ -44,8 +49,9 @@
     left: 30%;
 }
 
+/* Styles related to the carousel library */
 .react-multiple-carousel__arrow {
-    margin: -50px;
+    margin: -40px;
     background-color: var(--green-color);
 }
 
@@ -53,25 +59,28 @@
     max-width: 540px;
 }
 
-/************styles for tablets and mobiles that share the same style*************/
+/* Styles for tablets and mobiles sharing the same appearance */
 @media screen and (max-width: 1024px) {
+    /* Hiding the carousel arrow on devices with width up to 1024px */
     .react-multiple-carousel__arrow {
         display: none;
     }
 
+    /* Adjusting the news link's width and positioning for these devices */
     .news-link {
         width: auto;
         left: 33%;
     }
 }
 
-/************MOBILES STYLES*************/
+/* Styles specific to mobile devices */
 @media (max-width: 767px) {
+    /* Adjusting font sizes for the news box's heading and paragraph */
     .box-news h3 {
-        font-size: 1.4em;
+        font-size: 1.4rem;
     }
 
     .box-news p {
-        font-size: 1em;
+        font-size: 1rem;
     }
 }

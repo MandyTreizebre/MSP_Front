@@ -53,7 +53,7 @@ const Msp = () => {
                 <article className="container-article">
                     <h2>Notre implication</h2>
                     <img src={nature} className="img-description-msp" alt="Photo d'arbres" />
-                    <ul>setPro 
+                    <ul>
                         <li>Accueillir des étudiants</li>
                         <li>La formation continue</li>
                         <li>Travaux de recherche</li>

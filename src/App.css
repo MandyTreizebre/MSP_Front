@@ -11,7 +11,7 @@
     --common-font: ubuntu, Arial, Helvetica, sans-serif;
     --green-span-color: #10403b86;
     --light-green: #1d756e26;
-    --border-image: 15px;
+    --border-round: 15px;
 }
 
 
@@ -104,9 +104,6 @@ body.dark-mode .card-external-pros {
 body.dark-mode .cards-informations {
     box-shadow: 0 1px 3px rgba(255, 255, 255, 0.52), 0 1px 2px rgba(255, 255, 255, 0.383);
 }
-
-/********** CHANGE FONT SIZE STYLES ***********/
-
 
 /********** POLICES ***********/
 @font-face {

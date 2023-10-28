@@ -3,6 +3,7 @@ import { Navigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux' 
 import { loginAdmin } from '../../api/Admin' 
 import { connectAdmin } from '../../slices/adminSlice' 
+import "../../styles/login.css"
 
 const Login = () => {
   const dispatch = useDispatch() 
@@ -19,13 +20,11 @@ const Login = () => {
     /*Call the loginAdmin function to authenticate the admin user*/
     loginAdmin({ email, password })
       .then((res) => {
-        console.log("entrer dans la fonction login Admin")
         if (res.status === 200) {
             /*If authentication is successful, dispatch admin data and set redirection.*/
-          let newAdmin = res.admin 
+          let newAdmin = res.admin
           newAdmin.token = res.token 
           dispatch(connectAdmin(newAdmin)) 
-          console.log("newAdmin", newAdmin)
           setRedirect(true) 
         } else if(res.status === 400) {
             /*If authentication fails, set an error message*/
@@ -49,9 +48,11 @@ const Login = () => {
 
   return (
     <section className='container-login'>
-      <h2>Connexion Administrateur</h2>
-      <form onSubmit={onSubmitForm}>
-        <div>
+      <h1>Connexion Administrateur</h1>
+      <form onSubmit={onSubmitForm}
+            className='login-form'
+      >
+        <div className='area-input-login'>
           <label>Email:</label>
           <input
             type="email"
@@ -62,7 +63,7 @@ const Login = () => {
             required
           />
         </div>
-        <div>
+        <div className='area-input-login'>
           <label>Mot de passe:</label>
           <input
             type="password"
@@ -73,7 +74,7 @@ const Login = () => {
             required
           />
         </div>
-        <input type="submit" name="Se connecter" />
+        <input type="submit" name="Se connecter" className='general-button'/>
       </form>
       {error && <p className='error-message'>{error}</p>}
     </section>

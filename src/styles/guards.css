@@ -1,12 +1,33 @@
-.container_pros_guards {
-    display: flex;
-    flex-direction: column;
-    align-items: space-around;
+/* Styling for the main guards section */
+.section-guards {
+    margin-top: 50px;
 }
 
-.container_pros_guards h2 {
+/* Styling for the main title in the guards section */
+.section-guards h1 {
+    margin: 30px;
+}
+
+/* Styling for the introductory text of the guards section */
+.intro-guards {
+    width: 90%;
+    margin: 30px auto;
+    text-align: justify;
+    
+}
+
+/* General styling for the container of professionals in guards section */
+.container-pros-guards {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Styling for the subheadings within the professionals' container */
+.container-pros-guards h2 {
     margin: 25px 0 30px;
 }
+
+/* Styling for the different types of professionals (pharmacies, dentists, doctors) */
 .pharmacies, .dentists, .doctors {
     display: flex;
     justify-content: center;
@@ -14,17 +35,74 @@
     text-align: center;
 }
 
-.guards_container {
+/* Styling for the main container that holds all guards information */
+.guards-container {
     width: 100vw;
     margin: auto;
     text-align: center;
 }
 
+/* Styling for each individual block (representing a professional) */
 .bloc {
     display: flex; 
     flex-direction: column;
     gap: 20px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     padding: 20px;
+    border-radius: var(--border-round);
+}
+
+/* Styling for the image within the guards section */
+.img-guards {
+    width: 20vw;
+    border-radius: var(--border-round);
+}
+
+/* Styling for the container that introduces the guards section */
+.container-intro-guards {
+    width: 70%;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* Styling for the container that holds info within the introduction section */
+.infos-guards {
+    display: flex;
+    flex-direction: column;
+    gap: 4vh;
+}
+
+/* Styling for subheading within the main guards section */
+.section-guards h2 {
+    margin: 25px;
+}
+
+/************STYLES FOR TABLETS AND MOBILES (Shared styles)*************/
+/* Adjustments for devices with screen width up to 1024px */
+@media screen and (max-width: 1024px) {
+    .img-guards {
+        display: none;
+    }
+
+    .container-intro-guards {
+        width: 90%;
+    }
+
+    .intro-guards {
+        width: 100%;
+        text-align: justify;
+    }
+
+    .infos-guards h1 {
+        font-size: 1.5rem;
+    }
+
+    .pharmacies, .dentists, .doctors  {
+        flex-direction: column;
+        margin: auto;
+        width: 45vw;
+    }
 }
 

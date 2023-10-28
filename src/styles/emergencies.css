@@ -1,5 +1,6 @@
 /************DESKTOP STYLES*************/
 /********** MAIN CONTAINER ***********/
+/* Styles for the main container */
 .container-emergencies {
     display: flex;
     width: 80vw;
@@ -9,52 +10,48 @@
     gap: 1vw;
 }
 
-/********** COLUMNS WITH PICTURES ***********/
-.column-left, .column-middle {
+/********** COLUMNS WITH PICTURES AND TEXT ***********/
+/* Common styles for the three columns */
+.column-left, .column-middle, .column-right {
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 1vw;
 }
 
+/* Additional styles for the left column */
 .column-left {
     align-items: flex-end;
 }
 
+/* Additional styles for the middle column */
 .column-middle {
     align-items: flex-start;
 }
 
-/********** COLUMN RIGHT WITH TEXT ***********/
+/* Styles for the right column with text */
 .column-right {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     width: 40%;
     gap: 4vh;
     margin: auto;
+    p{
+        width: 90%;
+        margin: auto;
+    }
 }
-
-.column-right p{
-    width: 90%;
-    margin: auto;
-}
-
 
 /********** PICTURES ***********/
+/* Common styles for images */
 .cabinet-doctor, .building-physiotherapist, .office-psychotherapist, .pharmacy {
-    border-radius: var(--border-image);
+    border-radius: var(--border-round);
 }
 
+/* Set widths for each specific image */
 .cabinet-doctor {
     width: 12vw;
 }
 
-.building-physiotherapist {
-    width: 15vw;
-}
-
-.office-psychotherapist {
+.building-physiotherapist, .office-psychotherapist {
     width: 15vw;
 }
 
@@ -62,7 +59,8 @@
     width: 10vw;
 }
 
-/************styles for tablets and mobiles that share the same style*************/
+/************STYLES FOR TABLETS AND MOBILES (Shared styles)*************/
+/* Adjustments for devices with screen width up to 1024px */
 @media screen and (max-width: 1024px) {
     .container-emergencies {
         width: 100%;
@@ -72,33 +70,50 @@
     .column-right {
         width: 80%;
     }
+
+    .cabinet-doctor {
+        width: 25vw;
+    }
+
+    .building-physiotherapist {
+        width: 30vw;
+    }
+
+    .office-psychotherapist {
+        width: 30vw;
+    }
+    
+    .pharmacy {
+        width: 20vw;
+    }
 }
 
-/************MOBILES STYLES*************/
+/************MOBILE STYLES*************/
+/* Adjustments for devices with screen width up to 767px */
 @media (max-width: 767px) {
     .column-right h2 {
-        font-size: 1.4em;
+        font-size: 1.4rem;
         margin-top: 20px;
     }
 
     .column-right p {
         width: 100%;
-        font-size: 1em;
+        font-size: 1rem;
     }
 
     .cabinet-doctor {
-        width: 150px;
+        width: 35vw;
     }
 
     .building-physiotherapist {
-        width: 180px;
+        width: 45vw;
     }
 
     .office-psychotherapist {
-        width: 200px;
+        width: 45vw;
     }
     
     .pharmacy {
-        width: 120px;
+        width: 30vw;
     }
 }

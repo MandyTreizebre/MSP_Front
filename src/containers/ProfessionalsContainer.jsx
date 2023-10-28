@@ -11,6 +11,10 @@ const ProfessionalsContainer = ({ professionals }) => {
         return `${hours}h${minutes}` 
     }
 
+    function formatPhoneNumber(phone){
+        return phone.replace(/(\d{2})(?=\d)/g, '$1-')
+    }
+
     /*Grouping professionals by last name and first name.
     The aim is to create a unique object for each professional with their coordinates and schedules.*/
     const groupedProfessionals = professionals.reduce((grouped, professional) => {
@@ -55,7 +59,7 @@ const ProfessionalsContainer = ({ professionals }) => {
                             <p>
                                 {groupedProfessionals[key].coordinates.zip} {groupedProfessionals[key].coordinates.city}
                             </p>
-                            <p><strong>{groupedProfessionals[key].coordinates.phone}</strong></p>
+                            <p><strong>{formatPhoneNumber(groupedProfessionals[key].coordinates.phone)}</strong></p>
                             {groupedProfessionals[key].coordinates.details && (
                                 <p className="details">{groupedProfessionals[key].coordinates.details}</p>
                             )}

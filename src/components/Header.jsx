@@ -25,7 +25,6 @@ const Header = () =>{
         logout()
         .then(response => {
             if (response.status === 200) {
-                console.log("MESSAGE RESPONSE DE LOGOUT",response.message) // Affichez le message de réussite
                 dispatch(logoutAdmin())
                 setRedirect(true) 
             } else {
@@ -43,7 +42,7 @@ const Header = () =>{
     }
 
     if (redirect) {
-        return <Navigate to="/login" /> 
+        return <Navigate to="/" /> 
       }
 
     return (

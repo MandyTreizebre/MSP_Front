@@ -14,7 +14,7 @@ const AddPro = (props) => {
     const [city, setCity] = useState("")
     const [phone, setPhone] = useState("")
     const [specializations, setSpecializations] = useState([])
-    const [selectedSpecialization, setSelectedSpecialization] = useState("")
+    const [selectedSpecialization, setSelectedSpecialization] = useState(null)
     const [details, setDetails] = useState("")
     const [error, setError] = useState(null)
 
@@ -47,7 +47,6 @@ const AddPro = (props) => {
                 }, 5000)
             }else {
                 setError("Erreur") /*Set error on unsuccessful save*/
-                console.log(error)
             }
         })
         .catch(err=>{

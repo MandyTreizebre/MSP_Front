@@ -1,4 +1,5 @@
 /************DESKTOP STYLES*************/
+/* Container for the welcome section */
 .container-welcome {
     display: flex;
     width: 90vw;
@@ -7,6 +8,7 @@
     gap: 2.5rem;
 }
 
+/* Presentation section styles */
 .section-presentation {
     width: 62%;
     display: flex;
@@ -17,6 +19,7 @@
     text-align: justify;
 }
 
+/* Styling for the image on the right */
 #img-right {
     max-width: 35vw;
     height: auto;
@@ -24,10 +27,10 @@
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
-/************styles for tablets and mobiles that share the same style*************/
+/************STYLES FOR TABLETS AND MOBILES (Shared styles)*************/
+/* Breakpoint for screen sizes less than or equal to 1024px */
 @media screen and (max-width: 1024px) {
     .container-welcome {
-        display: flex;
         flex-direction: column;
         align-items: center;
         width: 100vw;
@@ -37,26 +40,22 @@
         width: 80vw;
     }
     
+    /* Hiding the image on the right for tablets/mobiles */
     #img-right {
         display: none;
     }
 }
 
-
-/************MOBILES STYLES*************/
+/************MOBILE STYLES*************/
+/* Breakpoint for screen sizes less than or equal to 767px */
 @media (max-width: 767px) {
-    .container-welcome {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100vw;
-    }
-
+    /* Reducing font size for the title on mobiles */
     .section-presentation h1 {
-        font-size: 1.4em;
+        font-size: 1.4rem;
     }
 
+    /* Reducing font size for the paragraph on mobiles */
     .section-presentation p {
-        font-size: 1em;
+        font-size: 1rem;
     }   
 }

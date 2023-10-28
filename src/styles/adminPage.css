@@ -22,7 +22,7 @@ table {
 
 table th, table td {
     border: 1px solid black;
-    padding: 15px;
+    padding: 1px;
 }
 
 .admin-button {
@@ -46,4 +46,40 @@ table th, table td {
     display: flex;
     gap: 5vw;
     justify-content: center;
+}
+
+.categories-admin {
+    display: flex;
+    gap: 3vw;
+    justify-content: center;
+    margin: 50px;
+}
+
+.category-admin {
+    padding: 40px;
+    border-radius: var(--border-round);
+    background-color: var(--light-green);
+}
+
+.categories-admin a {
+    text-decoration: none;
+    color: black;
+}
+
+
+/************STYLES FOR TABLETS AND MOBILES (Shared styles)*************/
+/* Adjustments for devices with screen width up to 1024px */
+@media screen and (max-width: 1024px) {
+   
+}
+
+/* Styles specific to mobile devices */
+@media (max-width: 767px) {
+    /* Adjusting font sizes for the news box's heading and paragraph */
+    .new-pro{
+        display: flex;
+        flex-direction: column;
+        width: 60%;
+        margin: auto;
+    }
 }

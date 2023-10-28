@@ -17,7 +17,7 @@ const EditFormHours = (props) => {
     /*Function to handle hours input and format the value*/
     function handleHoursInput(callback){
     return (e) => {
-        const value = e.target.value;
+        const value = e.target.value 
 
         /*Adding a colon after the 2nd character if it doesn't already contain a colon*/
         if(value.length === 2 && !value.includes(":")) {

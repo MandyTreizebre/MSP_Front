@@ -1,14 +1,52 @@
-# React + Vite
+# Front-end du projet de la Maison de Santé de Varennes-Sur-Allier
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is an end-of-study project for a React fullstack developer course. 
+This repository contains the front-end for the Varennes-Sur-Allier health center website. 
 
-Currently, two official plugins are available:
+## Getting Started 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+### Prerequiesites
+
+Ensure that you have the following installed on your local machine:
+
+- [Node.js](https://nodejs.org)
+- npm (comes with Node.js)
+
+### Installation
+
+1. Clone the repository : 
+```bash
+git clone https://github.com/MandyTreizebre/MSP_Front.git
+```
+
+2. Navigate into the projet directory with the cd command
+
+3. Install the projet dependencies : 
+```
+- npm i
+```
+- Will install emailjs dotenv @reduxjs/toolkit axios js-cookie react-multi-carousel redux @fortawesome/react-fontawesome @fortawesome/free-solid-svg-icons
+
+### Configuration 
+
+Create a .env file in the root directory of the project to store your environment variables. 
 
 
-# Installation nécessaire pour le slider 
+### Usage 
 
-- npm install react-multi-carousel 
+- To start the server in development mode, run : 
+```
+npm run dev
+```
+
+- To start the server in production mode, run :
+```
+npm start
+```
+
+
+#### Contributing
+If you have any suggestions for improving my code, please don't hesitate to contact me! :smiley:
 
