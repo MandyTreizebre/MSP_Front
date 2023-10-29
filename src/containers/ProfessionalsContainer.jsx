@@ -1,5 +1,5 @@
 /* Importing styles */
-import "../styles/professionalsContainer.css" 
+import "../../sass/styles/professionalsContainer.css"
 
 const ProfessionalsContainer = ({ professionals }) => {
     /*Function to format time. If the time is "00:00:00", it indicates the professional is closed*/

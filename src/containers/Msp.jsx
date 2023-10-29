@@ -4,7 +4,7 @@ import healthyFood from "../assets/images/healthy.jpg"
 import nature from "../assets/images/nature.jpg" 
 import doctorOffice from "../assets/images/cabmedecin2.jpg" 
 import kineOffice from "../assets/images/cabinetkines.jpg" 
-import "../styles/msp.css" 
+import "../../sass/styles/msp.css"
 import healthProject from "../assets/files/projet_sante.pdf" 
 
 const Msp = () => {

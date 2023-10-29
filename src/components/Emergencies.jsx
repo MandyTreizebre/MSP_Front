@@ -4,7 +4,7 @@ import buildingPhysiotherapist from '../assets/images/photo_2022-10-31_05-22-24.
 import officePsychotherapist from '../assets/images/bureau-psychologue.jpg'
 import pharmacy from '../assets/images/pharmacie-beauvy.jpg'
 
-import '../styles/emergencies.css'
+import "../../sass/styles/emergencies.css"
 
 const Emergencies = () => {
     return (

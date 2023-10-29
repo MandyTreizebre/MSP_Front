@@ -100,7 +100,7 @@
 /********** BASE STYLES FOR MOBILE & TABLET ***********/
 /* Adjustments for screens with a width up to 1024px (includes both tablets and mobiles) */
 @media (max-width: 1024px) {
-    * Changing layout of the containers to stack vertically */
+    /* Changing layout of the containers to stack vertically */
     .container-presentation-msp,
     .container-description-msp {
         display: flex;

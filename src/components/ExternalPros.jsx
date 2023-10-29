@@ -4,7 +4,7 @@ import { config } from "../config"
 import { displayExternalProfessionals } from "../api/ExternalProfessionals"
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCircleArrowRight} from '@fortawesome/free-solid-svg-icons'
-import "../styles/externalPros.css"
+import "../../sass/styles/externalPros.css"
 
 const ExternalPros = () => {
     /*Initialize state variables for storing external professionals and any error message*/

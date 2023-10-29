@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux' 
 import { loginAdmin } from '../../api/Admin' 
 import { connectAdmin } from '../../slices/adminSlice' 
-import "../../styles/login.css"
+import "../../../sass/styles/login.css"
 
 const Login = () => {
   const dispatch = useDispatch() 

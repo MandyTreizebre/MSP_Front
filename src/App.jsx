@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux"
 import { useEffect, useState } from "react" 
 import { checkCookie } from "../auth" 
 import CheckAuth from "../CheckAuth" 
-import "./App.css" 
+import "../sass/styles/App.css"
 
 
 import Header from "./components/Header" 

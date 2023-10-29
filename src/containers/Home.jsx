@@ -5,7 +5,7 @@ import Emergencies from "../components/Emergencies"
 import News from "../components/News"
 import Specializations from "../components/Specializations"
 import ExternalPros from "../components/ExternalPros"
-import "../styles/Home.css"
+import "../../sass/styles/home.css"
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faEye } from '@fortawesome/free-solid-svg-icons'
 

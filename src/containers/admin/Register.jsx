@@ -3,7 +3,7 @@ import { addAdmin } from "../../api/Admin"
 import Cookies from 'js-cookie' 
 const token = Cookies.get('token')
 import Modal from "../../components/Modals/Modal"
-import "../../styles/forms.css"
+import "../../../sass/styles/forms.css"
 
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faEye, faEyeSlash, faCircleCheck} from '@fortawesome/free-solid-svg-icons'

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react" 
 import { displayProfessionalsGuards } from "../api/Professionals" 
 import imgDoctorGuards from "../assets/images/docteur-red-heart.jpg"
-import "../styles/guards.css"
+import "../../sass/styles/guards.css"
 
 const Guards = () => {
     /*State initialization for storing all professionals, doctors, dentists, and pharmacies.*/

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom' 
-import "../../styles/professionalsAdmin.css"
+import "../../../sass/styles/professionalsAdmin.css"
 
 const ProfessionalsAdmin = ({ professionals, onChangeStatus }) => {
     /*Function to format time. If the time is "00:00:00", it indicates the professional is closed*/

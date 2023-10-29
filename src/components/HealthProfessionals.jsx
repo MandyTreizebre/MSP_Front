@@ -2,7 +2,7 @@ import { getProfessionalBySpe } from "../api/Professionals"
 import ProfessionalsContainer from "../containers/ProfessionalsContainer"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import "../styles/professionals.css"
+import "../../sass/styles/professionals.css"
 
 /*Component to get and display health professionals based on a given specialty*/
 const HealthProfessionals = ({ title }) => {

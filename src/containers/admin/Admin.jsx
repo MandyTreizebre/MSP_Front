@@ -4,8 +4,7 @@ import { useSelector} from "react-redux"
 import { displayAllProfessionals, changeStatusProfessionnal } from '../../api/Professionals' 
 import { selectAdmin } from '../../slices/adminSlice'
 import ProfessionalsAdmin from '../../components/Admin/ProfessionalsAdmin'
-import "../../styles/adminPage.css" 
-
+import "../../../sass/styles/adminPage.css"
 const Admin = () => {
     /*Get the admin data from the Redux store*/
     const admin = useSelector(selectAdmin) 

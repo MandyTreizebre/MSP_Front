@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import "../../styles/modals.css"
+import "../../../sass/styles/modals.css"
 
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCircleCheck} from '@fortawesome/free-solid-svg-icons'

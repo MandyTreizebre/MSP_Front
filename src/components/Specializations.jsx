@@ -2,7 +2,7 @@ import {useState, useEffect, useRef} from "react"
 import { Link } from "react-router-dom"
 import {displaySpecializations} from '../api/Professionals'
 import { config } from "../config"
-import "../styles/specializations.css"
+import "../../sass/styles/Specializations.css"
 
 const Specializations = () => {
     const refSpe = useRef(null) // Reference for click-to-appointment scrolling

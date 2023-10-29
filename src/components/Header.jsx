@@ -7,7 +7,7 @@ import {selectAdmin, logoutAdmin} from '../slices/adminSlice'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faGear, faBars} from '@fortawesome/free-solid-svg-icons'
 import Logo from '../assets/images/logo.png'
-import '../styles/header.css'
+import "../../sass/styles/header.css"
 
 const Header = () =>{
     /*Retrieve the admin login state from the Redux store*/

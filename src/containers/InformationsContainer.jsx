@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { config } from "../config"
-import "../styles/informationsContainer.css"
+import "../../sass/styles/informationsContainer.css"
 
 /*This component renders a list of health information.
 Each information item consists of an image, title, description, and a link to a related site.*/

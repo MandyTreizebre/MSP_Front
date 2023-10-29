@@ -4,7 +4,7 @@ import { displayCategories } from "../api/HealthInformations"
 import { config } from "../config"
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCircleArrowRight} from '@fortawesome/free-solid-svg-icons'
-import "../styles/categoriesInformations.css"
+import "../../sass/styles/categoriesInformations.css"
 
 const CategoriesInformations = () => {
     const [categories, setCategories] = useState([])

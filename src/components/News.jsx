@@ -4,7 +4,7 @@ import Carousel from 'react-multi-carousel'
 import {displayAllNews} from '../api/News'
 import {config} from "../config"
 import 'react-multi-carousel/lib/styles.css'
-import '../styles/news.css'
+import "../../sass/styles/news.css"
 
 
 const News = () => {
