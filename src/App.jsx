@@ -5,7 +5,7 @@ import { checkCookie } from "../auth"
 import CheckAuth from "../CheckAuth" 
 import "./App.css" 
 
-// Importation des components
+
 import Header from "./components/Header" 
 import Footer from "./components/Footer" 
 import HealthProfessionals from "./components/HealthProfessionals" 
@@ -14,7 +14,7 @@ import Guards from "./containers/Guards"
 import NotFound from "./components/NotFound" 
 import DarkMode from "./components/DarkMode" 
 
-// Importation des containers
+
 import Home from "./containers/Home" 
 import Msp from "./containers/Msp" 
 import CategoriesInformations from "./containers/CategoriesInformations" 
@@ -60,7 +60,7 @@ function App() {
                     <Route exact path="/informations-categorie/:category" element={<InformationsByCategory />} />
                     <Route exact path="/login" element={<Login />} />
                     <Route exact path="*" element={<NotFound />} />
-                    {/* Routes pour Admin */}
+                    {/* Routes for Admin */}
                     <Route path="/admin" element={<CheckAuth component={Admin} />} />
                     <Route path="/register" element={<CheckAuth component={Register} />} />
                     <Route path="/ajouter/professionnel" element={<CheckAuth component={AddPro} />} />

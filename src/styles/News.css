@@ -7,12 +7,12 @@
 
 /* Styling for news box */
 .box-news {
-    max-width: 350px;
-    min-height: 650px;
+    max-width: 310px;
+    min-height: 550px;
     text-align: center;
     display: flex;
     flex-direction: column;
-    gap: 1vw;
+    gap: 5vh;
     border-radius: var(--border-round);
     margin: auto;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
@@ -20,14 +20,14 @@
 }
 
 /* Ensuring direct children of .box-news expand to take up available space */
-.box-news > * {
-    flex-grow: 1; /* Stretch content to occupy vertical space */
-}
+/*.box-news > * {
+    flex-grow: 1; /* Stretch content to occupy vertical space 
+}*/
 
 /* Styling for news images */
 .img-news {
     width: 100%;
-    height: auto;
+    height: 23vh;
     border-radius: 15px 15px 0  0;
 }
 

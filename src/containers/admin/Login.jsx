@@ -30,7 +30,7 @@ const Login = () => {
             /*If authentication fails, set an error message*/
           setError("Adresse e-mail incorrecte") 
         } else if(res.status === 403){
-          setError("Mot de passe incorrect")
+          setError("Identifiant ou mot de passe incorrect")
         } else {
           setError("Une erreur est survenue")
         }
