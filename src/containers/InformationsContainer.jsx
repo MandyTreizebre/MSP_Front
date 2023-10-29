@@ -6,12 +6,29 @@ import "../styles/informationsContainer.css"
 Each information item consists of an image, title, description, and a link to a related site.*/
 
 const InformationsContainer = ({ informations }) => {
+  const showVideo = informations.some(info => info.category === 7)
+
   return (
     <>
       {/* Header section for health informations */}
       <section className="presentation-informations">
         <h1>Informations sur la santé</h1>
       </section>
+
+      {showVideo && (
+        <div className="youtube-video-container">
+            <iframe 
+            width="560" 
+            height="315" 
+            src="https://www.youtube.com/embed/feyaEbdJgIU?si=maUZUYPmBb1okMoU" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen
+            ></iframe>
+        </div>
+      )}
+
       {/* Map through the `informations` array and render each item */}
       {informations.map((info) => (
         <section key={info.id} className="section-informations">

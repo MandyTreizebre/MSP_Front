@@ -10,6 +10,11 @@
     margin-top: 30px;
 }
 
+.youtube-video-container {
+    text-align: center;
+    margin: 50px;
+}
+
 /********** MAIN SECTION ***********/
 /* Styling for the main information section. */
 .section-informations {
