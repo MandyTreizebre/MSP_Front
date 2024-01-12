@@ -1,9 +1,11 @@
 import React, { useState } from 'react' 
 import { Navigate } from 'react-router-dom' 
 import { useDispatch } from 'react-redux' 
+
 import { loginAdmin } from '../../api/Admin' 
 import { connectAdmin } from '../../slices/adminSlice' 
-import "../../../sass/styles/login.css"
+
+import "../../styles/login.css"
 
 const Login = () => {
   const dispatch = useDispatch() 
@@ -48,10 +50,8 @@ const Login = () => {
 
   return (
     <section className='container-login'>
-      <h1>Connexion Administrateur</h1>
-      <form onSubmit={onSubmitForm}
-            className='login-form'
-      >
+      <h1>Connexion</h1>
+      <form onSubmit={onSubmitForm}>
         <div className='area-input-login'>
           <label>Email:</label>
           <input
@@ -74,7 +74,11 @@ const Login = () => {
             required
           />
         </div>
-        <input type="submit" name="Se connecter" className='general-button'/>
+        <input type="submit" 
+               name="Se connecter" 
+               className='general-button' 
+               value="Se connecter"
+        />
       </form>
       {error && <p className='error-message'>{error}</p>}
     </section>

@@ -2,7 +2,7 @@ import {useState, useEffect} from "react"
 import Cookies from 'js-cookie'
 const token = Cookies.get('token')
 import AddHoursForm from "../../components/Forms/AddHoursForm"
-import Modal from "../../components/Modals/Modal"
+import Modal from "../../components/Modal"
 import { displayDays, saveOpeningHours } from "../../api/OpeningHours"
 import { displayProfessionals } from "../../api/Professionals"
 

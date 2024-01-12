@@ -125,7 +125,7 @@ export function displaySpecializations(){
 
 /* Function to retrieve professionals on guards*/
 export function displayProfessionalsGuards(){
-    return axios.get(`${config.api_url}/api/professionnels-guards`)
+    return axios.get(`${config.api_url}/api/professionals-guards`)
     .then((res)=>{
         return res.data /*Returning the data from the response*/
     })

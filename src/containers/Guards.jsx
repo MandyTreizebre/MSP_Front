@@ -1,7 +1,13 @@
 import { useState, useEffect } from "react" 
 import { displayProfessionalsGuards } from "../api/Professionals" 
-import imgDoctorGuards from "../assets/images/docteur-red-heart.jpg"
-import "../../sass/styles/guards.css"
+
+import "../styles/guards.css"
+
+import Clock from "../components/Clock"
+
+import Pharmacies from "../components/Pharmacies"
+import Dentists from "../components/Dentists"
+import Doctors from "../components/Doctors"
 
 const Guards = () => {
     /*State initialization for storing all professionals, doctors, dentists, and pharmacies.*/
@@ -53,6 +59,7 @@ const Guards = () => {
             displayProfessionalsGuards()
         .then((res)=>{
             setGuards(res.result)
+            console.log(res.result)
 
                 const pharmacies = []
                 const dentists = []
@@ -86,7 +93,7 @@ const Guards = () => {
                     }
                 })    
                 /*Update the state with the categorized professionals*/
-                setPharmacies(pharmacies) 
+                setPharmacies(pharmacies)
                 setDentists(dentists) 
                 setDoctors(doctors) 
         })
@@ -103,68 +110,23 @@ const Guards = () => {
     
     return (
         <section className="section-guards">
-            <div className="container-intro-guards">
-                <div className="infos-guards">
-                    <h1>Permanence des Soins et Urgences Médicales : <u>Des Soins à Tout Moment</u></h1>
-                    <p className="intro-guards">La page des urgences et des gardes vous offre un <strong>service en temps réel</strong>, vous permettant de connaître les <strong>pharmacies, dentistes et médecins</strong> disponibles selon l'heure et le jour actuels. Grâce à cette fonctionnalité, vous pouvez trouver rapidement des <strong>professionnels de santé prêts à vous aider en cas de besoin urgent</strong>. Que ce soit en pleine journée ou en plein milieu de la nuit, notre service vous connecte avec les professionnels de confiance, assurant ainsi votre bien-être et votre tranquillité d'esprit en toute circonstance.</p>
-                </div>
-                <img src={imgDoctorGuards} className="img-guards"/>
-            </div>
+            <h1>Permanence des Soins et Urgences Médicales : <u>Des Soins à Tout Moment</u></h1>
+            <section className="presentation-guards">
+                <Clock />
+                
+                <p className="intro-guards">La page des urgences et des gardes vous offre un <strong>service en temps réel</strong>, vous permettant de connaître les <strong>pharmacies, dentistes et médecins</strong> disponibles selon l'heure et le jour actuels. Grâce à cette fonctionnalité, vous pouvez trouver rapidement des <strong>professionnels de santé prêts à vous aider en cas de besoin urgent</strong>. Que ce soit en pleine journée ou en plein milieu de la nuit, notre service vous connecte avec les professionnels de confiance, assurant ainsi votre bien-être et votre tranquillité d'esprit en toute circonstance.
+                </p>
+            </section>
 
-            <h2><u>Nous sommes le  {currentDay} {actualDate}, il est {currentHours}</u></h2>
+            <h2><u>{currentDay} {actualDate}</u></h2>
+            
 
             <div className="guards-container">
-                {pharmacies.length > 0 && (
-                    <section className="container-pros-guards">
-                        <h2><u>Pharmacies :</u></h2>
-                        <div className="pharmacies">
-                            {pharmacies.map((pharmacy, index) => (
-                                <div key={index} className="bloc" >
-                                    <h3>{pharmacy.lastname} {pharmacy.firstname}</h3>
-                                    <p>{pharmacy.address}</p>
-                                    <p>{pharmacy.zip} {pharmacy.city}</p>
-                                    <p>{pharmacy.phone}</p>
-                                    <p>{pharmacy.h_start_morning.substring(0, 5)} - {pharmacy.h_end_morning.substring(0, 5)} / {pharmacy.h_start_afternoon.substring(0, 5)} - {pharmacy.h_end_afternoon.substring(0, 5)}</p>
-                                </div>
-                            ))}
-                        </div>
-                    </section>
-                )}
+                {pharmacies.length > 0 && <Pharmacies pharmacies={pharmacies} />}
 
-                {dentists.length > 0 && (
-                    <section className="container-pros-guards">
-                        <h2><u>Dentistes :</u></h2>
-                        <div className="dentists">
-                            {dentists.map((dentist, index) => (
-                                <div key={index} className="bloc">
-                                    <h3>{dentist.lastname} {dentist.firstname}</h3>
-                                    <p>{dentist.address}</p>
-                                    <p>{dentist.zip} {dentist.city}</p>
-                                    <p>{dentist.phone}</p>
-                                    <p>{dentist.h_start_morning.substring(0, 5)} - {dentist.h_end_morning.substring(0, 5)} / {dentist.h_start_afternoon.substring(0, 5)} - {dentist.h_end_afternoon.substring(0, 5)}</p>
-                                </div>
-                            ))}
-                        </div>
-                    </section>
-                )}
+                {dentists.length > 0 && <Dentists dentists={dentists} />}
 
-                {doctors.length > 0 && (
-                    <section className="container-pros-guards">
-                        <h2><u>Médecins :</u></h2>
-                        <div className="doctors">
-                            {doctors.map((doctor, index) => (
-                                <div key={index} className="bloc">
-                                        <h3>{doctor.lastname} {doctor.firstname}</h3>
-                                        <p>{doctor.address}</p>
-                                        <p>{doctor.zip} {doctor.city}</p>
-                                        <p>{doctor.phone}</p>
-                                        <p>{doctor.details}</p>
-                                        <p>{doctor.h_start_morning.substring(0, 5)} - {doctor.h_end_morning.substring(0, 5)} / {doctor.h_start_afternoon.substring(0, 5)} - {doctor.h_end_afternoon.substring(0, 5)}</p>
-                                </div>
-                            ))}
-                        </div>
-                    </section>
-                )}
+                {doctors.length > 0 && <Doctors doctors={doctors} />}
             </div>
         </section>
     )

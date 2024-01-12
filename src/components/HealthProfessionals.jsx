@@ -1,11 +1,13 @@
-import { getProfessionalBySpe } from "../api/Professionals"
-import ProfessionalsContainer from "../containers/ProfessionalsContainer"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import "../../sass/styles/professionals.css"
+
+import { getProfessionalBySpe } from "../api/Professionals"
+
+import ProfessionalsContainer from "../containers/ProfessionalsContainer"
+
 
 /*Component to get and display health professionals based on a given specialty*/
-const HealthProfessionals = ({ title }) => {
+const HealthProfessionals = () => {
     /*State to hold the retrieved professionals and potential error message*/
     const [professionals, setProfessionals] = useState([])
     const [error, setError] = useState(null)
@@ -28,8 +30,9 @@ const HealthProfessionals = ({ title }) => {
         <>
             {/* Section to display the title and a paragraph */}
             <section className="container-pros">
-                <h1>{title}</h1>
-                <p>Lorem ipsum...</p> {/* Consider parameterizing this if descriptions vary */}
+                <p> Que ce soit pour une consultation médicale, un suivi régulier, ou tout autre besoin de santé, vous trouverez ici les informations nécessaires pour planifier votre visite.
+                    Pour fixer un rendez-vous, veuillez utiliser les coordonnées fournies pour chaque professionnel de santé. Cliquez sur le numéro de téléphone pour une prise de rendez-vous rapide et efficace.</p> {/* Consider parameterizing this if descriptions vary */}
+                    <strong>En cas d'urgence médicale nécessitant une assistance immédiate, veuillez composer le 15.</strong>
             </section>
             {/* Container component to handle the rendering of the professionals list */}
             <ProfessionalsContainer professionals={professionals} />

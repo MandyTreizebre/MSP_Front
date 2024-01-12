@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom"
 import Cookies from 'js-cookie' 
 const token = Cookies.get('token') 
 import EditFormHours from "../../components/Forms/EditFormHours" 
-import Modal from "../../components/Modals/Modal" 
+import Modal from "../../components/Modal" 
 import { displayDays, getOpeningHoursByPro, editOpeningHoursByPro } from "../../api/OpeningHours" 
 
 const EditHoursPro = () => {

@@ -1,5 +1,5 @@
 import {useState} from "react"
-import "../../../sass/styles/forms.css"
+import "../../styles/forms.css"
 
 const EditForm = (props) => {
     /*States for validation error messages*/

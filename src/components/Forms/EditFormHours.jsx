@@ -1,4 +1,4 @@
-import "../../../sass/styles/forms.css"
+import "../../styles/forms.css"
 
 const EditFormHours = (props) => {
 

@@ -1,8 +1,12 @@
-import imgContact from "../assets/images/docteur-ordinateur.jpg"
 import { useRef, useState } from "react"
+
 import emailjs from '@emailjs/browser'
-import Modal from "../components/Modals/Modal"
-import "../../sass/styles/contact.css"
+
+import imgContact from "../assets/images/docteur-ordinateur.jpg"
+
+import Modal from "../components/Modal"
+
+import "../styles/contact.css"
 
 const Contact = () => {
     const [openModal, setOpenModal] = useState(false)

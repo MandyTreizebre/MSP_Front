@@ -1,34 +1,56 @@
 import { Link } from "react-router-dom" 
+
 import medicalTeam from "../assets/images/equipe-medecins.jpg" 
 import healthyFood from "../assets/images/healthy.jpg" 
 import nature from "../assets/images/nature.jpg" 
-import doctorOffice from "../assets/images/cabmedecin2.jpg" 
-import kineOffice from "../assets/images/cabinetkines.jpg" 
-import "../../sass/styles/msp.css"
-import healthProject from "../assets/files/projet_sante.pdf" 
+import doctorOffice from "../assets/images/cabmedecin2.jpg"
+
+import healthProject from "../assets/files/projet_sante.pdf"
+
+import "../styles/msp.css"
+
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faStarOfLife} from '@fortawesome/free-solid-svg-icons'
 
 const Msp = () => {
     return (
         <>
-            {/* Presentation section with kinesitherapist office image */}
-            <section className="container-presentation-msp">
-                <img src={kineOffice} alt="photo du bâtiment des kinésithérapeutes" className='img-kinesitherapist-office' />
-                <div className='bloc-right-presentation'>
-                    <h1>Notre maison de santé Pluriprofessionnelle</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            {/* Presentation section (list + download file) */}
+            <section>
+                <div className='bloc-presentation'>
+                    <h1>Notre maison de santé pluriprofessionnelle</h1>
+                    <ul>
+                        <li>
+                            <FontAwesomeIcon icon={faStarOfLife} className="icon"/>
+                            Nous réunissons 32 professionnels de santé, y compris médecins, infirmiers, kinésithérapeutes, psychologues, et bien d'autres.
+                        </li>
+                        <li>
+                            <FontAwesomeIcon icon={faStarOfLife} className="icon"/>
+                            Chaque professionnel apporte une expertise unique, favorisant une approche complète de la santé qui intègre le physique, le mental et le social.
+                        </li>
+                        <li>
+                            <FontAwesomeIcon icon={faStarOfLife} className="icon"/>
+                            Notre équipe s'engage à fournir des soins personnalisés, mettant l'accent sur la prévention, le diagnostic précoce et le traitement efficace.
+                        </li>
+                    </ul>
                     {/* Link to download the health project */}
+                    
+                </div>
+                <div className="download">
                     <Link 
                         to={healthProject}
                         download="projet-msp"
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener noreferrer"
                     >
-                        <button className="general-button">
+                        <button aria-label="Téléchargez notre projet de santé">
                             Téléchargez notre projet de santé
                         </button>
-                    </Link>
+                    </Link> 
                 </div>
             </section>
+
+
             {/* Section describing the ambition, principles, and involvement of the health house */}
             <section className="container-description-msp">
                 <article className="container-article">
@@ -64,7 +86,9 @@ const Msp = () => {
             <section className="last-container">
                 <h2>Lorem ipsum dolor <span>sit amet</span></h2>
                 <img src={doctorOffice} alt="cabinet du docteur Regnier" className="img-office" />
-                <p>"Lorem ipsum dolor sit amet, consectetur <strong>adipiscing elit</strong>, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in <strong>reprehenderit in voluptate</strong> velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat <strong>cupidatat non proident</strong>, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+                <p>Notre mission est de créer un environnement où la collaboration interdisciplinaire prospère, garantissant que chaque patient bénéficie de l'expertise variée de notre équipe. Que vous ayez besoin de consultations médicales, de suivi spécialisé, de soins infirmiers, de conseils nutritionnels, ou d'autres services de santé, notre établissement vous offre un éventail complet de soins.
+                   Chacun de nos professionnels apporte une expertise unique, contribuant à <strong>une approche complète de la santé.</strong> Ensemble, nous nous engageons à fournir des soins <strong>centrés sur le patient</strong>, mettant l'accent sur la prévention, le diagnostic précoce et le traitement efficace.
+                </p>
             </section>
         </>
     ) 

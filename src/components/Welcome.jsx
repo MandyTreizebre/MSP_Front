@@ -1,6 +1,8 @@
 import {Link} from 'react-router-dom'
+
 import doctorImage from '../assets/images/medecin.jpg'
-import "../../sass/styles/welcome.css"
+
+import "../styles/welcome.css"
 
 const Welcome = () =>{
     return (

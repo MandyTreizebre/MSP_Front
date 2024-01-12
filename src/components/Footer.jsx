@@ -1,4 +1,4 @@
-import "../../sass/styles/footer.css"
+import "../styles/footer.css"
 import { Link } from "react-router-dom"
 
 const Footer = () => {
@@ -11,8 +11,9 @@ const Footer = () => {
                     <Link to="/contact"aria-label="Page contact">Contact</Link>
                     <Link to="/gardes-urgences"aria-label="Page des urgences et des gardes">Urgences et gardes</Link>
                     <Link to="/mentions-legales"aria-label="Page des mentions legales">Mentions légales</Link>
+                    <Link to="/politique-confidentialite"aria-label="Politique de confidentialité">Politique de confidentialité</Link>
                 </nav>
-                <p>© 2023 - Maison de Santé de Varennes-Sur-Allier</p>
+                <p>© 2024 - Maison de Santé de Varennes-Sur-Allier</p>
         </footer>
     )
 }

@@ -4,7 +4,7 @@ import { config } from "../config"
 import { displayExternalProfessionals } from "../api/ExternalProfessionals"
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCircleArrowRight} from '@fortawesome/free-solid-svg-icons'
-import "../../sass/styles/externalPros.css"
+import "../styles/externalPros.css"
 
 const ExternalPros = () => {
     /*Initialize state variables for storing external professionals and any error message*/
@@ -39,18 +39,18 @@ const ExternalPros = () => {
                                 {/* Link to external professional's website */}
                                 <Link to={pro.link} 
                                       target="_blank" 
-                                      rel="noreferrer" 
+                                      rel="noopener noreferrer" 
                                       className="card-external-pros"
                                       aria-label="Visiter le site des professionnels (s'ouvre dans un nouvel onglet)"
                                 >
                                     {/* Display professional's picture */}
                                     <div>
-                                        <img src={config.pict_url+pro.picture} className='img-external-pros' alt={pro.name}/>
+                                        <img src={`${config.api_url}/${pro.picture}`} className='img-external-pros' alt={pro.name}/>
                                     </div>
                                     {/* Display professional's name */}
-                                    <div>
+                                    {/*<div>
                                         <p><strong>{pro.name}</strong> <FontAwesomeIcon className="icon" icon={faCircleArrowRight} /></p>
-                                    </div>
+                                    </div>*/}
                                 </Link>
                             </div>
                         )

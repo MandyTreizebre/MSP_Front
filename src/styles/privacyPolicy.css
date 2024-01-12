@@ -1,0 +1,21 @@
+.container-privacy-policy {
+    padding: 25px;
+    margin: auto;
+}
+
+.container-privacy-policy ul {
+    list-style-type: none;
+}
+
+.container-privacy-policy h2 {
+    margin: 2vh 0 2vh 0;
+    text-align: left;
+}
+
+.bloc-privacy-infos {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    margin: 2vh 0 2vh 0;
+}
+

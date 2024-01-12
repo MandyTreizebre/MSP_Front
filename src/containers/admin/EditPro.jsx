@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom"
 import { displayOneProfessional, displaySpecializations, editOneProfessional } from "../../api/Professionals"
 import Cookies from "js-cookie" 
 import EditForm from "../../components/Forms/EditForm" 
-import Modal from "../../components/Modals/Modal" 
+import Modal from "../../components/Modal" 
 
 const EditPro = (props) => {
   /* State variables to store professional data*/

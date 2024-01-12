@@ -1,0 +1,111 @@
+/* Styling for the main guards section */
+.section-guards {
+  margin-top: 50px; 
+}
+
+/* Styling for the main title in the guards section */
+.section-guards h1 {
+  margin: 30px; 
+}
+
+.presentation-guards{
+  display: flex;
+  align-items: center;
+}
+
+/* Styling for the introductory text of the guards section */
+.intro-guards {
+  width: 50%;
+  text-align: justify;
+}
+
+/* Styling for the subheadings within the professionals' container */
+.container-pros-guards h2 {
+  text-align: left;
+  color: white; 
+  padding: 40px 0 0 50px;
+  margin-bottom: 30px;
+}
+
+
+/* Styling for the different types of professionals (pharmacies, dentists, doctors) */
+.pharmacies, .dentists, .doctors {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  text-align: center; 
+}
+
+/* Styling for the main container that holds all guards information */
+.guards-container {
+  width: 100%;
+  margin: auto;
+  padding: 50px;
+  text-align: center;
+  background: linear-gradient(to right, var(--green-color) 35%, white 30%, white 100%);
+}
+
+/* Styling for each individual block (representing a professional) */
+.bloc {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  gap: 25px;
+  padding: 15px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  background-color: #f2f9f8; 
+  align-items: center;
+}
+
+
+/* Styling for subheading within the main guards section */
+.pict-pharmacies, .pict-dentists, .pict-doctors {
+  width: 150px;
+}
+
+/************STYLES FOR TABLETS AND MOBILES (Shared styles)*************/
+/* Adjustments for devices with screen width up to 1024px */
+@media screen and (max-width: 1024px) {
+  .intro-guards {
+    width: 100%;
+    text-align: justify; 
+  }
+  .section-guards h1 {
+    font-size: 1.2rem; 
+  }
+  .section-guards h2 {
+    font-size: 1.2rem; 
+    margin: 40px auto;
+  }
+  .presentation-guards{
+    flex-direction: column;
+    width: 80%;
+    margin: auto;
+  }
+  .presentation-guards p{
+    font-size: 0.9rem;
+  }
+  .pharmacies, .dentists, .doctors {
+    flex-direction: column;
+    margin: auto;
+    width: 100%; 
+  }
+  .guards-container {
+    background: white;
+  }
+  .bloc {
+    width: 100%;
+  }
+  .container-pros-guards {
+    width: 100%;
+  }
+  .container-pros-guards h2 {
+    color: var(--green-color); 
+    text-align: center;
+    padding: 0;
+    margin: 30px auto;
+  }
+}
+
+
+  

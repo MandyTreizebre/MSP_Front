@@ -14,6 +14,16 @@ export function displayExternalProfessionals(){
     })
 }
 
+export function displayOneExternalProfessional(id){
+    return axios.get(`${config.api_url}/api/external-professional/${id}`)
+    .then((res)=>{
+        return res.data /*Returning the data from the response*/
+    })
+    .catch((err)=>{
+        return err /*Returning the error*/
+    })
+}
+
 /*Function to add an external pro using a POST request*/
 export function addExternalProfessional(datas, token){
     return axios.post(`${config.api_url}/save-external-professional`, datas, {

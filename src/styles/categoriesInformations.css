@@ -1,0 +1,99 @@
+/********** MAIN CONTAINER ***********/
+.container-categories {
+  width: 70vw;
+  min-height: 90vh;
+  margin: 30px auto;
+  text-align: center; 
+}
+
+.container-categories h1 {
+  margin-bottom: 20px; 
+}
+
+.container-categories p {
+  margin-bottom: 4vh; 
+}
+
+/*Arrow icon*/
+.container-categories .icon {
+  color: var(--green-color);
+  font-size: 1.5em;
+  padding: 10px; 
+}
+
+/********** INDIVIDUALS CONTAINER ***********/
+.cards-informations {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border-radius: 10px;
+  width: 15vw; 
+}
+
+.cards-informations:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); 
+}
+
+.cards-informations h3 {
+  padding-top: 10px; 
+}
+
+/********** CONTAINER WITH ALL CARDS ***********/
+.container-category-informations {
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  gap: 3vw; 
+}
+
+.container-category-informations a {
+  text-decoration: none; 
+}
+
+/********** PICTURES ***********/
+.category-picture {
+  width: 100%;
+  padding-top: 10px; 
+  height: 22vh;
+}
+
+/********** STYLE FOR TABLET ***********/
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .cards-informations {
+    width: 20vw;
+    display: flex;
+    flex-direction: column; 
+  }
+  .cards-informations h3 {
+    font-size: 1.1em; 
+  }
+  .container-categories p {
+    font-size: 1em; 
+  }
+  .container-category-informations {
+    justify-content: center;
+  }
+  .category-picture {
+    height: 13%;
+  }
+}
+
+/********** STYLE FOR MOBILE ***********/
+@media (max-width: 767px) {
+  .cards-informations {
+    width: 35vw; 
+  }
+  .container-category-informations {
+    gap: 5vw;
+    justify-content: center;
+  }
+  .cards-informations h3,
+  .container-categories p,
+  .cards-informations .icon {
+    font-size: 1em; 
+  }
+  .category-picture {
+    width: 100%;
+    padding-top: 10px; 
+    height: 13%;
+  }
+}

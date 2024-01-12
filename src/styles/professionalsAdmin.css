@@ -1,0 +1,73 @@
+.container-professionals-admin {
+  display: flex;
+  align-items: center;
+  width: 90%;
+  margin: 20px 0 20px 20px;
+  padding: 15px;
+  background: white;
+}
+
+/* Ajout de styles pour les deux parties */
+.box-professional {
+  flex: 1;
+  margin-right: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.actions-professionals {
+  flex: 2; 
+  display: flex;
+  gap: 2vw;
+}
+
+.actions-professionals a{
+  color: #3a6c3f;
+  font-weight: bold;
+}
+
+.actions-professionals a:after {
+  content: '';
+  display: block;
+  margin: auto;
+  height: 1px;
+  width: 0;
+  background: transparent;
+  transition: width .5s ease, background-color .5s ease; 
+}
+
+/* Underline effect when hovering over the links */
+.actions-professionals a:hover:after {
+  width: 100%;
+  background: #3a6c3f; 
+}
+
+.actions-professionals button {
+  background-color: #3a6c3f;
+  border-radius: 10px;
+  border: none;
+  padding: 0 10px;
+  color: white;
+  cursor: pointer;
+}
+
+.box-professional h4 {
+  color: black;
+}
+
+/************styles for tablets and mobiles that share the same style*************/
+@media screen and (max-width: 1024px) {
+  .container-professionals {
+    flex-direction: column;
+    gap: 3vh; }
+  .column-pro {
+    width: 40vw; } }
+
+/* Styles specific to mobile devices */
+@media (max-width: 767px) {
+  /* Adjusting font sizes for the news box's heading and paragraph */
+  .container-professionals {
+    width: 90%; }
+  .column-pro {
+    width: 100%; } }

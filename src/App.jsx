@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux"
 import { useEffect, useState } from "react" 
 import { checkCookie } from "../auth" 
 import CheckAuth from "../CheckAuth" 
-import "../sass/styles/App.css"
+import "../src/styles/app.css"
 
 
 import Header from "./components/Header" 
@@ -21,11 +21,15 @@ import CategoriesInformations from "./containers/CategoriesInformations"
 import Contact from "./containers/Contact" 
 import AddPro from "./containers/admin/AddPro" 
 import Admin from "./containers/admin/Admin" 
-import EditPro from "./containers/admin/EditPro" 
+import EditPro from "./containers/admin/EditPro"
+import EditExternalPro from "./containers/admin/EditExternalPro"
+import AddExternalPros from "./containers/admin/AddExternalPros"
 import Login from "./containers/admin/Login" 
 import Register from "./containers/admin/Register" 
 import AddHoursPro from "./containers/admin/AddHoursPro" 
 import EditHoursPro from "./containers/admin/EditHoursPro" 
+import LegalInformations from "./containers/LegalInformations"
+import PrivacyPolicy from "./containers/PrivacyPolicy"
 
 function App() {
     const [isLoading, setIsLoading] = useState(true) 
@@ -46,19 +50,13 @@ function App() {
                     <Route exact path="/" element={<Home />} />
                     <Route exact path="/msp" element={<Msp />} />
                     <Route exact path="/contact" element={<Contact />} />
-                    <Route exact path="/dentistes/:speciality_id" element={<HealthProfessionals title="Dentistes" />} />
-                    <Route exact path="/medecins/:speciality_id" element={<HealthProfessionals title="Médecins" />} />
-                    <Route exact path="/infirmiers/:speciality_id" element={<HealthProfessionals title="Infirmiers" />} />
-                    <Route exact path="/psychologue/:speciality_id" element={<HealthProfessionals title="Psychologue" />} />
-                    <Route exact path="/kines-osteos/:speciality_id" element={<HealthProfessionals title="Kinésithérapeutes et Ostéopathes" />} />
-                    <Route exact path="/psychomotricienne/:speciality_id" element={<HealthProfessionals title="Psychomotricienne" />} />
-                    <Route exact path="/podologue/:speciality_id" element={<HealthProfessionals title="Podologue" />} />
-                    <Route exact path="/laboratoire/:speciality_id" element={<HealthProfessionals title="Laboratoire" />} />
-                    <Route exact path="/pharmacies/:speciality_id" element={<HealthProfessionals title="Pharmacies" />} />
+                    <Route exact path="/specialisation/:speciality_id" element={<HealthProfessionals />} />
                     <Route exact path="/gardes-urgences" element={<Guards />} />
                     <Route exact path="/informations-sante" element={<CategoriesInformations />} />
                     <Route exact path="/informations-categorie/:category" element={<InformationsByCategory />} />
                     <Route exact path="/login" element={<Login />} />
+                    <Route exact path="/mentions-legales" element={<LegalInformations />} />
+                    <Route exact path="/politique-confidentialite" element={<PrivacyPolicy />} />
                     <Route exact path="*" element={<NotFound />} />
                     {/* Routes for Admin */}
                     <Route path="/admin" element={<CheckAuth component={Admin} />} />
@@ -67,6 +65,8 @@ function App() {
                     <Route path="/ajouter/horaires-professionnel" element={<CheckAuth component={AddHoursPro} />} />
                     <Route path="/editer/professionnel/:id" element={<CheckAuth component={EditPro} />} />
                     <Route path="/editer/horaires-professionnel/:id" element={<CheckAuth component={EditHoursPro} />} />
+                    <Route path="/editer/professionnel-externe/:id" element={<CheckAuth component={EditExternalPro} />} />
+                    <Route path="/ajouter/professionnel-externe" element={<CheckAuth component={AddExternalPros} />} />
                 </Routes>
             )}
             <Footer />

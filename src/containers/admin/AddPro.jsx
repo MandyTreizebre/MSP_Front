@@ -3,7 +3,7 @@ import Cookies from 'js-cookie'
 const token = Cookies.get('token')
 import { saveOneProfessional, displaySpecializations } from "../../api/Professionals"
 import AddProForm from "../../components/Forms/AddProForm"
-import Modal from "../../components/Modals/Modal"
+import Modal from "../../components/Modal"
 
 const AddPro = (props) => {
     /*Importing API handling functions*/

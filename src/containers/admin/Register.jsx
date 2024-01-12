@@ -2,8 +2,9 @@ import { useState } from "react"
 import { addAdmin } from "../../api/Admin"
 import Cookies from 'js-cookie' 
 const token = Cookies.get('token')
-import Modal from "../../components/Modals/Modal"
-import "../../../sass/styles/forms.css"
+import Modal from "../../components/Modal"
+
+import "../../styles/register.css"
 
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faEye, faEyeSlash, faCircleCheck} from '@fortawesome/free-solid-svg-icons'
@@ -104,10 +105,11 @@ const Register = () => {
     }
 
   return (
-    <section>
+    <section className="container-register">
         <h1>Enregistrer un nouvel administrateur</h1>
         <form
             onSubmit={onSubmitForm}
+            className="form-register"
         > 
             {/* Email input */}
             <input type="text"
@@ -129,27 +131,29 @@ const Register = () => {
                         e.preventDefault(e)
                         setShowPassword(!showPassword)
                     }}
-                className="general-button"
+                className="view-password"
             >
                 {showPassword ? <FontAwesomeIcon className="eye-icon" icon={faEyeSlash}/> : <FontAwesomeIcon className="eye-icon" icon={faEye}/>}
             </button>
+            {/* First name input */}
+            
             </div>
+            <input type="text"
+                placeholder="Votre prénom"
+                onChange={(e)=>{
+                setFirstname(e.currentTarget.value)
+                }}
+                required
+            />
+
             {/* Display password requirements */}
-            <div>
+            <div className="content-password">
                 <span style={{ color: hasLength ? 'green' : 'red' }}> <FontAwesomeIcon icon={faCircleCheck}/> Min 8 caractères</span>
                 <span style={{ color: hasUpperCase ? 'green' : 'red' }}> <FontAwesomeIcon icon={faCircleCheck}/> Min une majuscule</span>
                 <span style={{ color: hasLowerCase ? 'green' : 'red' }}> <FontAwesomeIcon icon={faCircleCheck}/> Min une minuscule</span>
                 <span style={{ color: hasNumber ? 'green' : 'red' }}> <FontAwesomeIcon icon={faCircleCheck}/> Min un chiffre</span>
                 <span style={{ color: hasSpecialChar ? 'green' : 'red' }}> <FontAwesomeIcon icon={faCircleCheck}/>Min un caractère spécial</span>
             </div>
-            {/* First name input */}
-            <input type="text"
-                   placeholder="Votre prénom"
-                   onChange={(e)=>{
-                    setFirstname(e.currentTarget.value)
-                   }}
-                   required
-            />
             {/* Submit button */}
             <input type="submit" name="Enregistrer" className="general-button"/>
         </form>

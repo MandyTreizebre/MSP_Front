@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom"
 import {useState, useEffect} from "react"
+
 import { getInformationsByCategory } from "../api/HealthInformations"
+
 import InformationsContainer from "../containers/InformationsContainer"
 
 const InformationsByCategory = () => {

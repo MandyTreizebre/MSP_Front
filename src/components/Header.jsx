@@ -4,10 +4,11 @@ import { Navigate } from 'react-router-dom'
 import { logout } from '../api/Admin'
 import {useSelector, useDispatch} from 'react-redux'
 import {selectAdmin, logoutAdmin} from '../slices/adminSlice'
+import {toggleDarkMode, selectIsDarkMode} from "../slices/darkModeSlice"
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faGear, faBars} from '@fortawesome/free-solid-svg-icons'
+import {faGear, faBars, faCircleHalfStroke} from '@fortawesome/free-solid-svg-icons'
 import Logo from '../assets/images/logo.png'
-import "../../sass/styles/header.css"
+import "../styles/header.css"
 
 const Header = () =>{
     /*Retrieve the admin login state from the Redux store*/
@@ -18,7 +19,9 @@ const Header = () =>{
     const refSpe = useRef(null)
     /*State to manage the opening/closing of the navigation menu on mobile*/
     const [navIsOpen, setNavIsOpen] = useState(false)
-    const [redirect, setRedirect] = useState(false) 
+    const [redirect, setRedirect] = useState(false)
+
+    const isDarkMode = useSelector(selectIsDarkMode)
 
     /*Function to handle admin logout*/
     const handleLogout = () => {
@@ -59,13 +62,22 @@ const Header = () =>{
                     
                     />
                 </Link>
+                <div className="buttons-accesibility">
+                <button 
+                    className="dark-mode-toggle"
+                    onClick={() => dispatch(toggleDarkMode())}
+                    title={isDarkMode ? "Passer en mode clair" : "Passer en mode sombre"}
+                >
+                    {isDarkMode ? <FontAwesomeIcon icon={faCircleHalfStroke} className="mode-clair" />: <FontAwesomeIcon icon={faCircleHalfStroke} className="mode-sombre" />}
+                </button>
+            </div>
             </div>
 
             {/* Menu trigger icon for mobiles and tablets  */}
             <button id="mobile-tablet-trigger">
                 <FontAwesomeIcon 
                     icon={faBars} 
-                    onClick={toggleMenu} 
+                    onClick={toggleMenu}
                     className="trigger-icon"  
                 />  
             </button>

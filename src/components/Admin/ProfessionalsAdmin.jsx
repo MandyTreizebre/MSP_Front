@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom' 
-import "../../../sass/styles/professionalsAdmin.css"
+import "../../styles/professionalsAdmin.css"
 
 const ProfessionalsAdmin = ({ professionals, onChangeStatus }) => {
     /*Function to format time. If the time is "00:00:00", it indicates the professional is closed*/
@@ -51,37 +51,37 @@ const ProfessionalsAdmin = ({ professionals, onChangeStatus }) => {
     return (
         <section>
             {Object.keys(groupedProfessionals).map((key, index) => (
-                <div key={key} className="container-professionals">
-                    <div className="column-pro">
-                        <h3>{key}</h3>
-                        {/* Displaying the professional's coordinates (once) */}
-                        <div>
+                <div key={key} className="container-professionals-admin">
+                    <div className="box-professional">
+                        <h4>{key}</h4>
+                         {/*Displaying the professional's coordinates (once) */}
+                        {/*<div>
                             <p>{groupedProfessionals[key].coordinates.address}</p>
-                            <p>
+                            {/*<p>
                                 {groupedProfessionals[key].coordinates.zip} {groupedProfessionals[key].coordinates.city}
                             </p>
                             <p><strong>{formatPhoneNumber(groupedProfessionals[key].coordinates.phone)}</strong></p>
                             {groupedProfessionals[key].coordinates.details && (
                                 <p className="details">{groupedProfessionals[key].coordinates.details}</p>
                             )}
-                        </div>
+                        </div>*/}
                     </div>
-                    <div className='actions-pros'>
-                    <Link to={`/editer/professionnel/${groupedProfessionals[key].coordinates.id}`} className='admin-button'>
-                        Modifier le pro
-                    </Link>
-                    <Link to={`/editer/horaires-professionnel/${groupedProfessionals[key].coordinates.id}`} className='admin-button'>
-                        Modifier les horaires du pro
-                    </Link>
-                    <button className='admin-button' onClick={() => {onChangeStatus(groupedProfessionals[key].coordinates.id)  }}>
-                        {groupedProfessionals[key].coordinates.isActive ? "Désactiver" : "Activer"}
-                    </button>
+                    <div className='actions-professionals'>
+                        <Link to={`/editer/professionnel/${groupedProfessionals[key].coordinates.id}`}>
+                            Modifier le professionnel
+                        </Link>
+                        <Link to={`/editer/horaires-professionnel/${groupedProfessionals[key].coordinates.id}`}>
+                            Modifier les horaires du professionnel
+                        </Link>
+                        <button onClick={() => {onChangeStatus(groupedProfessionals[key].coordinates.id)  }}>
+                            {groupedProfessionals[key].coordinates.isActive ? "Désactiver" : "Activer"}
+                        </button>
                     </div>
-                    <div className="column-hours">
+                    {/*<div className="column-hours">
                         <div className="schedule">
                             <h3>Horaires :</h3>
                             {/* Displaying the professional's schedules by day */}
-                            {Object.keys(groupedProfessionals[key].schedules).map((dayKey, idx) => (
+                            {/*{Object.keys(groupedProfessionals[key].schedules).map((dayKey, idx) => (
                                 <div key={dayKey} className="line-hours">
                                     <p><strong>{dayKey}</strong> :</p>
                                     {groupedProfessionals[key].schedules[dayKey].map((prof, idx) => (
@@ -92,7 +92,7 @@ const ProfessionalsAdmin = ({ professionals, onChangeStatus }) => {
                                 </div>
                             ))}
                         </div>
-                    </div>
+                    </div>*/}
                 </div>
             ))}
         </section>

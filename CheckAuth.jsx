@@ -10,9 +10,9 @@ const CheckAuth = ({ component: Component, ...rest }) => {
 
   useEffect(() => {
     if (isAdminLogged.isLogged) {
-      checkCookie(dispatch, () => {})  // Assurez-vous que checkCookie prend `dispatch` en tant qu'argument pour pouvoir dispatch des actions
+      checkCookie(dispatch, () => {})  
     }
-  }, [])  // Le tableau de dépendances vide garantit que cela ne s'exécute qu'au montage
+  }, [])  
 
   if (!isAdminLogged.isLogged) {
     return <Navigate to="/login" />

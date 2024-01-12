@@ -1,10 +1,11 @@
 import {Link} from "react-router-dom"
+
 import cabinetDoctor from '../assets/images/cabmedecins.jpg'
 import buildingPhysiotherapist from '../assets/images/photo_2022-10-31_05-22-24.jpg'
 import officePsychotherapist from '../assets/images/bureau-psychologue.jpg'
 import pharmacy from '../assets/images/pharmacie-beauvy.jpg'
 
-import "../../sass/styles/emergencies.css"
+import "../styles/emergencies.css"
 
 const Emergencies = () => {
     return (
@@ -40,7 +41,7 @@ const Emergencies = () => {
                 </p>
                 {/*Link to the on-call and emergencies page */}
                 <Link to="/gardes-urgences" 
-                      className="general-button"
+                      className="general-button button-emergencies"
                       aria-label="Aller à la page des gardes et des urgences" 
                 >   
                     Trouver les professionnels de gardes

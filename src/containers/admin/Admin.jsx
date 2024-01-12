@@ -1,89 +1,117 @@
-import React, { useState, useEffect, useRef } from 'react' 
-import { Link } from 'react-router-dom' 
-import { useSelector} from "react-redux" 
-import { displayAllProfessionals, changeStatusProfessionnal } from '../../api/Professionals' 
+import React, { useState, useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { displayAllProfessionals, changeStatusProfessionnal } from '../../api/Professionals'
+import { displayExternalProfessionals } from '../../api/ExternalProfessionals'
 import { selectAdmin } from '../../slices/adminSlice'
 import ProfessionalsAdmin from '../../components/Admin/ProfessionalsAdmin'
-import "../../../sass/styles/adminPage.css"
+import ExternalProfessionalsAdmin from '../../components/Admin/ExternalProfessionalsAdmin'
+
+import '../../styles/adminPage.css'
+
 const Admin = () => {
-    /*Get the admin data from the Redux store*/
-    const admin = useSelector(selectAdmin) 
-    const [professionals, setProfessionals] = useState([]) 
-    const [error, setError] = useState(null)
+  const admin = useSelector(selectAdmin);
+  const [professionals, setProfessionals] = useState([]);
+  const [externalProfessionals, setExternalProfessionals] = useState([])
+  const [error, setError] = useState(null);
 
-    const refPros = useRef(null)
-    const refExternalPros = useRef(null)
+  const displayPros = () => {
+    setError(null);
+    displayAllProfessionals()
+      .then((res) => {
+        setProfessionals(res.result)
+      })
+      .catch((err) => {
+        setError('Une erreur est survenue lors du chargement des professionnels')
+      })
+  }
 
-    /*Function to get and display professionals.*/
-    const displayPros = () => {
-        setError(null)   // Reset the error
-        displayAllProfessionals()
-            .then((res) => {
-                setProfessionals(res.result)
-            })
-            .catch(err => {
-                setError("Une erreur est survenue lors du chargement des professionnels") 
-            }) 
-    } 
+  useEffect(() => {
+    displayPros()
+  }, [])
 
-    /*Get professionals on component mount*/
-    useEffect(() => {
-        displayPros() 
-    }, []) 
+  const displayExternalPros = () => {
+    setError(null)
+    displayExternalProfessionals()
+      .then((res) => {
+        setExternalProfessionals(res.result)
+      })
+      .catch((err) => {
+        setError('Une erreur est survenue lors du chargement des professionnels externes')
+      })
+  }
 
-    /*Function to handle the status change of a professional*/
-    const handleChangeStatus = (id, token) => {
-        setError(null)   /*Reset the error before updating*/
-        changeStatusProfessionnal(id, token)
-            .then(data => {
-                displayPros() 
-                setProfessionals(prevProfs => prevProfs.map(pros => {
-                    if (pros.id === id) {
-                        return { ...pros, isActive: !pros.isActive } 
-                    }
-                    return pros 
-                })) 
-            })
-            .catch(err => {
-                setError("Une erreur est survenue lors de la modification du status") 
-            }) 
-    }
-    
-    return (
-        <>
-            <section className='container-admin'>
-                <h1>Portail Administrateur</h1>
-                {admin.infos && <h2>Vous êtes connecté en tant que {admin.infos.firstname}</h2>}
-                <Link to="/register" className='general-button'>
-                    Enregistrer un nouvel administrateur
-                </Link>
+  useEffect(() => {
+    displayExternalPros()
+  }, [])
 
-                <section className='categories-admin'>
-                <Link to="#professionals" 
-                    onClick={()=> refPros.current.scrollIntoView({behavior: "smooth"})}
-                >
-                        <div className='category-admin'>Les professionnels</div>
-                </Link>
+  const handleChangeStatus = (id, token) => {
+    setError(null);
+    changeStatusProfessionnal(id, token)
+      .then((data) => {
+        displayPros();
+        setProfessionals((prevProfs) =>
+          prevProfs.map((pros) => {
+            if (pros.id === id) {
+              return { ...pros, isActive: !pros.isActive }
+            }
+            return pros;
+          })
+        )
+      })
+      .catch((err) => {
+        setError('Une erreur est survenue lors de la modification du status')
+      })
+  }
 
-                        <div className='category-admin'>Les pros extérieurs</div>
-
-                    
-                    
-                    <div className='category-admin'>Les actualités</div>
-                    <div className='category-admin'>Les informations santé</div>
-                </section>
-
-                <h2 id="professionals" ref={refPros}>Les professionnels de la MSP</h2>
-                <div className='new-pro'>
-                    <Link to="/ajouter/professionnel" className='general-button'>Ajouter un professionnel de santé</Link>
-                    <Link to="/ajouter/horaires-professionnel" className='general-button'>Ajouter les horaires d'un professionnel</Link>
-                </div>
-                <ProfessionalsAdmin professionals={professionals} onChangeStatus={handleChangeStatus}/>
-                {error && <div className="error-message">{error}</div>}
-            </section>
-        </>
+  return (
+    <>
+      <section className="container-admin">
+        <aside className='section-admin'>
+          {admin.infos && <h2>Bienvenue {admin.infos.firstname}</h2>}
+          <Link to="/register">
+            Enregistrer un nouvel administrateur
+          </Link>
+          <a 
+            href="https://search.google.com"
+            target='_blank'
+            rel="noopener noreferrer"
+          >
+            Google Search Console
+          </a>
+        </aside>
         
-    )
+        <section className='admin-panel'>
+            <h2>Portail Administrateur</h2>
+            <div className="category-admin">
+              
+            </div>
+
+          <div className='professionals-MSP'>
+            <h3>Les professionnels de la MSP</h3>
+            <div className="new-pro">
+              <Link to="/ajouter/professionnel">
+                Ajouter un professionnel de santé
+              </Link>
+              <Link to="/ajouter/horaires-professionnel">
+                Ajouter les horaires d'un professionnel
+              </Link>
+            </div>
+            <ProfessionalsAdmin professionals={professionals} onChangeStatus={handleChangeStatus} />
+            {error && <div className="error-message">{error}</div>}
+          </div>
+
+          <div className='external-professionals'>
+            <h3>Les autres professionnels</h3>
+            <Link to="/ajouter/professionnel-externe">
+              Ajouter un professionnel externe
+            </Link>
+            <ExternalProfessionalsAdmin externalProfessionals={externalProfessionals} />
+          </div>
+        </section>
+      </section>
+    </> 
+  )
 }
 
-export default Admin
+export default Admin;

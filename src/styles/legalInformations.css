@@ -1,0 +1,19 @@
+.bloc-identity{
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    margin-top: 2vh;
+}
+
+.container-legal-informations h4, h5 {
+    margin: 3vh 0 1vh 0;
+    text-align:left;
+}
+
+.container-legal-informations ul {
+    list-style-type: none;
+}
+
+.container-legal-informations {
+    padding: 25px;
+}

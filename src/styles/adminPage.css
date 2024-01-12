@@ -1,0 +1,148 @@
+.container-admin {
+  text-align: center;
+  display: flex; }
+
+.container-admin h2, h1 {
+  margin: 30px;
+  color: black; }
+
+.section-admin {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-left: 20px;
+  border-right: 1px solid black;
+}
+
+.section-admin a {
+  color: black;
+}
+
+.section-admin a:hover {
+  border-left: 3px solid #3a6c3f;
+}
+
+.admin-panel {
+  width: 80%;
+}
+
+.admin-panel h2 {
+  text-align: left;
+}
+
+.professionals-MSP h3 {
+  text-align: left;
+  margin-left: 20px;
+}
+
+.categories-admin {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.category-admin {
+  background-color: white;
+  border-radius: 0px;
+  padding: 10px;
+  margin: 10px;
+  width: 90%;
+  text-align: start;
+}
+
+.title {
+  width: 7vw; 
+}
+
+.details td {
+  text-align: center; 
+}
+
+table {
+  border-collapse: collapse;
+  margin: 25px auto; 
+}
+
+table th, table td {
+  border: 1px solid black;
+  padding: 1px; 
+}
+
+.admin-button {
+  color: #3a6c3f;
+  font-weight: bold;
+}
+
+.admin-button a:after {
+  content: '';
+  display: block;
+  margin: auto;
+  height: 1px;
+  width: 0;
+  background: transparent;
+  transition: width .5s ease, background-color .5s ease; 
+}
+
+.admin-button a:hover:after {
+  width: 100%;
+  background: #3a6c3f; 
+}
+
+.actions {
+  width: 12vw;
+  display: flex;
+  flex-direction: column; 
+}
+
+.new-pro {
+  display: flex;
+  gap: 5vw;
+  justify-content: flex-start;
+  margin: 20px;
+}
+
+.new-pro a{
+  color: #3a6c3f;
+  font-weight: bold;
+}
+
+.new-pro a:after {
+  content: '';
+  display: block;
+  margin: auto;
+  height: 1px;
+  width: 0;
+  background: transparent;
+  transition: width .5s ease, background-color .5s ease; 
+}
+
+/* Underline effect when hovering over the links */
+.new-pro a:hover:after {
+  width: 100%;
+  background: #3a6c3f; 
+}
+
+.categories-admin a {
+  text-decoration: none;
+  color: black; 
+}
+
+.arrow-icon  {
+  transition: transform 0.7s ease-in-out;
+}
+
+.rotate-up {
+  transform: rotate(140deg);
+}
+
+/************STYLES FOR TABLETS AND MOBILES (Shared styles)*************/
+/* Adjustments for devices with screen width up to 1024px */
+/* Styles specific to mobile devices */
+@media (max-width: 767px) {
+  /* Adjusting font sizes for the news box's heading and paragraph */
+  .new-pro {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin: auto; } }

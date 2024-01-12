@@ -1,0 +1,35 @@
+/* Styling for the main title within the login container */
+.container-login h1 {
+  margin-top: 20px;
+}
+
+.container-login label {
+  font-family: var(--common-font);
+}
+
+.container-login {
+  height: 340px;
+}
+
+/* Styling for the input elements within the login form */
+.container-login input {
+  width: 20vw;
+  height: 35px;
+  border-radius: 5px;
+  margin: auto; 
+}
+
+.area-input-login {
+  display: flex;
+  flex-direction: column;
+  margin: 10px auto;
+  gap: 1vh;
+}
+
+/************STYLES FOR TABLETS AND MOBILES (Shared styles)*************/
+/* Adjustments for devices with screen width up to 1024px */
+@media screen and (max-width: 1024px) {
+  .container-login input {
+    width: 50vw; 
+  } 
+}

@@ -1,10 +1,13 @@
 import {useState, useEffect} from "react"
 import { Link } from "react-router-dom"
+
 import { displayCategories } from "../api/HealthInformations"
 import { config } from "../config"
+
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCircleArrowRight} from '@fortawesome/free-solid-svg-icons'
-import "../../sass/styles/categoriesInformations.css"
+
+import "../styles/categoriesInformations.css"
 
 const CategoriesInformations = () => {
     const [categories, setCategories] = useState([])
@@ -16,6 +19,7 @@ const CategoriesInformations = () => {
         .then((res)=>{
             /*Upon successful get, set the categories state*/
              setCategories(res.result)
+             console.log(res.result)
         })
         .catch(err => {
             /*If an error occurs, set an error message in the state*/
@@ -26,7 +30,7 @@ const CategoriesInformations = () => {
     return (
         <section className="container-categories">
             <h1>Informations santé</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+            <p>Bienvenue dans notre espace dédié à la santé, où nous vous offrons une mine précieuse d'informations pour vous guider vers un mode de vie sain et équilibré. Explorez nos catégories variées, allant de la nutrition et de l'activité physique au bien-être mental et aux conseils pratiques. Notre objectif est de fournir des ressources informatives et inspirantes qui favorisent la compréhension de votre bien-être global. Plongez dans des sujets tels que la gestion du stress, des recettes nutritives, des routines d'entraînement adaptées, et bien plus encore. Nous croyons que l'accès à des informations éclairées peut être le premier pas vers des choix de vie plus sains. Que vous cherchiez des conseils pour un mode de vie actif, des informations sur des conditions spécifiques, ou simplement des astuces pour rester en forme, vous trouverez ici un compagnon fiable pour votre parcours vers une meilleure santé.</p>
             <div className="container-category-informations">
                 {/* Iterating through categories to render each category card */}
                 {categories.map((item)=>(

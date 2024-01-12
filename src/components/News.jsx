@@ -1,10 +1,13 @@
 import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
+
 import Carousel from 'react-multi-carousel'
+
 import {displayAllNews} from '../api/News'
 import {config} from "../config"
+
 import 'react-multi-carousel/lib/styles.css'
-import "../../sass/styles/news.css"
+import "../styles/news.css"
 
 
 const News = () => {
@@ -83,7 +86,7 @@ const News = () => {
                   max: 1024,
                   min: 768,
                 },
-                items: 2,
+                items: 1,
                 partialVisibilityGutter: 0
               }
             }}
@@ -98,14 +101,14 @@ const News = () => {
       >
         {news.map((item, index)=>{
             return (
-              <div key={item.id || index}>
+              <div key={item.id || index} className='container-news'>
                   <section  className="box-news">
                     <img src={config.pict_url + item.picture} className='img-news' alt={item.title}/>
                     <h3>{item.title}</h3>
                     <p>{item.details}</p>
                     <Link to={item.external_link} 
                             target='_blank' 
-                            rel="noreferrer"
+                            rel="noopener noreferrer"
                             aria-label="Visiter la page officielle (s'ouvre dans un nouvel onglet)"
                             className="news-link"
                         >

@@ -1,17 +1,41 @@
-import {useDispatch, useSelector} from "react-redux"
-import {toggleDarkMode, selectIsDarkMode} from "../slices/darkModeSlice"
+import { useRef, useEffect } from 'react'
+
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faArrowUp} from '@fortawesome/free-solid-svg-icons'
+
 import Welcome from "../components/Welcome"
 import Emergencies from "../components/Emergencies"
 import News from "../components/News"
 import Specializations from "../components/Specializations"
 import ExternalPros from "../components/ExternalPros"
-import "../../sass/styles/home.css"
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faEye } from '@fortawesome/free-solid-svg-icons'
+
+import "../styles/home.css"
 
 const Home = () => {
-    const dispatch = useDispatch()
-    const isDarkMode = useSelector(selectIsDarkMode)
+
+    const refScrollToTop = useRef(null)
+
+    const scrollToTop = () => {
+        window.scrollTo({top: 0, behavior: 'smooth'})
+    }
+
+    useEffect(()=>{
+        const handleScroll = () => {
+            const scrollY = window.scrollY
+
+            if(scrollY > 200){
+                refScrollToTop.current.style.display = "block"
+            } else {
+                refScrollToTop.current.style.display = "none"
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll)
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+        }
+    }, [])
 
     return (
         <>
@@ -21,15 +45,14 @@ const Home = () => {
             <Specializations />
             <ExternalPros />
 
-            <div className="buttons-accesibility">
-                <button 
-                    className="dark-mode-toggle"
-                    onClick={() => dispatch(toggleDarkMode())}
-                    title={isDarkMode ? "Passer en mode clair" : "Passer en mode sombre"}
-                >
-                    {isDarkMode ? <FontAwesomeIcon icon={faEye} className="mode-clair" />: <FontAwesomeIcon icon={faEye} className="mode-sombre" />}
-                </button>
-            </div>
+            <button
+            ref={refScrollToTop}
+            className='button-scroll'
+            onClick={scrollToTop}
+            aria-label="Remonter en haut de la page"
+            >
+                <FontAwesomeIcon icon={faArrowUp}/>
+            </button>
         </>
     )
 }

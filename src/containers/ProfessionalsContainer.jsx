@@ -1,18 +1,15 @@
-/* Importing styles */
-import "../../sass/styles/professionalsContainer.css"
+import { config } from "../config"
+
+import "../styles/professionalsContainer.css"
 
 const ProfessionalsContainer = ({ professionals }) => {
     /*Function to format time. If the time is "00:00:00", it indicates the professional is closed*/
     function formatTime(timeString) {
         if (timeString === "00:00:00") {
-            return "Fermé" 
+            return ""
         }
         const [hours, minutes] = timeString.split(':') 
         return `${hours}h${minutes}` 
-    }
-
-    function formatPhoneNumber(phone){
-        return phone.replace(/(\d{2})(?=\d)/g, '$1-')
     }
 
     /*Grouping professionals by last name and first name.
@@ -41,17 +38,20 @@ const ProfessionalsContainer = ({ professionals }) => {
             grouped[key].coordinates.zip = professional.zip 
             grouped[key].coordinates.city = professional.city 
             grouped[key].coordinates.phone = professional.phone 
-            grouped[key].coordinates.details = professional.details 
+            grouped[key].coordinates.details = professional.details
+            grouped[key].coordinates.speciality_id = professional.speciality_id
+            grouped[key].coordinates.picture = professional.picture
         }
 
         return grouped 
     }, {}) 
 
     return (
-        <section>
+        <section className="section-professionals">
             {Object.keys(groupedProfessionals).map((key, index) => (
                 <div key={index} className="container-professionals">
                     <div className="column-pro">
+                        <img src={config.pict_url+groupedProfessionals[key].coordinates.picture}/>
                         <h3>{key}</h3>
                         {/* Displaying the professional's coordinates (once) */}
                         <div>
@@ -59,14 +59,14 @@ const ProfessionalsContainer = ({ professionals }) => {
                             <p>
                                 {groupedProfessionals[key].coordinates.zip} {groupedProfessionals[key].coordinates.city}
                             </p>
-                            <p><strong>{formatPhoneNumber(groupedProfessionals[key].coordinates.phone)}</strong></p>
+                            <a href="tel:{{groupedProfessionals[key].coordinates.phone}}"><strong>{groupedProfessionals[key].coordinates.phone}</strong></a>
                             {groupedProfessionals[key].coordinates.details && (
-                                <p className="details">{groupedProfessionals[key].coordinates.details}</p>
+                                <p><em>{groupedProfessionals[key].coordinates.details}</em></p>
                             )}
                         </div>
                     </div>
                     <div className="column-hours">
-                        <div className="schedule">
+                        <div>
                             <h3>Horaires :</h3>
                             {/* Displaying the professional's schedules by day */}
                             {Object.keys(groupedProfessionals[key].schedules).map((dayKey, idx) => (

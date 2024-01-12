@@ -1,8 +1,10 @@
 import {useState, useEffect, useRef} from "react"
 import { Link } from "react-router-dom"
+
 import {displaySpecializations} from '../api/Professionals'
 import { config } from "../config"
-import "../../sass/styles/Specializations.css"
+
+import "../styles/specializations.css"
 
 const Specializations = () => {
     const refSpe = useRef(null) // Reference for click-to-appointment scrolling
@@ -30,7 +32,7 @@ const Specializations = () => {
                 {specializations.map((spe, index)=>{ /*Mapping through the list of specializations to render individual specialization cards*/
                     return (
                         <div key={index} className="cards-spe"> {/*Each card has a unique key for React optimization*/}
-                            <Link to={`${spe.key_url}/${spe.id}`} 
+                            <Link to={`specialisation/${spe.id}`} 
                                   aria-label={`Visiter la page des ${spe.name_spe}`}
                             >
                                 <img src={config.pict_url+spe.picture} className="img-spe" alt={spe.name_spe}/>
