@@ -1,70 +1,172 @@
-import Cookies from 'js-cookie'
 import axios from 'axios'
 import {config} from '../config'
-/*const token = Cookies.get('token')*/ /*Retrieving a token from cookies*/
 
-/*Function to retrieve opening hours using a GET request*/
-export function displayOpeningHours(){
-    return axios.get(`${config.api_url}/opening-hours`)
-    .then((res)=>{
-        return res.data /*Returning the data from the response*/
+
+// Retrieve opening hours 
+export function displayOpeningHours() {
+
+    return axios.get(`${config.api_url}/api/opening-hours`)
+
+    .then((res)=> {
+        if (res.status < 200 || res.status >= 300) {
+            throw new Error( "Erreur lors de la connexion")
+        }
+
+        return res
     })
-    .catch((err)=>{
-        return err /*Returning the error*/
+    .catch((error)=> {
+        if (error.response.status === 500) {
+            throw new Error("Erreur interne du serveur")
+        }
+
+        return error
     })
 }
 
-/*Function to retrieve opening hours by professional*/
-export function getOpeningHoursByPro(pro_id){
-    return axios.get(`${config.api_url}/pro/opening-hours/${pro_id}`)
-    .then((res)=>{
-        return res.data /*Returning the data from the response*/
+// Retrieve opening hours by professional
+export function getOpeningHoursByPro(pro_id, day_id) {
+
+    return axios.get(`${config.api_url}/api/pro/opening-hours/${pro_id}/${day_id}`)
+
+    .then((res)=> {
+        if (res.status < 200 || res.status >= 300) {
+            throw new Error( "Erreur lors de la connexion")
+        }
+
+        return res
     })
-    .catch((err)=>{
-        return err /*Returning the error*/
+    .catch((error)=> {
+        if (error.response.status === 500) {
+            throw new Error("Erreur interne du serveur")
+        }
+
+        return error
     })
 }
 
-/*Function to add opening hours using a POST request*/
-export function saveOpeningHours(datas, token){
-    return axios.post(`${config.api_url}/save/opening-hours`, datas, {
+// Add opening hours using 
+export function saveOpeningHours(datas, token) {
+
+    return axios.post(`${config.api_url}/api/save/opening-hours`, datas, {
+
         headers: {
-            "Authorization": `Bearer ${token}` /*Setting Authorization header with the token*/
+            "Authorization": `Bearer ${token}` 
         },
         withCredentials: true
     })
     .then((res)=>{
-        return res.data /*Returning the data from the response*/
+        if (res.status < 200 || res.status >= 300) {
+            throw new Error( "Erreur lors de la connexion")
+        }
+
+        return res
     })
-    .catch((err)=>{
-        return err /*Returning the error*/
+    .catch((error)=>{
+        if(error.response.data.msg === "Professionnel invalide") {
+            throw new Error("Professionnel invalide")
+        }
+
+        if(error.response.data.msg === "Jour invalide") {
+            throw new Error("Jour invalide")
+        }
+
+        if(error.response.data.msg === "Heure de début du matin invalide") {
+            throw new Error("Heure de début du matin invalide")
+        }
+
+        if(error.response.data.msg === "Heure de fin du matin invalide") {
+            throw new Error("Heure de fin du matin invalide")
+        }
+
+        if(error.response.data.msg === "Heure de début de l'après-midi invalide") {
+            throw new Error("Heure de début de l'après-midi invalide")
+        }
+
+        if(error.response.data.msg === "Heure de fin de l'après-midi invalide") {
+            throw new Error("Heure de fin de l'après-midi invalide")
+        }
+
+        if(error.response.data.msg === "Des horaires existent déjà pour ce jour et ce professionnel.") {
+            throw new Error("Des horaires existent déjà pour ce jour et ce professionnel.")
+        }
+
+        if(error.response.status === 500) {
+            throw new Error("Erreur interne du serveur")
+        }
     })
 }
 
-/*Function to update opening hours using a PUT request*/
-export function editOpeningHoursByPro(datas, pro_id, token){
-    return axios.put(`${config.api_url}/edit/opening-hours/${pro_id}`, datas, {
+// Update opening hours using 
+export function editOpeningHoursByPro(datas, pro_id, token) {
+
+
+    return axios.put(`${config.api_url}/api/edit/opening-hours/${pro_id}`, datas, {
+
         headers: {
-            "Authorization": `Bearer ${token}` /*Setting Authorization header with the token*/
+            "Authorization": `Bearer ${token}`
         },
         withCredentials: true
     })
     .then((res)=>{
-        return res.data /*Returning the data from the response*/
+        if (res.status < 200 || res.status >= 300) {
+            throw new Error( "Erreur lors de la connexion")
+        }
+
+        return res
     })
-    .catch((err)=>{
-        return err /*Returning the error*/
+    .catch((error)=>{
+        if(error.response.data.msg === "Professionnel invalide") {
+            throw new Error("Professionnel invalide")
+        }
+
+        if(error.response.data.msg === "Jour invalide") {
+            throw new Error("Jour invalide")
+        }
+
+        if(error.response.data.msg === "Heure de début du matin invalide") {
+            throw new Error("Heure de début du matin invalide")
+        }
+
+        if(error.response.data.msg === "Heure de fin du matin invalide") {
+            throw new Error("Heure de fin du matin invalide")
+        }
+
+        if(error.response.data.msg === "Heure de début de l'après-midi invalide") {
+            throw new Error("Heure de début de l'après-midi invalide")
+        }
+
+        if(error.response.data.msg === "Heure de fin de l'après-midi invalide") {
+            throw new Error("Heure de fin de l'après-midi invalide")
+        }
+
+        if(error.response.data.msg === "Des horaires existent déjà pour ce jour et ce professionnel.") {
+            throw new Error("Des horaires existent déjà pour ce jour et ce professionnel.")
+        }
+
+        if(error.response.status === 500) {
+            throw new Error("Erreur interne du serveur")
+        }
     })
 }
 
-/*Function to retrieve days using a GET request*/
-export function displayDays(){
-    return axios.get(`${config.api_url}/days`)
+// Retrieve days using 
+export function displayDays() { 
+
+    return axios.get(`${config.api_url}/api/days`)
+
     .then((res)=>{
-        return res.data /*Returning the data from the response*/
+        if (res.status < 200 || res.status >= 300) {
+            throw new Error( "Erreur lors de la connexion")
+        }
+
+        return res
     })
-    .catch((err)=>{
-        return err /*Returning the error*/
+    .catch((error)=>{
+        if (error.response.status === 500) {
+            throw new Error("Erreur interne du serveur")
+        }
+
+        return error
     })
 }
 

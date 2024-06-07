@@ -1,8 +1,8 @@
 import {useState} from "react"
-import "../../styles/forms.css"
+import "../../../styles/adminForms.css"
 
-const EditForm = (props) => {
-    /*States for validation error messages*/
+const EditProForm = (props) => {
+    // States for validation error messages
     const [errors, setErrors] = useState({
         lastname: "",
         firstname: "",
@@ -13,35 +13,39 @@ const EditForm = (props) => {
         details: ""
     })
 
-    /*Function to handle input change*/
+    //Function to handle input change
     const handleInputChange = (setter) => (e) => {
-        /*update state with new value using supplied setter function*/
-        setter(e.currentTarget.value)
+        const { value, name } = e.currentTarget
+        const finalValue = name === 'specializations' ? parseInt(value, 10) : value
+        setter(finalValue)
+        setErrors(prev => ({ ...prev, [name]: "" }))
     }
 
     const validateForm = () => {
         let errorsForm = {}
-        /*Validate each field and add error message if needed*/
+        // Validate each field and add error message if needed
         if (!props.lastname || props.lastname.length > 100) errorsForm.lastname = "Nom invalide"
         if (!props.firstname || props.firstname.length > 50) errorsForm.firstname = "Prénom invalide"
         if (!props.address || props.address.length > 50) errorsForm.address = "Adresse invalide"
         if (!props.zip || props.zip.length > 5) errorsForm.zip = "Code postal invalide"
         if (!props.city || props.city.length > 50) errorsForm.city = "Ville invalide"
         if (!props.phone || props.phone.length > 10) errorsForm.phone = "Téléphone invalide"
-        if (!props.details || props.details.length > 100) errorsForm.details = "Détails invalides"
-        /*Update errors state with identified issues*/
+        // Update errors state with identified issues
         setErrors(errorsForm)
-        /*Return true if no errors, else return false*/
+        // Return true if no errors, else return false
         return Object.keys(errorsForm).length === 0
     }
 
   return (
+
+    <section className="container-form">
         <form onSubmit={(e)=> {
-            e.preventDefault() /*Preventing the default form submission behavior*/
+            e.preventDefault() 
             if(validateForm()){
-                props.handleSubmit() /*Submit form if validation passes*/
+                props.handleSubmit() 
            }
-        }}>
+        }}
+        className="form-admin">
 
             <label htmlFor="lastname">Nom</label>
             <input 
@@ -110,23 +114,27 @@ const EditForm = (props) => {
                 onChange={handleInputChange(props.onChangeDetails)}
                 maxLength={100}
             />
-            {errors.details && <p className="error-message">{errors.details}</p>}
+            {errors.details && <p className="error-message">{errors.phone}</p>}
 
-            <label htmlFor="specialization">Spécialisation</label>
+            <label htmlFor="specializations">Spécialisation</label>
             {/* Specialization selection dropdown */}
             <select 
-                name="specialization"
+                name="specializations"
                 value={props.selectedSpecialization}
                 onChange={handleInputChange(props.onChangeSpecializations)}
+                className="select-admin-form"
             >
                 {props.specializationsList.map(spe=> (
                     <option key={spe.id} value={spe.id}>{spe.name_spe}</option>
                 ))}
             </select>
             {/* Submit button */}
-            <button>Valider la modification du professionnel</button>
+            <button className="edit-pro-button">Valider la modification du professionnel</button>
         </form>
+
+    </section>
+        
     )
 }
 
-export default EditForm
+export default EditProForm

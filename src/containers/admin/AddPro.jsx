@@ -2,11 +2,11 @@ import {useState, useEffect} from "react"
 import Cookies from 'js-cookie'
 const token = Cookies.get('token')
 import { saveOneProfessional, displaySpecializations } from "../../api/Professionals"
-import AddProForm from "../../components/Forms/AddProForm"
+import AddProForm from "../../components/Admin/Forms/AddProForm"
 import Modal from "../../components/Modal"
 
-const AddPro = (props) => {
-    /*Importing API handling functions*/
+const AddPro = () => {
+    
     const [lastname, setLastname] = useState("")
     const [firstname, setFirstname] = useState("")
     const [address, setAddress] = useState("")
@@ -16,47 +16,83 @@ const AddPro = (props) => {
     const [specializations, setSpecializations] = useState([])
     const [selectedSpecialization, setSelectedSpecialization] = useState(null)
     const [details, setDetails] = useState("")
+    
     const [error, setError] = useState(null)
-
     const [openAddProModal, setOpenAddProModal] = useState(false)
     
-    /*Function to handle modal closure*/
+    // Function to close the modal
     const handleCloseModal = () => {
         setOpenAddProModal(false)
     }
     
-    /*useEffect hook toget specializations when component mounts*/
+    // useEffect hook to get specializations when component mounts
     useEffect(()=> {
         displaySpecializations()
         .then((res)=>{
-            setSpecializations(res.result)
+            setSpecializations(res.data.result)
         })
         .catch(err => {
-            setError("Erreur lors du chargement des spécialisations")
+            setError(err, "Erreur lors du chargement des spécialisations")
         })
     }, [])
     
-    /*Function to save professional data*/
+    // Function to save professional data
     const savePro = (datas, token) => {
         saveOneProfessional(datas, token)
         .then((res)=>{
-            if(res.status === 201){
-                setOpenAddProModal(true) /*Open modal on successful save*/
+            if (res.status === 201){
+                setLastname("")
+                setFirstname("")
+                setAddress("")
+                setZip("")
+                setCity("")
+                setPhone("")
+                setDetails("")
+                setError("")
+                setOpenAddProModal(true) 
                 setTimeout(()=>{
-                    handleCloseModal() /*Close modal after 5 seconds*/
+                    handleCloseModal()
                 }, 5000)
-            }else {
-                setError("Erreur") /*Set error on unsuccessful save*/
             }
         })
         .catch(err=>{
-            setError("Erreur lors de la création du professionnel") /*Set error on API call failure*/
+            if (err.message === "Nom invalide") {
+                setError(err.message)
+            }
+            
+            if (err.message === "Prénom invalide") {
+                setError(err.message)
+            }
+
+            if (err.message === "Addresse invalide") {
+                setError(err.message)
+            }
+
+            if (err.message === "Code postal invalide") {
+                setError(err.message)
+            }
+
+            if (err.message === "Ville invalide") {
+                setError(err.message)
+            }
+
+            if (err.message === "Téléphone invalide") {
+                setError(err.message)
+            }
+
+            if (err.message === "Détails invalides") {
+                setError(err.message)
+            }
+
+            if (err.message === "") {
+                setError("Une erreur est survenue")
+            }
         })
     }
 
-    /*Function to handle form submission*/
+
     const handleSubmit = () => {
-        /*Preparing data object for API call*/
+
         let datas = {
             lastname: lastname,
             firstname: firstname,
@@ -67,35 +103,35 @@ const AddPro = (props) => {
             details: details,
             speciality_id: selectedSpecialization
         }
-        savePro(datas, token) /*Invoking savePro function*/
+        savePro(datas, token) 
     }
 
   return (
     <>
         <section className="form-container">
             <h1>Ajouter un professionnel de santé</h1>
-            <p className="required-p">Les champs suivis d'un <span className="required-asterisk">*</span> sont obligatoires.</p>  
+            <p className="required-p">Les champs suivis d&apos;un <span className="required-asterisk">*</span> sont obligatoires.</p>
             <AddProForm
-                /*Passing down state and handlers as props to AddProForm component*/
-                    lastname={lastname}
-                    firstname={firstname}
-                    address={address}
-                    zip={zip}
-                    city={city}
-                    phone={phone}
-                    details={details}
-                    specializationsList={specializations}
+                // Passing down state and handlers as props to AddProForm component
+                lastname={lastname}
+                firstname={firstname}
+                address={address}
+                zip={zip}
+                city={city}
+                phone={phone}
+                details={details}
+                specializationsList={specializations}
 
-                    onChangeLastname={setLastname}
-                    onChangeFirstname={setFirstname}
-                    onChangeAddress={setAddress}
-                    onChangeZip={setZip}
-                    onChangeCity={setCity}
-                    onChangePhone={setPhone}
-                    onChangeDetails={setDetails}
-                    onChangeSpecializations={setSelectedSpecialization}
-                    handleSubmit={handleSubmit}
-                />
+                onChangeLastname={setLastname}
+                onChangeFirstname={setFirstname}
+                onChangeAddress={setAddress}
+                onChangeZip={setZip}
+                onChangeCity={setCity}
+                onChangePhone={setPhone}
+                onChangeDetails={setDetails}
+                onChangeSpecializations={setSelectedSpecialization}
+                handleSubmit={handleSubmit}
+            />
             {error && <div className="error-message">{error}</div>}
             {/* Modal component for success message */}
             <Modal open={openAddProModal} onClose={handleCloseModal} message="Professionnel ajouté" />
@@ -103,4 +139,5 @@ const AddPro = (props) => {
     </>
   )
 }
+
 export default AddPro

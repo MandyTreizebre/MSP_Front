@@ -1,19 +1,38 @@
-.bloc-identity{
+.bloc-identity {
     display: flex;
     flex-direction: column;
     gap: 2vh;
     margin-top: 2vh;
 }
 
-.container-legal-informations h4, h5 {
-    margin: 3vh 0 1vh 0;
-    text-align:left;
+.container-legal-informations {
+    width: 70%;
+    margin: auto;
+    text-align: justify;
 }
+
+.container-legal-informations h2, h4 {
+    text-align: left;
+    margin: 25px 0 25px 0;
+    color: black;
+}
+
 
 .container-legal-informations ul {
     list-style-type: none;
 }
 
-.container-legal-informations {
-    padding: 25px;
-}
+/* Styles for tablets and mobiles sharing the same appearance */
+@media screen and (max-width: 1024px) {
+    /* Hiding the carousel arrow on devices with width up to 1024px */
+    .container-legal-informations p  {
+        line-height: 2;
+    }
+
+    .bloc-identity ul {
+        padding: 10px;
+    }
+
+
+  }
+  

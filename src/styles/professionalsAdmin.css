@@ -1,59 +1,72 @@
+.section-professionals-admin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+  width: 100%;
+}
+
 .container-professionals-admin {
+  width: 100%;
+}
+
+.box-professional {
   display: flex;
   align-items: center;
-  width: 90%;
-  margin: 20px 0 20px 20px;
-  padding: 15px;
-  background: white;
-}
-
-/* Ajout de styles pour les deux parties */
-.box-professional {
-  flex: 1;
-  margin-right: 20px;
-  white-space: nowrap;
-  overflow: hidden;
+  justify-content: space-between;
   text-overflow: ellipsis;
-}
-
-.actions-professionals {
-  flex: 2; 
-  display: flex;
-  gap: 2vw;
-}
-
-.actions-professionals a{
-  color: #3a6c3f;
-  font-weight: bold;
-}
-
-.actions-professionals a:after {
-  content: '';
-  display: block;
-  margin: auto;
-  height: 1px;
-  width: 0;
-  background: transparent;
-  transition: width .5s ease, background-color .5s ease; 
-}
-
-/* Underline effect when hovering over the links */
-.actions-professionals a:hover:after {
-  width: 100%;
-  background: #3a6c3f; 
-}
-
-.actions-professionals button {
-  background-color: #3a6c3f;
-  border-radius: 10px;
-  border: none;
-  padding: 0 10px;
-  color: white;
-  cursor: pointer;
+  width: 98%;
+  height: 70px;
+  max-height: 300px;
+  border-bottom: 1px solid rgb(225, 225, 225);
 }
 
 .box-professional h4 {
-  color: black;
+  color: var(--color-font);
+  font-size: 1.1rem;
+  margin-left: 60px;
+  width: 50%;
+  overflow: hidden;
+}
+
+.actions-professionals {
+  display: flex;
+  gap: 1vw;
+  text-align: left;
+  align-items: center;
+}
+
+.actions-professionals a {
+  color: var(--color-font);
+}
+
+.actions-professionals a:hover {
+  color: var(--dark-green-color);
+}
+
+.actions-professionals button {
+  text-decoration: none;
+  padding: 10px;
+  border: 0;
+  background-color: #92a69a;
+  color: white;
+  border-radius: 7px;
+  transition: all 0.3s ease-in-out;
+  font-family: var(--common-font);
+  font-size: 1rem;
+  cursor: pointer;
+}
+  
+.actions-professionals button:hover {
+  background-color: #10403bae; 
+}
+
+.icon-admin {
+  margin-right: 10px;
+  color: #055431;
+  font-size: 1.3rem;
 }
 
 /************styles for tablets and mobiles that share the same style*************/

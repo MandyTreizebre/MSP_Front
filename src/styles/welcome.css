@@ -1,58 +1,106 @@
-/************DESKTOP STYLES*************/
-/* Container for the welcome section */
 .container-welcome {
   display: flex;
-  width: 90vw;
-  justify-content: center;
-  margin: 80px auto;
-  gap: 2.5rem; 
+  justify-content: space-between;
 }
 
-/* Presentation section styles */
 .section-presentation {
-  width: 62%;
+  width: 55%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  gap: 9vh;
+  align-items: start;
+  gap: 80px;
   text-align: justify; 
+  margin-left: 40px;
 }
 
-/* Styling for the image on the right */
-#img-right {
-  max-width: 35vw;
+.section-presentation h1 {
+  font-size: 4.3rem;
+  text-align: left;
+}
+
+.section-presentation p {
+  line-height: 2.2;
+  width: 95%;
+}
+
+.container-img {
+  width: 45%;
+  display: flex;
+  align-items: center;
+}
+
+#img-welcome {
+  width: 100%;
   height: auto;
-  border-radius: 20px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); 
 }
 
-/************STYLES FOR TABLETS AND MOBILES (Shared styles)*************/
-/* Breakpoint for screen sizes less than or equal to 1024px */
+.welcome-button {
+  position: relative;
+  text-decoration: none;
+  width: auto;
+  padding: 15px 30px 15px 30px;
+  border: 0;
+  background-color: var(--dark-green-color);
+  color: white;
+  border-radius: 15px;
+  transition: background-color 0.3s ease-in-out;
+  font-family: var(--common-font);
+  font-size: 1rem;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.welcome-button::before {
+  content: "\003E"; 
+  position: absolute;
+  opacity: 0;
+  right: 20%; 
+  top: 50%; 
+  transform: translateY(-50%);
+  transition: right 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.welcome-button:hover {
+  background-color: var(--green-color);
+}
+
+.welcome-button:hover::before {
+  right: 10px; 
+  opacity: 1;
+}
+
+/* Styles for both tablets and mobile views */
 @media screen and (max-width: 1024px) {
   .container-welcome {
     flex-direction: column;
     align-items: center;
-    width: 100vw; 
+    width: 100vw;
+    gap: 0;
   }
+
   .section-presentation {
     width: 80vw; 
   }
-  /* Hiding the image on the right for tablets/mobiles */
+
+  .section-presentation h1 {
+    font-size: 2.3rem;
+    text-align: center;
+  }
+
   #img-right {
     display: none; 
+  }
+
+  .section-presentation p {
+    text-align: center;
+    line-height: 2; 
   } 
 }
 
-/************MOBILE STYLES*************/
-/* Breakpoint for screen sizes less than or equal to 767px */
+/* mobile views */
 @media (max-width: 767px) {
-  /* Reducing font size for the title on mobiles */
-  .section-presentation h1 {
-    font-size: 1.4rem; 
+  .section-presentation {
+    width: 90vw; 
   }
-  /* Reducing font size for the paragraph on mobiles */
-  .section-presentation p {
-    font-size: 1rem; 
-  } 
 }

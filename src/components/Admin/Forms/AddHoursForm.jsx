@@ -1,32 +1,30 @@
-import "../../styles/forms.css"
+import "../../../styles/adminForms.css"
 
 const AddHoursForm = (props) => {
 
-    /*Function to handle input change*/
     const handleInputChange = (setter) => (e) => {
-        /*update state with new value using supplied setter function*/
         setter(e.currentTarget.value)
     }
 
-    /*Handle number input changes*/
+    // Handle number input changes
     const handleNumberInputChange = (setter) => (e) => {
         const value = e.currentTarget.value 
         const numberValue = parseInt(value, 10) 
-        /*Set the parsed number value or the original value if it's not a number*/
+        // Set the parsed number value or the original value if it's not a number
         setter(isNaN(numberValue) ? value : numberValue)
     }
 
-    /*Function to handle hours input and format the value*/
+    // Function to handle hours input and format the value
     function handleHoursInput(callback){
         return (e) => {
             const value = e.target.value
 
-            /*Adding a colon after the 2nd and 5th character for time formatting*/
+            // Adding a colon after the 2nd and 5th character for time formatting
             if(value.length === 2 || value.length === 5){
                 e.target.value = value + ":"
             }
 
-            /*If a callback is provided, call it with the event*/
+            //If a callback is provided, call it with the event
             if(callback){
                 callback(e)
             }
@@ -34,10 +32,13 @@ const AddHoursForm = (props) => {
     }
 
     return (
-        <form onSubmit={(e) => {
-            e.preventDefault() /*Preventing the default form submission behavior*/
-            props.handleSubmitHours() /*Calling the handleSubmitHours function passed in props*/
-        }}>
+
+        <section className="container-form">
+            <form onSubmit={(e) => {
+                e.preventDefault() 
+                props.handleSubmitHours() 
+            }}
+            className="form-admin">
 
             {/* Professional selection dropdown */}
             <label htmlFor="pro">Sélectionner un professionnel <span className="required-asterisk">*</span></label>
@@ -46,7 +47,9 @@ const AddHoursForm = (props) => {
                 value={props.pro_id}
                 onChange={handleNumberInputChange(props.onChangePro)}
                 required
+                className="select-admin-form"
             >
+                <option value="">Sélectionner un professionnel</option>
                 {props.proList.map((pro) => (
                     <option key={pro.id} value={pro.id}>{pro.lastname} {pro.firstname}</option>
                 ))}
@@ -59,6 +62,7 @@ const AddHoursForm = (props) => {
                 value={props.day_id}
                 onChange={handleNumberInputChange(props.onChangeDay)}
                 required
+                className="select-admin-form"
             >
                 <option value="">Sélectionner un jour</option>
                 {props.dayList.map(day=> (
@@ -114,8 +118,11 @@ const AddHoursForm = (props) => {
                 required
             />
             {/* Submit button */}
-            <button>Valider l'ajout des horaires</button>
+            <button className="add-hours-button">Valider l&apos;ajout des horaires</button>
       </form>
+
+        </section>
+        
     )
 }
 

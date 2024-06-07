@@ -1,19 +1,9 @@
-import { Link } from 'react-router-dom' 
+import { Link } from 'react-router-dom'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faPenToSquare, faUser} from '@fortawesome/free-solid-svg-icons'
 import "../../styles/professionalsAdmin.css"
 
 const ProfessionalsAdmin = ({ professionals, onChangeStatus }) => {
-    /*Function to format time. If the time is "00:00:00", it indicates the professional is closed*/
-    function formatTime(timeString) {
-        if (timeString === "00:00:00") {
-            return "Fermé" 
-        }
-        const [hours, minutes] = timeString.split(':') 
-        return `${hours}h${minutes}` 
-    }
-
-    function formatPhoneNumber(phone){
-        return phone.replace(/(\d{2})(?=\d)/g, '$1-')
-    }
 
     /*Grouping professionals by last name and first name.
     The aim is to create a unique object for each professional with their coordinates and schedules.*/
@@ -49,50 +39,25 @@ const ProfessionalsAdmin = ({ professionals, onChangeStatus }) => {
     }, {}) 
 
     return (
-        <section>
-            {Object.keys(groupedProfessionals).map((key, index) => (
+        <section className='section-professionals-admin'>
+            {Object.keys(groupedProfessionals).map((key) => (
                 <div key={key} className="container-professionals-admin">
                     <div className="box-professional">
-                        <h4>{key}</h4>
-                         {/*Displaying the professional's coordinates (once) */}
-                        {/*<div>
-                            <p>{groupedProfessionals[key].coordinates.address}</p>
-                            {/*<p>
-                                {groupedProfessionals[key].coordinates.zip} {groupedProfessionals[key].coordinates.city}
-                            </p>
-                            <p><strong>{formatPhoneNumber(groupedProfessionals[key].coordinates.phone)}</strong></p>
-                            {groupedProfessionals[key].coordinates.details && (
-                                <p className="details">{groupedProfessionals[key].coordinates.details}</p>
-                            )}
-                        </div>*/}
-                    </div>
-                    <div className='actions-professionals'>
-                        <Link to={`/editer/professionnel/${groupedProfessionals[key].coordinates.id}`}>
-                            Modifier le professionnel
-                        </Link>
-                        <Link to={`/editer/horaires-professionnel/${groupedProfessionals[key].coordinates.id}`}>
-                            Modifier les horaires du professionnel
-                        </Link>
-                        <button onClick={() => {onChangeStatus(groupedProfessionals[key].coordinates.id)  }}>
-                            {groupedProfessionals[key].coordinates.isActive ? "Désactiver" : "Activer"}
-                        </button>
-                    </div>
-                    {/*<div className="column-hours">
-                        <div className="schedule">
-                            <h3>Horaires :</h3>
-                            {/* Displaying the professional's schedules by day */}
-                            {/*{Object.keys(groupedProfessionals[key].schedules).map((dayKey, idx) => (
-                                <div key={dayKey} className="line-hours">
-                                    <p><strong>{dayKey}</strong> :</p>
-                                    {groupedProfessionals[key].schedules[dayKey].map((prof, idx) => (
-                                        <p key={`${prof.h_start_morning}-${prof.h_end_morning}-${prof.h_start_afternoon}-${prof.h_end_afternoon}`}>
-                                            {formatTime(prof.h_start_morning)} {formatTime(prof.h_end_morning)} {formatTime(prof.h_start_afternoon)} {formatTime(prof.h_end_afternoon)}
-                                        </p>
-                                    ))}
-                                </div>
-                            ))}
+                        <h4> <FontAwesomeIcon icon={faUser} className="icon-admin"/>{key}</h4>
+                        <div className='actions-professionals'>
+                            <Link to={`/editer/professionnel/${groupedProfessionals[key].coordinates.id}`}>
+                                <FontAwesomeIcon icon={faPenToSquare} className="icon-admin"/>
+                                Modifier le professionnel
+                            </Link>
+                            <Link to={`/editer/horaires-professionnel/${groupedProfessionals[key].coordinates.id}`}>
+                                <FontAwesomeIcon icon={faPenToSquare} className="icon-admin"/>
+                                Modifier les horaires du professionnel
+                            </Link>
+                            <button onClick={() => {onChangeStatus(groupedProfessionals[key].coordinates.id)  }}>
+                                {groupedProfessionals[key].coordinates.isActive ? "Désactiver" : "Activer"}
+                            </button>
                         </div>
-                    </div>*/}
+                    </div>
                 </div>
             ))}
         </section>
