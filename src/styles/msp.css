@@ -1,4 +1,3 @@
-/* Styles for the block on the right side, which is designed to be in a column format */
 .bloc-presentation {
   display: flex;
   flex-direction: column;
@@ -9,7 +8,16 @@
   border-radius: 0 100px 0 0;
   margin-top: 50px;
   padding: 30px;
-  color: var(--green-color);
+}
+
+.bloc-presentation h1 {
+  font-size: 3rem;
+}
+
+.bloc-presentation ul {
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
 }
 
 .bloc-presentation li {
@@ -17,7 +25,18 @@
   line-height: 2.5;
   display: flex;
   gap: 1vw;
-  align-items: center;}
+  align-items: center;
+  color: var(--color-font);
+}
+
+.icon-msp {
+  background-color: var(--green-color);
+  color: white;
+  font-size: 1.6rem;
+  padding: 15px;
+  border-radius: 15px;
+  width: 25px;
+}
 
 .download {
   display: flex;
@@ -26,22 +45,23 @@
 }
 
 .download button {
-  background-color: var(--green-color);
-  padding: 10px;
-  border-radius: var(--border-round);
+  background-color: var(--dark-green-color);
+  padding: 15px;
+  border-radius: 15px;
   border: 1px solid white;
   color: white;
   margin: 0 25px 25px 0;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
+  font-family: var(--common-font);
+  font-size: 1rem;
 }
 
 .download button:hover {
-  background-color: #10403b86;
+  background-color: var(--green-color);
 }
 
-/************************* SECOND CONTAINER **************************/
-/* Main container styling for the second block, which contains descriptive content */
+/* SECOND SECTION */
 .container-description-msp {
   display: flex;
   justify-content: center;
@@ -50,32 +70,30 @@
   gap: 5vw; 
 }
 
-/* Space out the title in the second container */
 .container-description-msp h2 {
   margin-bottom: 20px; 
+  font-size: 2rem;
 }
 
-/* Styling for the individual articles or sections inside the second container */
 .container-article {
   text-align: center;
   width: 300px; 
 }
 
-/* List styling within the articles, removing the bullet points and setting line height */
 .container-article li {
   list-style-type: none;
   line-height: 2;
   font-family: var(--common-font);
   margin-top: 15px; 
+  color:  var(--color-font);
 }
 
-/* Image styling within the second container */
 .img-description-msp {
   width: 300px; 
+  border-radius: 15px;
 }
 
-/************************* THIRD CONTAINER **************************/
-/* Main styling for the third container, which seems to have a title, text, and an image */
+/* THIRD SECTION */
 .last-container {
   display: flex;
   flex-direction: column;
@@ -86,72 +104,67 @@
   margin: 60px auto; 
 }
 
-/* Color and font weight styling for the span elements inside the third container */
 .last-container span {
   color: #10403b86;
   font-weight: bold; 
 }
 
-/* Space out the title in the third container */
 .last-container h2 {
-  margin-bottom: 20px; 
+  margin-bottom: 20px;
+  font-size: 2rem;
 }
 
-/* Text alignment and width settings for paragraphs in the third container */
 .last-container p {
   width: 60vw;
   text-align: justify; 
+  line-height: 2;
 }
 
-/* Styling for the image inside the third container */
 .img-office {
   width: 60vw; 
+  border-radius: 15px;
 }
 
-/* Common border-radius setting for various images across the containers */
-.img-office, .img-description-msp {
-  border-radius: var(--border-round); 
-}
-
-/********** BASE STYLES FOR MOBILE & TABLET ***********/
-/* Adjustments for screens with a width up to 1024px (includes both tablets and mobiles) */
+/* Styles for both tablets and mobile views */
 @media (max-width: 1024px) {
-  /* Changing layout of the containers to stack vertically */
+  .bloc-presentation h1 {
+    font-size: 2.1rem;
+  }
+  .container-description-msp h2, .last-container h2 {
+    font-size: 1.6rem;
+  }
   .container-description-msp {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%; 
   }
-  .bloc-presentation .icon {
-    display: none;
-  }
+}
+
+/* Styles for mobile */
+@media (max-width: 767px) {
   .bloc-presentation {
     text-align: center;
   }
-}
-
-/********** STYLE FOR TABLET ***********/
-/* Specific styles for tablet-sized screens */
-@media screen and (min-width: 768px) and (max-width: 1024px) {
-  /* Adjusting image widths for better appearance on tablets */
-  .img-description-msp {
-    width: 30vw; 
+  .bloc-presentation li {
+    flex-direction: column;
+    text-align: center;
   }
-  .bloc-presentation {
-    text-align: justify;
+  .download {
+    justify-content: center;
   }
-}
-
-/********** STYLE FOR MOBILE ***********/
-/* Adjustments for mobile screens with a width up to 767px */
-@media (max-width: 767px) {
-  /* Image width adjustments for mobile screens */
-  .img-description-msp {
-    width: 40vw; 
+  .download button {
+    margin: 0;
   }
-  /* Font size adjustment for readability on mobile devices */
+  .last-container {
+    text-align: center;
+  }
+  .img-office {
+    width: 400px;
+  }
   .last-container p {
-    font-size: 1em; 
-  } 
+    width: 80vw;
+    text-align: center;
+  }
+
 }

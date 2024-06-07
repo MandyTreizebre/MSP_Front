@@ -1,49 +1,64 @@
-/* Styles for the contact image */
-.img-contact {
-  width: 400px;
-  margin-top: 50px;
-  border-radius: 15px; 
+.container-contact {
+  margin-top: 35px;
 }
 
-/* Styles for the contact division/container */
 .div-contact {
+  max-width: 50%;
   display: flex;
   flex-direction: column;
-  gap: 5vh; 
+  align-items: center;
+  gap: 20px;
+  margin: auto;
 }
 
-/* Styles for the main contact container */
-.container-contact {
+.div-contact h1 {
+  font-size: 4.3rem;
+}
+
+.div-contact p {
+  line-height: 2;
+}
+
+.container-form-contact {
   display: flex;
-  justify-content: space-around;
-  margin: 30px auto;
-  width: 70%; 
 }
 
-/* Styles for the label inside the contact container */
+.container-img-contact {
+  position: relative;
+  flex-shrink: 0;
+  width: 40%;
+  margin: 50px 0 0 250px;
+}
+
+#img-medical-team {
+  width: 100%;
+  height: auto;
+}
+
 .container-contact label {
   font-family: var(--common-font);
-  text-decoration: underline; 
 }
 
-/* Styles for the form */
 .container-contact form {
   display: flex;
-  width: 40%;
   flex-direction: column;
-  gap: 10px;
-  justify-content: center; 
+  justify-content: center;
+  gap: 20px;
+  width: 40%;
+  padding: 30px;
+  background-color: white;
+  margin: 100px 0 0 -200px;
+  z-index: 2;
 }
 
-/* Common styles for the input fields and text areas inside the form */
 .container-contact input, .container-contact textarea {
   width: 100%;
   height: 40px;
-  border-radius: 10px;
-  border: 2px solid #dad5d5; 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.08);
+  border: none;
+  padding: 5px;
 }
 
-/* Specific styles for the textarea inside the form */
 .container-contact textarea {
   height: 20vh;
   max-height: 20vh;
@@ -53,23 +68,50 @@
   font-size: 1.2em; 
 }
 
-/* Styles for displaying character count, probably for textarea */
 .character-count {
   font-family: var(--common-font); 
 }
 
+.contact-button {
+  text-decoration: none;
+  padding: 15px;
+  border: 0;
+  background-color: var(--dark-green-color);
+  color: white;
+  border-radius: 15px;
+  transition: all 0.3s ease-in-out;
+  font-family: var(--common-font);
+  font-size: 1rem;
+  cursor: pointer; 
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.contact-button:hover {
+  background-color: var(--green-color); 
+}
+
 /* Responsive styles for tablets and mobiles */
 @media screen and (max-width: 1024px) {
-  /* Hide the image inside the contact container on small screens */
-  .container-contact img {
-    display: none; 
+  .div-contact p {
+    line-height: 2;
   }
-  /* Adjust the form width for smaller screens */
   .container-contact form {
     width: 90%; 
   }
-  /* Center the text inside the contact division on smaller screens */
   .div-contact {
     text-align: center; 
   } 
+  .div-contact h1 {
+    font-size: 2.3rem;
+  }
+}
+
+/* mobile views */
+@media (max-width: 767px) {
+  .container-contact form {
+    width: 100%; 
+    padding: 15px;
+  }
 }

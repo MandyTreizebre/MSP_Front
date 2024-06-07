@@ -4,9 +4,12 @@ import { useEffect, useState } from "react"
 import { checkCookie } from "../auth" 
 import CheckAuth from "../CheckAuth" 
 import "../src/styles/app.css"
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+import ReactGA from "react-ga4"
 
 
-import Header from "./components/Header" 
+import Header from "./components/Header"
 import Footer from "./components/Footer" 
 import HealthProfessionals from "./components/HealthProfessionals" 
 import InformationsByCategory from "./components/InformationsByCategory" 
@@ -28,21 +31,33 @@ import Login from "./containers/admin/Login"
 import Register from "./containers/admin/Register" 
 import AddHoursPro from "./containers/admin/AddHoursPro" 
 import EditHoursPro from "./containers/admin/EditHoursPro" 
+import AddInformations from "./containers/admin/AddInformations"
+import AddNews from "./containers/admin/AddNews"
+import EditNews from "./containers/admin/EditNews"
+import EditInformations from "./containers/admin/EditInformations"
 import LegalInformations from "./containers/LegalInformations"
 import PrivacyPolicy from "./containers/PrivacyPolicy"
+import ForgotPassword from "./containers/admin/ResetPassword"
+import ForgotPasswordForm from "./containers/admin/ForgotPasswordForm"
 
 function App() {
     const [isLoading, setIsLoading] = useState(true) 
     const dispatch = useDispatch() 
 
+    ReactGA.initialize("your GA measurement id")
+
     useEffect(() => {
         checkCookie(dispatch, () => setIsLoading(false)) 
-    }, [dispatch]) 
+    }, [dispatch])
 
+    useEffect(() => {
+        AOS.init()
+      }, [])
+  
     return (
         <>
             <DarkMode />
-            <Header />
+            <Header /> 
             {isLoading ? (
                 <div>Chargement....</div>
             ) : (
@@ -57,6 +72,8 @@ function App() {
                     <Route exact path="/login" element={<Login />} />
                     <Route exact path="/mentions-legales" element={<LegalInformations />} />
                     <Route exact path="/politique-confidentialite" element={<PrivacyPolicy />} />
+                    <Route exact path="/forgot-password" element={<ForgotPasswordForm />}  />
+                    <Route exact path="/reset-password" element={<ForgotPassword />}  />
                     <Route exact path="*" element={<NotFound />} />
                     {/* Routes for Admin */}
                     <Route path="/admin" element={<CheckAuth component={Admin} />} />
@@ -67,6 +84,10 @@ function App() {
                     <Route path="/editer/horaires-professionnel/:id" element={<CheckAuth component={EditHoursPro} />} />
                     <Route path="/editer/professionnel-externe/:id" element={<CheckAuth component={EditExternalPro} />} />
                     <Route path="/ajouter/professionnel-externe" element={<CheckAuth component={AddExternalPros} />} />
+                    <Route path="/ajouter/information" element={<CheckAuth component={AddInformations} />} />
+                    <Route path="/modifier/information/:id" element={<CheckAuth component={EditInformations} />} />
+                    <Route path="/ajouter/actualite" element={<CheckAuth component={AddNews} />} />
+                    <Route path="/modifier/actualite/:id" element={<CheckAuth component={EditNews} />} />
                 </Routes>
             )}
             <Footer />

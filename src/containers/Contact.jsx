@@ -1,24 +1,28 @@
 import { useRef, useState } from "react"
-
 import emailjs from '@emailjs/browser'
-
-import imgContact from "../assets/images/docteur-ordinateur.jpg"
-
 import Modal from "../components/Modal"
-
+import ReCAPTCHA from "react-google-recaptcha"
+import DOMPurify from "dompurify"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+import ImgMedicalTeam from "../assets/images/team-medical.jpg"
 import "../styles/contact.css"
 
 const Contact = () => {
+
     const [openModal, setOpenModal] = useState(false)
     const [message, setMessage] = useState('')
-    const maxCharacters = 500 /*Maximum characters allowed for the message*/
+    const maxCharacters = 500 
+    const [captchaValue, setCaptchaValue] = useState(null)
 
-    /*EmailJS configurations from environment variables*/
     const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID 
     const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID 
     const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY 
 
-    /*Handler for message input, ensures character count doesn't exceed maxCharacters*/
+    const onCaptchaChange = (value) => {
+        setCaptchaValue(value)
+    }
+
     const handleChange = (e) => {
         const inputText = e.target.value
         if(inputText.length <= maxCharacters){
@@ -26,45 +30,64 @@ const Contact = () => {
         }
     }
 
-    /*Function to close the modal*/
     const handleCloseModal = () => {
         setOpenModal(false)
     }
    
-    /*Reference to the form for EmailJS*/
     const form = useRef()
 
-    /*Function to send email using EmailJS*/
     const sendEmail = (e) => {
         e.preventDefault()
 
-    emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form.current, EMAILJS_PUBLIC_KEY)
+        if (!captchaValue) {
+            alert("Veuillez remplir le CAPTCHA")
+            return
+        }
+
+        const formData = new FormData(form.current)
+        const sanitizedData = {
+            user_name: DOMPurify.sanitize(formData.get('user_name')),
+            user_email: DOMPurify.sanitize(formData.get('user_email')),
+            message: DOMPurify.sanitize(formData.get('message')),
+            'g-recaptcha-response': captchaValue
+        }
+
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, sanitizedData, EMAILJS_PUBLIC_KEY)
       .then((result) => {
           if(result.status === 200){
-            setOpenModal(true) /*Show the modal upon successful email submission*/
+            setOpenModal(true) /
             setTimeout(()=> {
-                handleCloseModal() /*Close the modal after 5 seconds*/
+                handleCloseModal() 
             }, 5000)
           }
-          e.target.reset() /*Reset the form fields*/
+          e.target.reset() 
+          setMessage('')
+          setCaptchaValue(null)
       }, (error) => {
-          return(error.text) /*Handle errors (consider showing a UI feedback to the user)*/
+          return(error.text) 
       })
   }
     return (
         <>
             <section className="container-contact">
+
+                <div className="div-contact">
+                    <h1 data-aos="fade-right" data-aos-duration="1500">Nous contacter</h1>
+                    <p>Nous sommes là pour répondre à toutes les questions que vous vous posez sur nos soins de santé. Si vous avez besoin d&apos;informations sur nos professionnels de santé, notre équipe est là pour vous aider. </p>
+                </div>
+
+                <div className="container-form-contact">
+                    <div className="container-img-contact">
+                    <img src={ImgMedicalTeam} alt="Image d'une équipe médicale" id="img-medical-team"/>
+                </div>
+                
                 <form ref={form} onSubmit={sendEmail}>
-                    <div className="div-contact">
-                        <h1>Nous contacter</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-                    </div>
-                    
-                    {/* Fields for the user to fill out */}
+
                     <label>Nom</label>
                     <input type="text" 
                         name="user_name"
                         maxLength="50"
+                        placeholder="Ex: Dupont Marie"
                         required 
                     />
 
@@ -72,6 +95,7 @@ const Contact = () => {
                     <input type="email" 
                         name="user_email"
                         maxLength="50"
+                        placeholder="Ex: votreemail@gmail.com"
                         required 
                     />
 
@@ -79,16 +103,27 @@ const Contact = () => {
                     <textarea name="message" 
                             maxLength={maxCharacters} 
                             onChange={handleChange}
+                            placeholder="Ecrivez votre message ou votre question ici"
                     />
                     <div className="character-count">
                         {maxCharacters - message.length} caractères restants
                     </div>
 
-                    <input type="submit" 
-                        value="Envoyer" 
-                        className="general-button"/>
+                    <ReCAPTCHA
+                        sitekey={import.meta.env.VITE_CAPTCHA_KEY}
+                        onChange={onCaptchaChange} />
+
+                    <div className="container-button-contact">
+                        <button type="submit" className="contact-button">
+                            Envoyer
+                           <FontAwesomeIcon icon={faPaperPlane} className="icon-button-contact" />
+                        </button>
+                    </div>
+                    
                 </form>
-                <img src={imgContact} className="img-contact" alt="Photo d'un homme devant un ordinateur" />
+            
+                </div>
+                
             </section>
             <Modal open={openModal} onClose={handleCloseModal} message="Message envoyé" />
         </>

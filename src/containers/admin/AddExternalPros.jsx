@@ -1,36 +1,52 @@
-import { useState, useEffect } from "react"
+import { useState} from "react"
 import Cookies from 'js-cookie'
 const token = Cookies.get('token')
 import { addExternalProfessional } from "../../api/ExternalProfessionals"
-import AddExternalProForm from "../../components/Forms/AddExternalProForm"
+import AddExternalProForm from "../../components/Admin/Forms/AddExternalProForm"
 import Modal from "../../components/Modal"
 
-const AddExternalPros = (props) => {
+const AddExternalPros = () => {
+
   const [name, setName] = useState("")
   const [link, setLink] = useState("")
   const [picture, setPicture] = useState(null)
   const [error, setError] = useState(null)
-
   const [openAddExternalProModal, setOpenAddExternalProModal] = useState(false)
 
   const handleCloseModal = () => {
-    setOpenAddProModal(false)
+    setOpenAddExternalProModal(false)
   }
 
   const saveExternalPro = (datas, token) => {
     addExternalProfessional(datas, token)
     .then((res)=> {
       if(res.status === 201) {
+        setName("")
+        setLink("")
+        setPicture(null)
+        setError(null)
         setOpenAddExternalProModal(true)
         setTimeout(()=>{
           handleCloseModal()
         }, 5000)
-      } else {
-        setError("Erreur")
       }
     })
     .catch(err=>{
-      setError("Erreur lors de la création du professionnel")
+      if (err.message === "Nom invalide") {
+        setError(err.message)
+      }
+      
+      if (err.message === "Prénom invalide") {
+        setError(err.message)
+      }
+      
+      if (err.message === "Lien invalide") {
+        setError(err.message)
+      }
+
+      if (err.message === "") {
+        setError("Une erreur est survenue")
+      }
     })
   }
 
@@ -42,13 +58,13 @@ const AddExternalPros = (props) => {
         formData.append('picture', picture)
       }
       saveExternalPro(formData, token)
-    }
+  }
 
   return (
     <>
       <section className="form-container">
         <h1>Ajouter un professionnel externe</h1>
-        <p className="required-p">Les champs suivis d'un <span className="required-asterisk">*</span> sont obligatoires.</p>
+        <p className="required-p">Les champs suivis d&apos;un <span className="required-asterisk">*</span> sont obligatoires.</p>
         <AddExternalProForm
           name={name}
           link={link}

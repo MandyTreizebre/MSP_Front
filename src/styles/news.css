@@ -1,37 +1,55 @@
-/* Main container style */
 .container {
   height: 700px;
-  width: 75%;
+  width: 100%;
   margin: auto; 
 }
 
-/* Styling for news box */
-.box-news {
-  max-width: 310px;
-  min-height: 565px;
+.container-carousel h2 {
+  font-size: 2rem;
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  gap: 5vh;
-  border-radius: var(--border-round);
-  margin: auto;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  position: relative; 
 }
 
-/* Styling for news images */
 .img-news {
   width: 100%;
   height: 23vh;
   border-radius: 15px 15px 0  0; 
 }
 
-/* Styling for the link inside the news box */
+.react-multiple-carousel__arrow {
+  margin: -50px;
+  background-color: var(--dark-green-color); 
+}
+
+.react-multi-carousel-item {
+  max-width: 540px; 
+}
+
+.news-items {
+  display: flex;
+  gap: 40px;
+}
+
+.box-news {
+  max-width: 310px;
+  min-height: 560px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 5vh;
+  border-radius: 15px;
+  margin: auto;
+  box-shadow: 0 25px 45px rgba(0,0,0,0.16), 0 3px 10px rgba(0,0,0,0.23);
+  position: relative; 
+}
+
+.box-news p {
+  line-height: 1.7;
+}
+
 .news-link {
-  width: 8vw;
   text-decoration: none;
   border: 0;
-  background-color: var(--green-color);
+  background-color: var(--dark-green-color);
   border-radius: 7px;
   transition: all 0.3s ease-in-out;
   color: white;
@@ -40,67 +58,60 @@
   cursor: pointer;
   position: absolute;
   bottom: 2px;
-  left: 30%; 
+  left: 30%;
+  padding: 15px;
+  margin-bottom: 10px;
 }
 
-/* Styles related to the carousel library */
-.react-multiple-carousel__arrow {
-  margin: -50px;
+.news-link:hover {
   background-color: var(--green-color); 
 }
 
-.react-multi-carousel-item {
-  max-width: 540px; 
-}
-
-/* Styles for tablets and mobiles sharing the same appearance */
+/* Styles for both tablets and mobile views */
 @media screen and (max-width: 1024px) {
-  /* Hiding the carousel arrow on devices with width up to 1024px */
   .react-multiple-carousel__arrow {
     display: none; 
   }
-  /* Adjusting the news link's width and positioning for these devices */
-  .news-link {
-    width: auto;
-    left: 33%; 
-  } 
-}
-
-/********** STYLE FOR TABLET ***********/
-/* Specific styles for tablet-sized screens */
-@media screen and (min-width: 768px) and (max-width: 1024px) {
-  /* Adjusting image widths for better appearance on tablets */
+  .react-multi-carousel-item {
+    max-width: 310px; 
+  }
   .box-news {
-    max-width: 310px;
-    min-height: 565px;
+    max-width: 300px;
+    min-height: 580px;
+    margin: 0 15px;
     gap: 2vh;
+  }
+  .box-news p {
+    line-height: 2;
   }
   .img-news {
     height: 18vh;
   }
   .news-link {
-    padding: 0 10px;
-    left: 36%; 
+    left: 30%; 
   }
   .container {
     width: 65%;
   }
+  .container-carousel h2 {
+    font-size: 1.6rem;
+  }
+  
 }
 
-/* Styles specific to mobile devices */
+/* Styles for mobile */
 @media (max-width: 767px) {
-  /* Adjusting font sizes for the news box's heading and paragraph */
   .box-news h3 {
     font-size: 1.4rem; 
   }
   .box-news p {
     font-size: 1rem; 
+    line-height: 2;
+    padding: 3px;
   }
   .box-news {
-    width: 90%;
-    min-height: 580px;
-  }
-  .news-link {
-    padding: 0 10px;
+    min-height: 550px;
+    gap: 2vh;
   }
 }
+

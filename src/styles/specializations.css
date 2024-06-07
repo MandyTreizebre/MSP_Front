@@ -1,74 +1,73 @@
-/************DESKTOP STYLES*************/
-/* Main container for the specific section */
 .container-spe {
-  width: 90vw;
-  margin: 100px auto;
+  margin: auto;
   text-align: center;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
+  background-color: #92a69a;
+  border-radius: 0 20vw 0 20vw;
+  box-shadow: 0 25px 30px rgba(0,0,0,0.16), 0 3px 10px rgba(0,0,0,0.23);
+  padding-top: 35px;
+  position: relative;
 }
 
-/* Container for the specific subsection/cards */
+.container-spe h2 {
+  font-size: 2rem;
+  color: white;
+}
+
 .section-spe {
   display: flex;
   width: 70%;
   flex-wrap: wrap;
   gap: 2rem;
   justify-content: center;
-  margin: 50px auto; 
+  margin: 50px auto;
 }
 
-/* Styles for individual cards */
 .cards-spe {
   flex: 1 1 calc(30% - 2rem);
   min-width: 200px;
   max-width: 300px;
+  min-height: 100px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.9s cubic-bezier(0.25, 0.8, 0.25, 1);
   padding: 0 0 15px 0;
-  border-radius: var(--border-round); 
+  border-radius: 15px; 
+  background-color: white; 
 }
 
-/* Styles for links inside the cards */
 .cards-spe a {
   text-decoration: none;
   color: var(--green-color); 
+  font-size: 1.1rem;
 }
 
-/* Hover effect for cards */
+.cards-spe p {
+  font-size: calc(0.8em + 0.1vw);
+  word-wrap: break-word; 
+  padding-top: 15px;
+  color: var(--dark-green-color);
+}
+
 .cards-spe:hover {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); 
 }
 
-/* Styles for text content inside cards */
-.cards-spe p {
-  padding-top: 10px;
-  font-size: calc(0.8em + 0.1vw);
-  word-wrap: break-word; 
-}
-
-/* Styles for images inside cards */
 .img-spe {
   width: 100%;
-  height: 200px;
+  min-height: 150px;
+  max-height: 200px;
   border-radius: 15px 15px 0 0; 
 }
 
 
-/********** STYLE FOR TABLET ***********/
-/* Specific styles for tablet-sized screens */
-@media screen and (min-width: 768px) and (max-width: 1024px) {
+/* Styles for both tablets and mobile views */
+@media screen and (max-width: 1024px) {
   .section-spe {
-    width: 90%;
+    width: 80%;
+  }
+  .container-spe h2 {
+    font-size: 1.6rem; 
   }
 }
 
-/* Styles specific to mobile devices */
-@media (max-width: 767px) {
-  .section-spe h2 {
-    font-size: 1.4rem; 
-  }
-  .section-spe {
-    width: 90%;
-  }
-}

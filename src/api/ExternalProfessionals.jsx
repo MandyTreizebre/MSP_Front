@@ -1,73 +1,144 @@
-import Cookies from "js-cookie"
 import axios from "axios"
 import {config} from "../config"
-/*const token = Cookies.get('token')*/ /*Retrieving a token from cookies*/
 
-/*Function to retrieve external pros using a GET request*/
+//Retrieve external pros
 export function displayExternalProfessionals(){
-    return axios.get(`${config.api_url}/external-professionals`)
-    .then((res)=>{
-        return res.data /*Returning the data from the response*/
+
+    return axios.get(`${config.api_url}/api/external-professionals`)
+
+    .then((res)=> {
+        if (res.status < 200 || res.status >= 300) {
+            throw new Error( "Erreur lors de la connexion")
+        }
+
+        return res
     })
-    .catch((err)=>{
-        return err /*Returning the error*/
+    .catch((error)=> {
+        if (error.response.status === 500) {
+            throw new Error("Erreur interne du serveur")
+        }
+
+        return error
     })
 }
 
+// Retrieve one external professional by his ID 
 export function displayOneExternalProfessional(id){
+
     return axios.get(`${config.api_url}/api/external-professional/${id}`)
-    .then((res)=>{
-        return res.data /*Returning the data from the response*/
+
+    .then((res)=> {
+        if (res.status < 200 || res.status >= 300) {
+            throw new Error( "Erreur lors de la connexion")
+        }
+
+        return res
     })
-    .catch((err)=>{
-        return err /*Returning the error*/
+    .catch((error)=> {
+        if (error.response.status === 500) {
+            throw new Error("Erreur interne du serveur")
+        }
+
+        return error
     })
 }
 
-/*Function to add an external pro using a POST request*/
+// Add external pro
 export function addExternalProfessional(datas, token){
-    return axios.post(`${config.api_url}/save-external-professional`, datas, {
+
+    return axios.post(`${config.api_url}/api/save-external-professional`, datas, {
+
         headers: {
-            "Authorization": `Bearer ${token}` /*Setting Authorization header with the token*/
+            "Authorization": `Bearer ${token}` 
         },
-        withCredentials: true /*Ensures credentials are included in the request*/
+        withCredentials: true 
     })
     .then((res)=>{
-        return res.data /*Returning the data from the response*/
+        if (res.status < 200 || res.status >= 300) {
+            throw new Error( "Erreur lors de la connexion")
+        }
+
+        return res
     })
-    .catch((err)=>{
-        return err /*Returning the error*/
+    .catch((error)=>{
+        if (error.response.data.msg === "Nom invalide") {
+            throw new Error("Nom invalide")
+        }
+
+        if (error.response.data.msg === "Prénom invalide") {
+            throw new Error("Prénom invalide")
+        }
+
+        if (error.response.data.msg === "Lien invalide") {
+            throw new Error("Lien invalide")
+        }
+
+        if (error.response.status === 500) {
+            throw new Error("Erreur interne du serveur")
+        }
     })
 }
 
-/*Function to update an external pro using a PUT request*/
+// Update external pro
 export function updateExternalProfessional(datas, id, token){
-    return axios.put(`${config.api_url}/update/external-pro/${id}`, datas, {
+
+    return axios.put(`${config.api_url}/api/update/external-pro/${id}`, datas, {
+
         headers: {
-            "Authorization": `Bearer ${token}` /*Setting Authorization header with the token*/
+            "Authorization": `Bearer ${token}`
         },
-        withCredentials: true /*Ensures credentials are included in the request*/
+        withCredentials: true 
     })
-    .then((res)=>{
-        return res.data /*Returning the data from the response*/
+    .then((res)=> {
+        if (res.status < 200 || res.status >= 300) {
+            throw new Error( "Erreur lors de la connexion")
+        }
+
+        return res
     })
-    .catch((err)=>{
-        return err /*Returning the error*/
+    .catch((error)=> {
+        if (error.response.data.msg === "Nom invalide") {
+            throw new Error("Nom invalide")
+        }
+
+        if (error.response.data.msg === "Prénom invalide") {
+            throw new Error("Prénom invalide")
+        }
+
+        if (error.response.data.msg === "Lien invalide") {
+            throw new Error("Lien invalide")
+        }
+
+        if (error.response.status === 500) {
+            throw new Error("Erreur interne du serveur")
+        }
     })
 }
 
-/*Function to delete an external pro */
-export function deleteExternalPro(id, token){
-    return axios.delete(`${config.api_url}/delete/external-pro/${id}`, datas, {
+// Delete external pro
+export function deleteExternalPro(datas, id, token){
+
+    return axios.delete(`${config.api_url}/api/delete/external-pro/${id}`, datas, {
+
         headers: {
-            "Authorization": `Bearer ${token}` /*Setting Authorization header with the token*/
+            "Authorization": `Bearer ${token}` 
         },
-        withCredentials: true /*Ensures credentials are included in the request*/
+        withCredentials: true 
     })
-    .then((res)=>{
-        return res.data /*Returning the data from the response*/ 
+    .then((res)=> {
+        console.log(res)
+        if (res.status < 200 || res.status >= 300) {
+            throw new Error( "Erreur lors de la connexion")
+        }
+
+        return res
     })
-    .catch((err)=>{
-        return err /*Returning the error*/
+    .catch((error)=> {
+        console.log(error)
+        if (error.response.status === 500) {
+            throw new Error("Erreur interne du serveur")
+        }
+
+        return error
     })
 }

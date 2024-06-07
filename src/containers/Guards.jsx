@@ -1,16 +1,13 @@
 import { useState, useEffect } from "react" 
 import { displayProfessionalsGuards } from "../api/Professionals" 
-
 import "../styles/guards.css"
-
 import Clock from "../components/Clock"
-
-import Pharmacies from "../components/Pharmacies"
-import Dentists from "../components/Dentists"
-import Doctors from "../components/Doctors"
+import PharmaciesForGuards from "../components/PharmaciesForGuards"
+import DentistsForGuards from "../components/DentistsForGuards"
+import DoctorsForGuards from "../components/DoctorsForGuards"
 
 const Guards = () => {
-    /*State initialization for storing all professionals, doctors, dentists, and pharmacies.*/
+
     const [guards, setGuards] = useState([])
     const [doctors, setDoctors] = useState([])
     const [dentists, setDentists] = useState([])
@@ -37,7 +34,6 @@ const Guards = () => {
     const getCurrentDate = () => {
         const currentDate = new Date()
         const day = currentDate.getDate() 
-        const month = currentDate.getMonth() + 1
         const year = currentDate.getFullYear()
 
         const options = {month: 'long'}
@@ -58,8 +54,7 @@ const Guards = () => {
         setTimeout(()=> {
             displayProfessionalsGuards()
         .then((res)=>{
-            setGuards(res.result)
-            console.log(res.result)
+            setGuards(res.data.result)
 
                 const pharmacies = []
                 const dentists = []
@@ -110,23 +105,23 @@ const Guards = () => {
     
     return (
         <section className="section-guards">
-            <h1>Permanence des Soins et Urgences Médicales : <u>Des Soins à Tout Moment</u></h1>
+            <h1 data-aos="fade-right" data-aos-duration="1500">Permanence des Soins et Urgences Médicales : <br/><em>Des Soins à Tout Moment</em></h1>
             <section className="presentation-guards">
                 <Clock />
                 
-                <p className="intro-guards">La page des urgences et des gardes vous offre un <strong>service en temps réel</strong>, vous permettant de connaître les <strong>pharmacies, dentistes et médecins</strong> disponibles selon l'heure et le jour actuels. Grâce à cette fonctionnalité, vous pouvez trouver rapidement des <strong>professionnels de santé prêts à vous aider en cas de besoin urgent</strong>. Que ce soit en pleine journée ou en plein milieu de la nuit, notre service vous connecte avec les professionnels de confiance, assurant ainsi votre bien-être et votre tranquillité d'esprit en toute circonstance.
+                <p className="intro-guards">La page des urgences et des gardes vous offre un <em>service en temps réel</em>, vous permettant de connaître les <em>pharmacies, dentistes et médecins</em> disponibles selon l&apos;heure et le jour actuels. Grâce à cette fonctionnalité, vous pouvez trouver rapidement des <em>professionnels de santé prêts à vous aider en cas de besoin urgent</em>. Que ce soit en pleine journée ou en plein milieu de la nuit, notre service vous connecte avec les professionnels de confiance, assurant ainsi votre bien-être et votre tranquillité d&apos;esprit en toute circonstance.
                 </p>
             </section>
 
-            <h2><u>{currentDay} {actualDate}</u></h2>
+            <h2>{currentDay} {actualDate}</h2>
             
 
             <div className="guards-container">
-                {pharmacies.length > 0 && <Pharmacies pharmacies={pharmacies} />}
+                {pharmacies.length > 0 && <PharmaciesForGuards pharmacies={pharmacies} />}
 
-                {dentists.length > 0 && <Dentists dentists={dentists} />}
+                {dentists.length > 0 && <DentistsForGuards dentists={dentists} />}
 
-                {doctors.length > 0 && <Doctors doctors={doctors} />}
+                {doctors.length > 0 && <DoctorsForGuards doctors={doctors} />}
             </div>
         </section>
     )

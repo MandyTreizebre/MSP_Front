@@ -2,14 +2,14 @@ import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom" 
 import Cookies from 'js-cookie' 
 const token = Cookies.get('token') 
-import EditFormHours from "../../components/Forms/EditFormHours" 
+import EditFormHours from "../../components/Admin/Forms/EditFormHours" 
 import Modal from "../../components/Modal" 
 import { displayDays, getOpeningHoursByPro, editOpeningHoursByPro } from "../../api/OpeningHours" 
 
 const EditHoursPro = () => {
+
     const [days, setDays] = useState([]) 
     const [selectedDayId, setSelectedDayId] = useState("") 
-    const [openingHours, setOpeningHours] = useState([]) 
     const [h_start_morning, setHStartMorning] = useState("") 
     const [h_end_morning, setHEndMorning] = useState("") 
     const [h_start_afternoon, setHStartAfternoon] = useState("") 
@@ -27,47 +27,46 @@ const EditHoursPro = () => {
         setOpenEditModalHours(false) 
     } 
 
-    /*Effect hook to update time fields when selected day changes*/
     useEffect(() => {
-        const selectedHours = openingHours.find(oh => oh.day_id === selectedDayId) 
-        if (selectedHours) {
-            setHStartMorning(selectedHours.h_start_morning) 
-            setHEndMorning(selectedHours.h_end_morning)
-            setHStartAfternoon(selectedHours.h_start_afternoon)
-            setHEndAfternoon(selectedHours.h_end_afternoon)
+        if (selectedDayId) {
 
-            setMessage("")
-            setIsHoursAvailable(true)
-        } else {
-        setHStartMorning("")
-        setHEndMorning("")
-        setHStartAfternoon("")
-        setHEndAfternoon("")
+            getOpeningHoursByPro(params.id, selectedDayId)
+                .then((res) => {
 
-        setMessage("Pas d'horaires définies pour ce jour")
-        setIsHoursAvailable(false)
+                    const selectedHours = res.data.result[0]
+
+                    if (selectedHours) {
+                        setHStartMorning(selectedHours.h_start_morning)
+                        setHEndMorning(selectedHours.h_end_morning)
+                        setHStartAfternoon(selectedHours.h_start_afternoon)
+                        setHEndAfternoon(selectedHours.h_end_afternoon)
+
+                        setMessage("")
+                        setIsHoursAvailable(true)
+                    } else {
+                        setHStartMorning("")
+                        setHEndMorning("")
+                        setHStartAfternoon("")
+                        setHEndAfternoon("")
+
+                        setMessage("Pas d'horaires définies pour ce jour")
+                        setIsHoursAvailable(false)
+                    }
+                })
+                .catch(err => {
+                    setError("Une erreur est survenue lors de la récupération des horaires", err)
+                });
         }
-    }, [selectedDayId, openingHours]) 
-
-    /*Effect hook to get opening hours for the professional*/
-    useEffect(() => {
-        getOpeningHoursByPro(params.id)
-            .then((res) => {
-                setOpeningHours(res.result)
-            })
-            .catch(err => {
-                setError("Une erreur est survenue lors de la récupération des horaires") 
-            }) 
-    }, [params.id]) 
+    }, [selectedDayId, params.id])
 
     /*Effect hook to get and set days*/
     useEffect(() => {
         displayDays()
             .then((res) => {
-                setDays(res.result) 
+                setDays(res.data.result) 
             })
             .catch(err => {
-                setError("Une erreur est survenue lors de la récupération des jours") 
+                setError("Une erreur est survenue lors de la récupération des jours", err) 
             }) 
     }, []) 
 
@@ -78,24 +77,48 @@ const EditHoursPro = () => {
         editOpeningHoursByPro(datas, pro_id, token)
             .then((res) => {
                 if (res.status === 200) {
-                    setOpenEditModalHours(true) /*Open success modal on successful update*/
                     setHStartMorning("") 
                     setHEndMorning("") 
                     setHStartAfternoon("") 
                     setHEndAfternoon("") 
+
+                    setOpenEditModalHours(true)
+                    
                     setTimeout(() => {
-                        handleCloseModal() /*Close the modal after 5 seconds*/
+                        handleCloseModal()
                     }, 5000) 
                 } else {
-                    setError("Erreur lors de la modification des horaires") /*Set error on non-200 status*/
+                    setError("Erreur lors de la modification des horaires")
                 }
             })
             .catch(err => {
-                setError("Erreur lors de la modification des horaires") /*Set error on exception*/
+
+                if (err.message === "Jour invalide") {
+                    setError(err.message)
+                }
+    
+                if (err.message === "Heure de début du matin invalide") {
+                    setError(err.message)
+                }
+    
+                if (err.message === "Heure de fin du matin invalide") {
+                    setError(err.message)
+                }
+    
+                if (err.message === "Heure de début de l'après-midi invalide") {
+                    setError(err.message)
+                }
+    
+                if (err.message === "Heure de fin de l'après-midi invalide") {
+                    setError(err.message)
+                }
+
+                if (err.message === "") {
+                    setError("Une erreur est survenue", err)
+                }
             }) 
     } 
 
-    /*Function to handle form submission for editing hours*/
     const handleSubmitHours = () => {
         let datas = {
             pro_id: params.id,
@@ -104,12 +127,12 @@ const EditHoursPro = () => {
             h_start_afternoon: h_start_afternoon,
             h_end_afternoon: h_end_afternoon
         } 
-        editHours(datas) 
+        editHours(datas, token) 
     } 
 
-    /*Rendering components and managing user interactions*/
     return (
-        <>
+        <section className="form-container">
+        <h1>Modifier les horaires du professionnel</h1>
             <EditFormHours
                 dayList={days}
                 h_start_morning={h_start_morning}
@@ -128,7 +151,8 @@ const EditHoursPro = () => {
             {message && <div className="message-info">{message}</div>}
             <Modal open={openEditModalHours} onClose={handleCloseModal} message="Horaires modifiés" />
             {error && <div className="error-message">{error}</div>}
-        </>
+            <p>Si le professionnel n&apos;a pas d&apos;horaires, indiquer 00:00:00</p>
+        </section>
     ) 
 } 
 

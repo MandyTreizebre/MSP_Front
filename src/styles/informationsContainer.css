@@ -1,5 +1,3 @@
-/********** FIRST SECTION ***********/
-/* Styling for the main presentation container. */
 .presentation-informations {
   width: 80%;
   margin: 30px auto;
@@ -15,8 +13,6 @@
   margin: 50px; 
 }
 
-/********** MAIN SECTION ***********/
-/* Styling for the main information section. */
 .section-informations {
   width: 80%;
   border-radius: 10px;
@@ -27,26 +23,25 @@
   padding: 20px; 
 }
 
-/* Remove underlines from links within the main section. */
 .section-informations a {
   text-decoration: none; 
 }
 
-/********** DIV WITH TITLE DESCRIPTION AND BUTTON ***********/
-/* Styling for the informational content. */
 .info {
   display: flex;
   height: auto;
   flex-direction: column;
-  gap: 2vh;
+  gap: 3vh;
   align-items: flex-start;
   margin-left: 15px;
   padding: 20px;
   text-align: justify; 
 }
 
-/********** PICTURE ***********/
-/* Styling for the image/picture. */
+.info h2 {
+  font-size: 2rem;
+}
+
 .pict-information {
   width: 25vw;
   height: auto;
@@ -54,29 +49,60 @@
   border-radius: var(--border-round); 
 }
 
-/********** STYLE FOR TABLET AND MOBILE ***********/
-/* Adjustments for tablet and mobile devices. */
+.button-informations {
+  text-decoration: none;
+  border: 0;
+  background-color: var(--dark-green-color);
+  color: white;
+  border-radius: 7px;
+  transition: all 0.3s ease-in-out;
+  font-family: var(--common-font);
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 15px;
+}
+  
+.button-informations:hover {
+  background-color: var(--green-color); 
+}
+
+/* Styles for both tablets and mobile views */
 @media screen and (min-width: 768px) and (max-width: 1024px), (max-width: 767px) {
   .section-informations {
     display: flex;
     flex-direction: column;
-    align-items: center; 
+    align-items: center;
+    width: 70%;
   }
-  /* Center-align child elements inside the informational content for tablet and mobile. */
   .info {
-    align-items: center; 
+    text-align: center; 
+    align-items: center;
   }
-  /* Adjust image width for tablet and mobile. */
+  .info h2 {
+    font-size: 1.6rem;
+  }
   .pict-information {
-    width: 30vw; 
-  } 
+    width: 70%; 
+  }
+  .info p {
+    line-height: 2;
+  }
 }
 
-/********** SPECIFIC STYLE FOR MOBILE ***********/
-/* Adjustments specifically for mobile devices. */
+/* Styles for mobile */
 @media (max-width: 767px) {
-  /* Adjust image width for mobile devices. */
+  .info  {
+    padding: 0;
+  }
+  .info h2 {
+    padding-top: 20px;
+  }
   .pict-information {
-    width: 70vw; 
-  } 
+    width: 90%; 
+  }
+  .section-informations {
+    width: 80%;
+  }
 }
+
+

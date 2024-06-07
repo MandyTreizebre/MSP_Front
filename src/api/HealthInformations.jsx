@@ -1,84 +1,194 @@
-import Cookies from "js-cookie"
 import axios from "axios"
 import {config} from "../config"
 
-/*Function to retrieve informations using a GET request*/
-export function displayAllInformations(){
-    return axios.get(`${config.api_url}/informations`)
+// Retrieve informations 
+export function displayAllInformations() {
+
+    return axios.get(`${config.api_url}/api/informations`)
+
     .then((res)=>{
-        return res.data /*Returning the data from the response*/
+        if (res.status < 200 || res.status >= 300) {
+            throw new Error( "Erreur lors de la connexion")
+        }
+
+        return res
     })
-    .catch((err)=>{
-        return err /*Returning the error*/
+    .catch((error)=>{
+        if (error.response.status === 500) {
+            throw new Error("Erreur interne du serveur")
+        }
+
+        return error
     })
 }
 
-/*Function to retrieve informations by category using a GET request*/
-export function getInformationsByCategory(category){
-    return axios.get(`${config.api_url}/informations-category/${category}`)
-    .then((res)=>{
-        return res.data /*Returning the data from the response*/
+export function displayInformationById(id) {
+    
+    return axios.get(`${config.api_url}/api/information/${id}`)
+
+    .then((res)=> {
+        if (res.status < 200 || res.status >= 300) {
+            throw new Error( "Erreur lors de la connexion")
+        }
+        console.log("res dans le then de api", res)
+        return res
     })
-    .catch((err)=>{
-        return err /*Returning the error*/
+    .catch((error)=> {
+        if (error.response.status === 500) {
+            throw new Error("Erreur interne du serveur")
+        }
+        
+        return error
     })
 }
 
-/*Function to retrieve categories by category using a GET request*/
-export function displayCategories(){
-    return axios.get(`${config.api_url}/categories`)
+// Retrieve informations by category 
+export function getInformationsByCategory(category) {
+
+    return axios.get(`${config.api_url}/api/informations/${category}`)
+
     .then((res)=>{
-        return res.data /*Returning the data from the response*/
+        if (res.status < 200 || res.status >= 300) {
+            throw new Error( "Erreur lors de la connexion")
+        }
+
+        return res
     })
-    .catch((err)=>{
-        return err /*Returning the error*/
+    .catch((error)=>{
+        if (error.response.status === 500) {
+            throw new Error("Erreur interne du serveur")
+        }
+
+        return error
     })
 }
 
-/*Function to add an information using a POST request*/
-export function addAndInformation(datas, token){
+// Retrieve categories 
+export function displayCategories() {
+
+    return axios.get(`${config.api_url}/api/categories`)
+
+    .then((res)=>{
+        if (res.status < 200 || res.status >= 300) {
+            throw new Error( "Erreur lors de la connexion")
+        }
+
+        return res
+    })
+    .catch((error)=>{
+        if (error.response.status === 500) {
+            throw new Error("Erreur interne du serveur")
+        }
+
+        return error
+    })
+}
+
+// Add an information
+export function addInformation(datas, token) {
+
     return axios.post(`${config.api_url}/api/save-information`, datas, {
+
         headers: {
             "Authorization": `Bearer ${token}`
         },
         withCredentials: true
     })
-    .then((res)=>{
-        return res.data /*Returning the data from the response*/
+    .then((res)=> {
+        if (res.status < 200 || res.status >= 300) {
+            throw new Error( "Erreur lors de la connexion")
+        }
+        return res
     })
-    .catch((err)=>{
-        return err /*Returning the error*/
+    .catch((error)=> {
+        if (error.response.data.msg === "Titre invalide") {
+            throw new Error("Titre invalide")
+        }
+
+        if (error.response.data.msg === "Description invalide") {
+            throw new Error("Description invalide")
+        }
+
+        if (error.response.data.msg === "Lien invalide") {
+            throw new Error("Lien invalide")
+        }
+
+        if (error.response.data.msg === "Catégorie invalide") {
+            throw new Error("Catégorie invalide")
+        }
+
+        if (error.response.status === 500) {
+            throw new Error("Erreur interne du serveur")
+        }
     })
 }
 
-/*Function to update an information using a PUT request*/
-export function udpdateAnInformation(datas, id, token){
-    return axios.put(`${config.api_url}/update-information/${id}`, datas, {
+// Update an information
+export function udpdateInformation(datas, id, token) {
+
+    return axios.put(`${config.api_url}/api/update-information/${id}`, datas, {
+
         headers: {
-            "Authorization": `Bearer ${token}` /*Setting Authorization header with the token*/
+            "Authorization": `Bearer ${token}` 
         },
-        withCredentials: true /*Ensures credentials are included in the request*/
+        withCredentials: true 
     })
-    .then((res)=>{
-        return res.data /*Returning the data from the response*/
+    .then((res)=> {
+        if (res.status < 200 || res.status >= 300) {
+            throw new Error( "Erreur lors de la connexion")
+        }
+
+        return res
     })
-    .catch((err)=>{
-        return err /*Returning the error*/
+    .catch((error)=> {
+        if (error.response.data.msg === "Titre invalide") {
+            throw new Error("Titre invalide")
+        }
+
+        if (error.response.data.msg === "Description invalide") {
+            throw new Error("Description invalide")
+        }
+
+        if (error.response.data.msg === "Image invalide") {
+            throw new Error("Lien invalide")
+        }
+
+        if (error.response.data.msg === "Lien invalide") {
+            throw new Error("Lien invalide")
+        }
+
+        if (error.response.data.msg === "Catégorie invalide") {
+            throw new Error("Catégorie invalide")
+        }
+
+        if (error.response.status === 500) {
+            throw new Error("Erreur interne du serveur")
+        }
     })
 }
 
-/*Function to delete an information */
-export function deleteAnInformation(id, token){
-    return axios.delete(`${congig.api_url}/delete-information/${id}`, datas, {
+// Delete an information
+export function deleteInformation(id, datas, token){
+
+    return axios.delete(`${config.api_url}/api/delete-information/${id}`, datas, {
+
         headers: {
-            "Authorization": `Bearer ${token}` /*Setting Authorization header with the token*/
+            "Authorization": `Bearer ${token}` 
         },
-        withCredentials: true /*Ensures credentials are included in the request*/
+        withCredentials: true 
     })
     .then((res)=>{
-        return res.data /*Returning the data from the response*/ 
+        if (res.status < 200 || res.status >= 300) {
+            throw new Error( "Erreur lors de la connexion")
+        }
+
+        return res
     })
-    .catch((err)=>{
-        return err /*Returning the error*/
+    .catch((error)=>{
+        if (error.response.status === 500) {
+            throw new Error("Erreur interne du serveur")
+        }
+
+        return error
     })
 }

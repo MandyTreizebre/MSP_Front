@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
+import Cookies from 'js-cookie'
+const token = Cookies.get('token')
 import { displayOneExternalProfessional, updateExternalProfessional } from "../../api/ExternalProfessionals"
-import EditExternalProForm from "../../components/Forms/EditExternalProForm"
+import EditExternalProForm from "../../components/Admin/Forms/EditExternalProForm"
 import Modal from "../../components/Modal"
 
-const EditExternalPro = (props) => {
+const EditExternalPro = () => {
+  
   const [name, setName] = useState("")
-  const [picture, setPicture] = useState(null)
   const [link, setLink] = useState("")
+  const [picture, setPicture] = useState(null)
   const [error, setError] = useState(null)
   const [openEditExtProModal, setOpenEditExtProModal] = useState(false)
 
@@ -20,14 +23,14 @@ const EditExternalPro = (props) => {
   useEffect(()=> {
     displayOneExternalProfessional(params.id)
       .then((res)=> {
-        if(res.result && res.result.length > 0) {
-          const data = res.result[0]
+        if(res.data.result && res.data.result.length > 0) {
+          const data = res.data.result[0]
           setName(data.name)
           setLink(data.link)
         }
       })
       .catch((err)=> {
-        setError("Erreur lors de la récupération du professionnel")
+        setError("Erreur lors de la récupération du professionnel", err)
       })
   }, [])
 
@@ -35,32 +38,45 @@ const EditExternalPro = (props) => {
     updateExternalProfessional(datas, params.id, token)
       .then((res)=> {
         if(res.status === 200) {
+          setError(null)
           setOpenEditExtProModal(true)
           setTimeout(() => {
             handleCloseModal()
           }, 5000)
-        } else {
-          setError("Echec Envoi")
-        }
+        } 
       })
       .catch((err) => {
-        setError("Erreur lors de la modification du professionnel")
+        if (err.message === "Nom invalide") {
+          setError(err.message)
+        }
+        
+        if (err.message === "Prénom invalide") {
+          setError(err.message)
+        }
+        if (err.message === "Lien invalide") {
+          setError(err.message)
+        }
+  
+        if (err.message === "") {
+          setError("Une erreur est survenue")
+        }
       })
   }
 
+  //Function to handle form submission
   const handleSubmit = () => {
+
     const formData = new FormData()
     formData.append('name', name)
     formData.append('link', link)
-    if (picture) {
-        formData.append('picture', picture)
+    if(picture) {
+      formData.append('picture', picture)
     }
-
-    editExternalPro(formData)
-  }
+    editExternalPro(formData, token)
+  } 
   
   return (
-    <section>
+    <section className="form-container">
         <h1>Modifier un professionnel</h1>
         <EditExternalProForm
           name={name}

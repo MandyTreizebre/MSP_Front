@@ -1,63 +1,50 @@
 * {
   box-sizing: border-box;
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  scroll-behavior: smooth; 
+}
 
 /********** VARIABLES ***********/
 :root {
-  --green-color: #10403b;
-  --title-font: louisgeorge, Arial, Helvetica, sans-serif;
-  --common-font: ubuntu, Arial, Helvetica, sans-serif;
-  --green-span-color: #10403b86;
-  --light-green: #1d756e26;
-  --border-round: 15px; }
+  --green-color: #185959;
+  --dark-green-color: #103737;
+  --color-font: #4d4d4d;
+  --color-background-green: #92a69a;
+  --title-font: syne-medium, Arial, Helvetica, sans-serif;
+  --common-font: inter-medium, Arial, Helvetica, sans-serif;
+}
 
 /********** GLOBAL STYLES ***********/
 h1, h2, h3, h4, h5 {
   font-family: var(--title-font);
-  color: var(--green-color);
-  text-align: center; }
-
-h1 {
-  font-size: 1.7em; }
-
-h2 {
-  font-size: 1.5em; }
-
-h3 {
-  font-size: 1.3em; }
-
-.general-button {
-  text-decoration: none;
-  padding: 0 15px;
-  border: 0;
-  background-color: var(--green-color);
-  color: white;
-  border-radius: 7px;
-  transition: all 0.3s ease-in-out;
-  font-family: var(--common-font);
-  font-size: 1rem;
-  cursor: pointer; }
-
-.general-button:hover {
-  background-color: #10403bae; }
+  color: var(--dark-green-color);
+}
 
 p, a, strong, li {
   font-family: var(--common-font);
-  line-height: 2em; }
+  text-decoration: none;
+}
+
+p, strong {
+  color: var(--color-font);
+}
 
 strong {
-  color: var(--green-color); }
+  color: var(--dark-green-color);
+}
 
 .error-message, .message-info {
   text-align: center;
   font-weight: bold;
-  color: red; }
+  color: red; 
+}
 
 /********** DARK MODE STYLES ***********/
 body.dark-mode {
   background-color: black;
-  color: white; }
+  color: white;
+}
 
 body.dark-mode a,
 body.dark-mode h1,
@@ -68,28 +55,49 @@ body.dark-mode h5,
 body.dark-mode h6,
 body.dark-mode strong {
   color: white;
-  border: white; }
+  border: white; 
+}
 
 body.dark-mode .icon {
-  color: white; }
+  color: white; 
+}
 
 body.dark-mode .box-news {
-  box-shadow: 0 1px 3px rgba(255, 255, 255, 0.12), 0 1px 2px rgba(255, 255, 255, 0.24); }
+  box-shadow: 0 1px 3px rgba(255, 255, 255, 0.12), 0 1px 2px rgba(255, 255, 255, 0.24); 
+}
 
 body.dark-mode .cards-spe {
-  box-shadow: 0 1px 3px rgba(255, 255, 255, 0.12), 0 1px 2px rgba(255, 255, 255, 0.24); }
+  box-shadow: 0 1px 3px rgba(255, 255, 255, 0.12), 0 1px 2px rgba(255, 255, 255, 0.24); 
+}
 
 body.dark-mode .card-external-pros {
-  box-shadow: 0 1px 3px rgba(255, 255, 255, 0.12), 0 1px 2px rgba(255, 255, 255, 0.24); }
+  box-shadow: 0 1px 3px rgba(255, 255, 255, 0.12), 0 1px 2px rgba(255, 255, 255, 0.24); 
+}
 
 body.dark-mode .cards-informations {
-  box-shadow: 0 1px 3px rgba(255, 255, 255, 0.52), 0 1px 2px rgba(255, 255, 255, 0.383); }
+  box-shadow: 0 1px 3px rgba(255, 255, 255, 0.52), 0 1px 2px rgba(255, 255, 255, 0.383); 
+}
 
 /********** POLICES ***********/
 @font-face {
-  font-family: "louisgeorge";
-  src: url(../../src/assets/fonts/louisgeorge.ttf); }
+  font-family: "syne";
+  src: url(../../src/assets/fonts/Syne-Regular.ttf); 
+}
 
 @font-face {
-  font-family: "ubuntu";
-  src: url(../../src//assets//fonts/ubuntu.ttf); }
+  font-family: "syne-medium";
+  src: url(../../src/assets/fonts/Syne-Medium.ttf); 
+}
+
+@font-face {
+  font-family: "inter";
+  src: url(../../src/assets/fonts/Inter-Regular.ttf); 
+}
+
+@font-face {
+  font-family: "inter-medium";
+  src: url(../../src/assets/fonts/Inter-Medium.ttf); }
+    
+
+
+  

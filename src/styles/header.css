@@ -1,68 +1,51 @@
-/************DESKTOP STYLES*************/
-/* Styling for the banner container with a background image */
-.container-banner {
-  min-height: 20vh;
-  background: url("../../src/assets/images/paysage.jpg") center/cover;
+header {
+  top: 0;
+  width: 100%;
+  z-index: 1000;
   display: flex;
-  justify-content: center;
-  align-items: center; 
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Set dimensions for the logo in desktop view */
+.container-header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 40px 0 40px;
+}
+
 #logo {
-  width: 12vw; 
+  width: 85px; 
 }
 
-/********** MENU STYLES ***********/
-/* Styling for the main navigation bar */
 .navigation {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 2vw;
-  height: 5vh;
-  background-color: var(--light-green); 
+  gap: 3vw;
 }
 
-/* Styling for links inside the navigation */
 .navigation a {
   text-decoration: none;
-  color: var(--green-color);
-  font-family: var(--title-font);
-  font-size: 1.2rem; 
+  color: var(--dark-green-color);
+  transition: color 0.3s ease;
 }
 
-/* Creating the underline animation effect for the links */
-.navigation a:after {
-  content: '';
-  display: block;
-  margin: auto;
-  height: 1px;
-  width: 0;
-  background: transparent;
-  transition: width .5s ease, background-color .5s ease; 
+.navigation a:hover {
+  color: var(--color-font);
 }
 
-/* Underline effect when hovering over the links */
-.navigation a:hover:after {
-  width: 100%;
-  background: var(--green-color); 
+.active {
+  font-weight: bold;
 }
 
-/********** TRIGGER FOR MOBILE AND TABLETS ***********/
-/* Hide the mobile/tablet navigation trigger by default for desktop views */
+/* Trigger for mobiles and tablets */
 #mobile-tablet-trigger {
   display: none;
   border: none; 
 }
 
-/* Styling for the admin section */
-.div-admin {
-  display: flex;
-  gap: 5vw; 
-}
-
-/* Styling the logout button */
 .logout-button {
   padding: 6px;
   background-color: var(--green-color);
@@ -72,17 +55,29 @@
   cursor: pointer; 
 }
 
-/********Style for buttons dark mode***********/
-.dark-mode-toggle {
+/* Style for buttons dark mode */
+.dark-mode-switch {
   position: fixed;
   top: 0;
   left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  background-color: #ffffff;
   cursor: pointer;
-  z-index: 1000; }
+  border-radius: 0 10px 10px 0;
+  border-top: 1px solid var(--color-font);
+  border-right: 1px solid var(--color-font);
+  border-bottom: 1px solid var(--color-font);
+}
 
-.mode-sombre, .mode-clair {
-  padding: 10px;
-  font-size: 1.5em; }
+.icon-light, .icon-dark {
+  color: var(--color-font); 
+  font-size: 1.2em;
+  z-index: 2;
+}
 
 .mode-sombre {
   background-color: black;
@@ -92,73 +87,67 @@
   background-color: white;
   color: black; }
 
-/************STYLES TABLETS & MOBILES*************/
 /* Styles for both tablets and mobile views */
 @media screen and (max-width: 1024px) {
-  /* Hide the navigation for tablets and mobiles */
+  .dark-mode-switch {
+    display: none;
+  }
+
+  header {
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 10px;
+  }
+
   .navigation {
-    display: none; 
-  }
-  /* Display the trigger icon for mobile/tablet navigation */
-  #mobile-tablet-trigger {
     display: flex;
-    justify-content: center;
-    padding: 15px;
-    width: 100vw;
-    background-color: var(--light-green); 
+    flex-direction: column;
+    gap: 25px;
+    transform: translateY(-100%); 
+    transition: transform 0.5s ease; 
+    position: absolute;
+    width: 100%;
+    background-color: var(--color-background-green);
+    opacity: 0; 
+    transition: transform 0.5s ease, opacity 0.5s ease;
   }
-  /* Style adjustments when the navigation is opened on tablet or mobile */
+
   .navigation.is-open {
     display: flex;
     flex-direction: column;
-    max-height: 80vh;
-    height: auto;
+    left: 0;
+    width: 100%;
+    transform: translateY(0); 
+    opacity: 1; 
+    position: relative;
   }
+  
   .navigation.is-open a {
-    padding: 0.7vh; 
+    padding: 0.7vh;
   }
+
+  #mobile-tablet-trigger {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    background-color: var(--color-background-green); 
+    position: relative;
+  }
+
+  .trigger-icon {
+    font-size: 1.7rem;
+    cursor: pointer;
+    color: var(--green-color); 
+  }
+
   .mode-sombre, .mode-clair {
     padding: 10px;
     font-size: 1.7em; 
   }
+  
+  #logo {
+    width: 80px; 
+  }
 }
 
-/* Specific styles for tablet views */
-@media screen and (min-width: 768px) and (max-width: 1024px) {
-  /* Adjusting the logo size for tablets */
-  #logo {
-    width: 20vw; 
-  }
-  /* Styling for the trigger icon */
-  .trigger-icon {
-    font-size: 1.8rem;
-    cursor: pointer;
-    color: var(--green-color); 
-  }
-  /* Adjust font size for navigation links when opened on tablet */
-  .navigation.is-open a {
-    font-size: 1.1rem; 
-  } 
-}
-
-/* Specific styles for mobile views */
-@media (max-width: 767px) {
-  /* Adjusting the logo size for mobiles */
-  #logo {
-    width: 20vw; 
-  }
-  /* Styling for the trigger icon */
-  .trigger-icon {
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: var(--green-color); 
-  }
-  /* Adjust font size for navigation links when opened on mobile */
-  .navigation.is-open a {
-    font-size: 1rem; 
-  }
-  .mode-sombre, .mode-clair {
-    padding: 7px;
-    font-size: 1.2em; 
-  }
-}

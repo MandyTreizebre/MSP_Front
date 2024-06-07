@@ -1,17 +1,19 @@
 import { useState } from "react"
+import "../../../styles/adminForms.css"
 
-const AddExternalProForm = (props) => {
+const EditExternalProForm = (props) => {
+    
     const [errors, setErrors] = useState({
         name: "",
         link: "",
         picture: ""
-    })
+    }) 
 
     const handleInputChange = (setter) => (e) => {
-        setter(e.currentTarget.value)
-    }
+        setter(e.currentTarget.value) 
+    } 
 
-    const maxFileSize = 5 * 1024 * 1024 // 5MB
+    const maxFileSize = 5 * 1024 * 1024  // 5MB
 
     const handleImageChange = (e) => {
         const file = e.target.files[0] 
@@ -35,7 +37,7 @@ const AddExternalProForm = (props) => {
                 })) 
             }
         }
-    }
+    } 
 
     const validateForm = () => {
         let errorsForm = {...errors} 
@@ -52,24 +54,25 @@ const AddExternalProForm = (props) => {
         return !Object.values(errorsForm).some(error => error !== "") 
     } 
 
-  return (
-    <form
-        className="add-external-pro-form"
-        onSubmit={(e) => {
-            e.preventDefault()
-            if (validateForm()) {
-                props.handleSubmit()
-            }
-        }}>
+    return (
 
-<label htmlFor="name">Nom</label>
+        <section className="container-form">
+            <form 
+            className="form-admin"
+            onSubmit={(e) => {
+                e.preventDefault() 
+                if (validateForm()) {
+                    props.handleSubmit() 
+                }
+            }}>
+
+            <label htmlFor="name">Nom</label>
             <input
                 type="text"
                 name="name"
                 value={props.name}
                 onChange={handleInputChange(props.onChangeName)}
                 maxLength={50}
-                required
             />
             {errors.name && <p className="error-message">{errors.name}</p>}
 
@@ -79,7 +82,6 @@ const AddExternalProForm = (props) => {
                 name="picture"
                 onChange={handleImageChange}
                 encType="multipart/form-data"
-                required
             />
             {errors.picture && <p className="error-message">{errors.picture}</p>}
 
@@ -90,14 +92,14 @@ const AddExternalProForm = (props) => {
                 value={props.link}
                 onChange={handleInputChange(props.onChangeLink)}
                 maxLength={60}
-                required
             />
             {errors.link && <p className="error-message">{errors.link}</p>}
 
-            <button>Valider la création du professionnel</button>
+            <button className="add-external-pro-button">Valider la modification du professionnel</button>
+        </form>
+        </section>
+        
+    ) 
+} 
 
-
-    </form>
-  )
-}
-export default AddExternalProForm
+export default EditExternalProForm 
