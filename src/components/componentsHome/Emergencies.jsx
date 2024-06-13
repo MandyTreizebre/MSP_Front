@@ -1,5 +1,4 @@
 import {Link} from "react-router-dom"
-
 import "../../styles/emergencies.css"
 
 const Emergencies = () => {
@@ -18,7 +17,7 @@ const Emergencies = () => {
                     <strong><em>Toutes les urgences restent gérées par le 15.</em></strong>
                 </p>
 
-                <Link to="/gardes-urgences" 
+                <Link to="/professionnels-gardes-urgences" 
                       className="emergencies-button"
                       aria-label="Aller à la page des gardes et des urgences" 
                 >   

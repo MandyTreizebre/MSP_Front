@@ -1,38 +1,42 @@
-import { Link, useLocation } from 'react-router-dom'
-import { useRef, useState } from 'react'
-import { logout } from '../api/Admin'
-import { useSelector, useDispatch } from 'react-redux'
-import { selectAdmin, logoutAdmin } from '../slices/adminSlice'
-import { toggleDarkMode, selectIsDarkMode } from "../slices/darkModeSlice"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGear, faBars, faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
-import Logo from '../assets/images/logo.png'
-import "../styles/header.css"
+import { Link, useLocation } from 'react-router-dom' 
+import { useRef, useState } from 'react' 
+import { logout } from '../api/Admin' 
+import { useSelector, useDispatch } from 'react-redux' 
+import { selectAdmin, logoutAdmin } from '../slices/adminSlice' 
+import { toggleDarkMode, selectIsDarkMode } from "../slices/darkModeSlice" 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome' 
+import { faGear, faBars, faSun, faMoon } from '@fortawesome/free-solid-svg-icons' 
+import Logo from '../assets/images/logo.png' 
+import "../styles/header.css" 
 
 const Header = () => {
-    const { isLogged } = useSelector(selectAdmin)
-    const isDarkMode = useSelector(selectIsDarkMode)
-    const dispatch = useDispatch()
-    const location = useLocation()
-    const refSpe = useRef(null)
-    const [navIsOpen, setNavIsOpen] = useState(false)
+    // Sélectionner l'état de connexion de l'administrateur et le mode sombre
+    const { isLogged } = useSelector(selectAdmin) 
+    const isDarkMode = useSelector(selectIsDarkMode) 
+    const dispatch = useDispatch() 
+    const location = useLocation() 
+    const refSpe = useRef(null) 
+    const [navIsOpen, setNavIsOpen] = useState(false) 
 
+    // Fonction de déconnexion
     const handleLogout = () => {
         logout()
             .then(response => {
                 if (response.status === 200) {
-                    dispatch(logoutAdmin())
+                    dispatch(logoutAdmin()) 
                 }
             })
             .catch(err => {
-                console.error("Erreur lors de la déconnexion:", err)
-            })
-    }
+                console.error("Erreur lors de la déconnexion:", err) 
+            }) 
+    } 
 
+    // Fonction pour basculer le menu
     const toggleMenu = () => {
-        setNavIsOpen(open => !open)
-    }
+        setNavIsOpen(open => !open) 
+    } 
 
+    // Fonction pour rendre les liens de navigation
     const renderNavLink = (to, label, extraProps = {}) => (
         <Link
             to={to}
@@ -42,7 +46,7 @@ const Header = () => {
         >
             {label}
         </Link>
-    )
+    ) 
 
     return (
         <header>
@@ -81,10 +85,10 @@ const Header = () => {
                     >
                         Rendez-vous
                     </Link>
-                    {renderNavLink("/msp", "Notre MSP")}
+                    {renderNavLink("/decouvrir-notre-msp", "Notre MSP")}
                     {renderNavLink("/informations-sante", "Informations santé")}
                     {renderNavLink("/contact", "Contact")}
-                    {renderNavLink("/gardes-urgences", "Urgences et gardes")}
+                    {renderNavLink("/professionnels-gardes-urgences", "Urgences et gardes")}
 
                     {isLogged ? (
                         <>
@@ -103,7 +107,7 @@ const Header = () => {
                 </nav>
             </section>
         </header>
-    )
-}
+    ) 
+} 
 
-export default Header
+export default Header 

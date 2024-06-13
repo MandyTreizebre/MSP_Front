@@ -9,29 +9,29 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faEye, faEyeSlash, faCircleCheck} from '@fortawesome/free-solid-svg-icons'
 
 const Register = () => {
-    // State definitions for form inputs and validation
+
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [firstname, setFirstname] = useState("")
     const [error, setError] = useState(null)
     const [showPassword, setShowPassword] = useState(false)
-    // State definitions for password requirements
+
+    //Exigences du mot de passe
     const [hasLength, setHasLength] = useState(false)
     const [hasUpperCase, setHasUpperCase] = useState(false)
     const [hasLowerCase, setHasLowerCase] = useState(false)
     const [hasNumber, setHasNumber] = useState(false)
     const [hasSpecialChar, setHasSpecialChar] = useState(false)
-    // State definition for modal
+
     const [openModalRegister, setOpenModalRegister] = useState(false)
 
     const [redirect, setRedirect] = useState(false)
 
-    // Function to close the modal
     const handleCloseModal = () => {
         setOpenModalRegister(false)
     }
 
-    // Function to validate password based on certain requirements*/
+    //Validation des exigences du mot de passe
     const validatePassword = (password) => {
         let errors = []
         if (password.length < 8) errors.push('Le mot de passe doit avoir au moins 12 caractères,')
@@ -43,11 +43,11 @@ const Register = () => {
         return errors
     }
 
-    // Handler for password change that sets state for each validation rule
     const handlePasswordChange = (e) => {
         const value = e.currentTarget.value
         setPassword(value)
         
+        //Mise à jour des états selon les exigences du mot de passe
         setHasLength(value.length >= 12)
         setHasUpperCase(/[A-Z]/.test(value))
         setHasLowerCase(/[a-z]/.test(value))
@@ -55,74 +55,68 @@ const Register = () => {
         setHasSpecialChar(/[!@#$%^&*]/.test(value))
     }
 
-    // Handle form submission
     const onSubmitForm = (e) => {
         e.preventDefault(e)
         let passwordErrors = validatePassword(password)
 
-        //Check for password errors
         if(passwordErrors.length > 0){
             setError(passwordErrors.join(' '))
             return
         }
 
-        // Data to be sent to the API
         let datas = {
             email: email, 
             password: password,
             firstname: firstname
         }
 
-        // Call API to add admin
         registerAdmin(datas, token)
-        .then((res)=>{
-            if(res.status === 201){
-                setEmail("")
-                setPassword("")
-                setFirstname("")
-                setError(null)
+            .then((res)=>{
+                if(res.status === 201){
+                    setEmail("")
+                    setPassword("")
+                    setFirstname("")
+                    setError(null)
 
-                setHasLength(false)
-                setHasUpperCase(false)
-                setHasLowerCase(false)
-                setHasNumber(false)
-                setHasSpecialChar(false)
+                    setHasLength(false)
+                    setHasUpperCase(false)
+                    setHasLowerCase(false)
+                    setHasNumber(false)
+                    setHasSpecialChar(false)
 
-                setOpenModalRegister(true)
+                    setOpenModalRegister(true)
 
-                setTimeout(()=>{
-                    handleCloseModal()
-                    setRedirect(true)
-                }, 2000)
-            }
-        })
-        .catch(err => {
-            if (err.message === "Entrez un email") {
-                setError(err.message)
-            }
-            if (err.message === "Adresse email invalide") {
-                setError(err.message)
-            }
-            if (err.message === "Entrez un prénom") {
-                setError(err.message)
-            }
-            if (err.message === "Prénom invalide") {
-                setError(err.message)
-            }
-            if (err.message === "Email déjà utilisé.") {
-                setError(err.message)
-            }
-            if (err.message === "") {
-                setError("Une erreur est survenue")
-            }
-        })
+                    setTimeout(()=>{
+                        handleCloseModal()
+                        setRedirect(true)
+                    }, 2000)
+                }
+            })
+            .catch(err => {
+                if (err.message === "Entrez un email") {
+                    setError(err.message)
+                }
+                if (err.message === "Adresse email invalide") {
+                    setError(err.message)
+                }
+                if (err.message === "Entrez un prénom") {
+                    setError(err.message)
+                }
+                if (err.message === "Prénom invalide") {
+                    setError(err.message)
+                }
+                if (err.message === "Email déjà utilisé.") {
+                    setError(err.message)
+                }
+                if (err.message === "") {
+                    setError("Une erreur est survenue")
+                }
+            })
     }
 
-    // If redirection is needed, navigate to the admin page
     if (redirect) {
         return <Navigate to="/admin" /> 
     }
-
 
     return (
         <section className="form-register">
@@ -134,7 +128,7 @@ const Register = () => {
                     onSubmit={onSubmitForm}
                     className="form-admin"
                 > 
-                    {/* Email input */}
+
                     <input 
                         type="text"
                         placeholder="Email"
@@ -145,7 +139,7 @@ const Register = () => {
                         required
                         autoComplete="off"
                     />
-                    {/* Password input with show/hide functionality */}
+                    {/* Champ mot de passe avec fonctionnalité de montrer/cacher */}
                     <div className="div-password">
                         <input type={showPassword ? "text" : "password"}
                         placeholder="Mot de passe"
@@ -154,17 +148,17 @@ const Register = () => {
                         required
                         autoComplete="new-password"
                     />  
-                    <button
-                        onClick={(e)=> {
-                            e.preventDefault(e)
-                            setShowPassword(!showPassword)
-                        }}
-                        className="view-password"
-                    >
-                        {showPassword ? <FontAwesomeIcon className="eye-icon" icon={faEye}/> : <FontAwesomeIcon className="eye-icon" icon={faEyeSlash}/>}
-                    </button>
+                        <button
+                            onClick={(e)=> {
+                                e.preventDefault(e)
+                                setShowPassword(!showPassword)
+                            }}
+                            className="view-password"
+                        >
+                            {showPassword ? <FontAwesomeIcon className="eye-icon" icon={faEye}/> : <FontAwesomeIcon className="eye-icon" icon={faEyeSlash}/>}
+                        </button>
                     </div>
-                    {/* First name input */}
+
                     <input 
                         type="text"
                         placeholder="Prénom"
@@ -175,7 +169,7 @@ const Register = () => {
                         required
                     />
 
-                    {/* Display password requirements */}
+                    {/* Afficher les exigences du mot de passe */}
                     <div className="content-password">
                         <span style={{ color: hasLength ? 'green' : 'red' }}> <FontAwesomeIcon icon={faCircleCheck}/> Min 12 caractères</span>
                         <span style={{ color: hasUpperCase ? 'green' : 'red' }}> <FontAwesomeIcon icon={faCircleCheck}/> Une majuscule</span>
@@ -186,13 +180,10 @@ const Register = () => {
                     <input type="submit" name="Enregistrer" className="register-button" value="Enregistrer"/>
                 </form>
 
-                
-
                 <Modal open={openModalRegister} onClose={handleCloseModal} message="Administrateur ajouté" />
             </section>
             {error && <p className='error-message'>{error}</p>}
         </section>
-
     )
 }
 

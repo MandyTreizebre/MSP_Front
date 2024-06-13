@@ -1,20 +1,22 @@
-import { useState } from "react"
-import "../../../styles/adminForms.css"
+import { useState } from "react" 
+import "../../../styles/adminForms.css" 
 
 const EditExternalProForm = (props) => {
-    
+    // États pour les messages d'erreur de validation
     const [errors, setErrors] = useState({
         name: "",
         link: "",
         picture: ""
     }) 
 
+    // Gestionnaire de changement de valeur pour les champs du formulaire
     const handleInputChange = (setter) => (e) => {
         setter(e.currentTarget.value) 
     } 
 
     const maxFileSize = 5 * 1024 * 1024  // 5MB
 
+    // Fonction de gestion du changement d'image
     const handleImageChange = (e) => {
         const file = e.target.files[0] 
         if (file) {
@@ -39,8 +41,9 @@ const EditExternalProForm = (props) => {
         }
     } 
 
+    // Fonction de validation du formulaire
     const validateForm = () => {
-        let errorsForm = {...errors} 
+        let errorsForm = { ...errors } 
 
         if (!props.name || props.name.length > 50) {
             errorsForm.name = "Nom invalide" 
@@ -55,50 +58,48 @@ const EditExternalProForm = (props) => {
     } 
 
     return (
-
         <section className="container-form">
             <form 
-            className="form-admin"
-            onSubmit={(e) => {
-                e.preventDefault() 
-                if (validateForm()) {
-                    props.handleSubmit() 
-                }
-            }}>
+                className="form-admin"
+                onSubmit={(e) => {
+                    e.preventDefault() 
+                    if (validateForm()) {
+                        props.handleSubmit() 
+                    }
+                }}
+            >
+                <label htmlFor="name">Nom</label>
+                <input
+                    type="text"
+                    name="name"
+                    value={props.name}
+                    onChange={handleInputChange(props.onChangeName)}
+                    maxLength={50}
+                />
+                {errors.name && <p className="error-message">{errors.name}</p>}
 
-            <label htmlFor="name">Nom</label>
-            <input
-                type="text"
-                name="name"
-                value={props.name}
-                onChange={handleInputChange(props.onChangeName)}
-                maxLength={50}
-            />
-            {errors.name && <p className="error-message">{errors.name}</p>}
+                <label htmlFor="picture">Image</label>
+                <input
+                    type="file"
+                    name="picture"
+                    onChange={handleImageChange}
+                    encType="multipart/form-data"
+                />
+                {errors.picture && <p className="error-message">{errors.picture}</p>}
 
-            <label htmlFor="picture">Image</label>
-            <input
-                type="file"
-                name="picture"
-                onChange={handleImageChange}
-                encType="multipart/form-data"
-            />
-            {errors.picture && <p className="error-message">{errors.picture}</p>}
+                <label htmlFor="link">Lien externe</label>
+                <input
+                    type="text"
+                    name="link"
+                    value={props.link}
+                    onChange={handleInputChange(props.onChangeLink)}
+                    maxLength={60}
+                />
+                {errors.link && <p className="error-message">{errors.link}</p>}
 
-            <label htmlFor="link">Lien externe</label>      
-            <input
-                type="text"
-                name="link"
-                value={props.link}
-                onChange={handleInputChange(props.onChangeLink)}
-                maxLength={60}
-            />
-            {errors.link && <p className="error-message">{errors.link}</p>}
-
-            <button className="add-external-pro-button">Valider la modification du professionnel</button>
-        </form>
+                <button className="add-external-pro-button">Valider la modification du professionnel</button>
+            </form>
         </section>
-        
     ) 
 } 
 

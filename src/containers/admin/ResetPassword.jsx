@@ -1,16 +1,12 @@
 import { useState, useEffect } from "react"
-
 import { useLocation } from "react-router-dom"
-
 import { resetPassword } from "../../api/Admin"
-
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCircleCheck} from '@fortawesome/free-solid-svg-icons'
-
 import Modal from "../../components/Modal"
 
 const ResetPassword = () => {
-    // State definitions for form inputs and validation
+
     const [token, setToken] = useState('')
     const [email, setEmail] = useState('')
     const [newPassword, setNewPassword] = useState('')
@@ -20,19 +16,17 @@ const ResetPassword = () => {
 
     const location = useLocation()
 
-    // State definitions for password requirements
+    //Etats pour vérifier les exigences du mot de passe
     const [hasLength, setHasLength] = useState(false)
     const [hasUpperCase, setHasUpperCase] = useState(false)
     const [hasLowerCase, setHasLowerCase] = useState(false)
     const [hasNumber, setHasNumber] = useState(false)
     const [hasSpecialChar, setHasSpecialChar] = useState(false)
 
-    // State definition for modal
     const [openModalResetPassword, setOpenModalResetPassword] = useState(false)
 
-    // Function to close the modal
     const handleCloseModal = () => {
-        setOpenModalRegister(false)
+        setOpenModalResetPassword(false)
     }
 
 
@@ -69,6 +63,8 @@ const ResetPassword = () => {
         }
     }, [location])
 
+    console.log("token dans resetPassword =>", token)
+
     const handleSubmit = (e) => {
         e.preventDefault()
 
@@ -87,12 +83,6 @@ const ResetPassword = () => {
         if (newPassword !== confirmPassword) {
             setError("Les mots de passe ne correspondent pas")
             return
-        }
-
-        let data = {
-            email: email, 
-            newPassword: newPassword, 
-            token: token
         }
 
         resetPassword({token, newPassword, email})
@@ -124,17 +114,6 @@ const ResetPassword = () => {
     <section>
     <form onSubmit={handleSubmit}>
         <h2>Réinitialiser le mot de passe</h2>
-
-        <div className="form-group">
-            <label htmlFor="token">Token de réinitialisation :</label>
-            <input
-                type="text"
-                id="token"
-                value={token}
-                onChange={(e) => setToken(e.target.value)}
-                required
-            />
-        </div>
 
         <div className="form-group">
             <label htmlFor="email">Email :</label>

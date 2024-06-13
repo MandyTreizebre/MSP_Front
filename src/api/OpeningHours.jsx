@@ -2,7 +2,7 @@ import axios from 'axios'
 import {config} from '../config'
 
 
-// Retrieve opening hours 
+//Display tous les horaires
 export function displayOpeningHours() {
 
     return axios.get(`${config.api_url}/api/opening-hours`)
@@ -23,7 +23,7 @@ export function displayOpeningHours() {
     })
 }
 
-// Retrieve opening hours by professional
+//Display les horaires d'un professionnel
 export function getOpeningHoursByPro(pro_id, day_id) {
 
     return axios.get(`${config.api_url}/api/pro/opening-hours/${pro_id}/${day_id}`)
@@ -44,7 +44,7 @@ export function getOpeningHoursByPro(pro_id, day_id) {
     })
 }
 
-// Add opening hours using 
+//Ajouter des horaires
 export function saveOpeningHours(datas, token) {
 
     return axios.post(`${config.api_url}/api/save/opening-hours`, datas, {
@@ -96,7 +96,7 @@ export function saveOpeningHours(datas, token) {
     })
 }
 
-// Update opening hours using 
+//Mettre à jour les horaires
 export function editOpeningHoursByPro(datas, pro_id, token) {
 
 
@@ -149,7 +149,7 @@ export function editOpeningHoursByPro(datas, pro_id, token) {
     })
 }
 
-// Retrieve days using 
+//Display les jours
 export function displayDays() { 
 
     return axios.get(`${config.api_url}/api/days`)

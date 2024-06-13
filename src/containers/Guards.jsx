@@ -2,9 +2,9 @@ import { useState, useEffect } from "react"
 import { displayProfessionalsGuards } from "../api/Professionals" 
 import "../styles/guards.css"
 import Clock from "../components/Clock"
-import PharmaciesForGuards from "../components/PharmaciesForGuards"
-import DentistsForGuards from "../components/DentistsForGuards"
-import DoctorsForGuards from "../components/DoctorsForGuards"
+import PharmaciesForGuards from "../components/componentsGuards/PharmaciesForGuards"
+import DentistsForGuards from "../components/componentsGuards/DentistsForGuards"
+import DoctorsForGuards from "../components/componentsGuards/DoctorsForGuards"
 
 const Guards = () => {
 
@@ -100,17 +100,14 @@ const Guards = () => {
         },6000)
         /* Cleanup function to clear the interval*/
         return () => clearInterval(interval)
-    }, [guards])
+    }, [guards, currentDay, currentHour])
 
     
     return (
         <section className="section-guards">
-            <h1 data-aos="fade-right" data-aos-duration="1500">Permanence des Soins et Urgences Médicales : <br/><em>Des Soins à Tout Moment</em></h1>
             <section className="presentation-guards">
+                <h1 data-aos="fade-right" data-aos-duration="1500">Permanence des Soins et Urgences Médicales : <br/><em>Des Soins à Tout Moment</em></h1>
                 <Clock />
-                
-                <p className="intro-guards">La page des urgences et des gardes vous offre un <em>service en temps réel</em>, vous permettant de connaître les <em>pharmacies, dentistes et médecins</em> disponibles selon l&apos;heure et le jour actuels. Grâce à cette fonctionnalité, vous pouvez trouver rapidement des <em>professionnels de santé prêts à vous aider en cas de besoin urgent</em>. Que ce soit en pleine journée ou en plein milieu de la nuit, notre service vous connecte avec les professionnels de confiance, assurant ainsi votre bien-être et votre tranquillité d&apos;esprit en toute circonstance.
-                </p>
             </section>
 
             <h2>{currentDay} {actualDate}</h2>
