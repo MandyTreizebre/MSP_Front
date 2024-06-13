@@ -1,20 +1,22 @@
-import { useState } from "react"
-import "../../../styles/adminForms.css"
+import { useState } from "react" 
+import "../../../styles/adminForms.css" 
 
 const AddExternalProForm = (props) => {
-
+    // Initialisation de l'état pour les erreurs de formulaire
     const [errors, setErrors] = useState({
         name: "",
         link: "",
         picture: ""
-    })
+    }) 
 
+    // Fonction de gestion du changement de valeur des champs de formulaire
     const handleInputChange = (setter) => (e) => {
-        setter(e.currentTarget.value)
-    }
+        setter(e.currentTarget.value) 
+    } 
 
-    const maxFileSize = 5 * 1024 * 1024 // 5MB
+    const maxFileSize = 5 * 1024 * 1024  // 5MB
 
+    // Fonction de gestion du changement d'image
     const handleImageChange = (e) => {
         const file = e.target.files[0] 
         if (file) {
@@ -37,15 +39,16 @@ const AddExternalProForm = (props) => {
                 })) 
             }
         }
-    }
+    } 
 
+    // Fonction de validation du formulaire
     const validateForm = () => {
-        let errorsForm = {...errors} 
+        let errorsForm = { ...errors } 
 
         if (!props.name || props.name.length > 50) {
             errorsForm.name = "Nom invalide" 
         }
-        
+
         if (!props.link || props.link.length > 60) {
             errorsForm.link = "Lien invalide" 
         }
@@ -55,51 +58,51 @@ const AddExternalProForm = (props) => {
         return !Object.values(errorsForm).some(error => error !== "") 
     } 
 
-  return (
+    return (
+        <section className="container-form">
+            <form onSubmit={(e) => {
+                e.preventDefault() 
+                if (validateForm()) {
+                    props.handleSubmit() 
+                }
+            }} className="form-admin">
 
-    <section className="container-form">
-        <form onSubmit={(e) => {
-            e.preventDefault()
-            if (validateForm()) {
-                props.handleSubmit()
-            }
-        }}
-        className="form-admin">
+                <label htmlFor="name">Nom <span className="required-asterisk">*</span></label>
+                <input
+                    type="text"
+                    name="name"
+                    value={props.name}
+                    onChange={handleInputChange(props.onChangeName)}
+                    maxLength={50}
+                    required
+                />
+                {errors.name && <p className="error-message">{errors.name}</p>}
 
-            <label htmlFor="name">Nom <span className="required-asterisk">*</span></label>
-            <input
-                type="text"
-                name="name"
-                value={props.name}
-                onChange={handleInputChange(props.onChangeName)}
-                maxLength={50}
-                required
-            />
-            {errors.name && <p className="error-message">{errors.name}</p>}
+                <label htmlFor="picture">Image <span className="required-asterisk">*</span></label>
+                <input
+                    type="file"
+                    name="picture"
+                    onChange={handleImageChange}
+                    encType="multipart/form-data"
+                    required
+                />
+                {errors.picture && <p className="error-message">{errors.picture}</p>}
 
-            <label htmlFor="picture">Image<span className="required-asterisk">*</span></label>
-            <input
-                type="file"
-                name="picture"
-                onChange={handleImageChange}
-                encType="multipart/form-data"
-                required
-            />
-            {errors.picture && <p className="error-message">{errors.picture}</p>}
+                <label htmlFor="link">Lien externe <span className="required-asterisk">*</span></label>
+                <input
+                    type="text"
+                    name="link"
+                    value={props.link}
+                    onChange={handleInputChange(props.onChangeLink)}
+                    maxLength={60}
+                    required
+                />
+                {errors.link && <p className="error-message">{errors.link}</p>}
 
-            <label htmlFor="link">Lien externe<span className="required-asterisk">*</span></label>      
-            <input
-                type="text"
-                name="link"
-                value={props.link}
-                onChange={handleInputChange(props.onChangeLink)}
-                maxLength={60}
-                required
-            />
-            {errors.link && <p className="error-message">{errors.link}</p>}
-            <button className="add-external-pro-button">Valider la création du professionnel</button>
-        </form>
-    </section>
-  )
-}
-export default AddExternalProForm
+                <button className="add-external-pro-button">Valider la création du professionnel</button>
+            </form>
+        </section>
+    ) 
+} 
+
+export default AddExternalProForm 

@@ -2,7 +2,6 @@ import { useState } from "react"
 import "../../../styles/adminForms.css" 
 
 const AddHealthInformationsForm = (props) => {
-
     const [errors, setErrors] = useState({
         title: "",
         description: "",
@@ -11,12 +10,10 @@ const AddHealthInformationsForm = (props) => {
     }) 
 
     const handleInputChange = (setter) => (e) => {
-        const {value, name} = e.currentTarget
-
-        const finalValue = name === 'categories' ? parseInt(value, 10) : value
-        setter(finalValue)
-
-        setErrors(prev => ({ ...prev, [name]: ""}))
+        const { value, name } = e.currentTarget 
+        const finalValue = name === 'categories' ? parseInt(value, 10) : value 
+        setter(finalValue) 
+        setErrors(prev => ({ ...prev, [name]: "" })) 
     } 
 
     const maxFileSize = 5 * 1024 * 1024  // 5MB
@@ -46,7 +43,7 @@ const AddHealthInformationsForm = (props) => {
     } 
 
     const validateForm = () => {
-        let errorsForm = {...errors} 
+        let errorsForm = { ...errors } 
 
         if (!props.title || props.title.length > 100) {
             errorsForm.title = "Titre invalide" 
@@ -71,9 +68,9 @@ const AddHealthInformationsForm = (props) => {
                     if (validateForm()) {
                         props.handleSubmit() 
                     }
-                }}>
-
-                <label htmlFor="title">Titre<span className="required-asterisk">*</span></label>
+                }}
+            >
+                <label htmlFor="title">Titre <span className="required-asterisk">*</span></label>
                 <input
                     type="text"
                     name="title"
@@ -116,8 +113,8 @@ const AddHealthInformationsForm = (props) => {
                 />
                 {errors.link && <p className="error-message">{errors.link}</p>}
 
-                <label htmlFor="categories">Catégories<span className="required-asterisk">*</span></label>
-                <select 
+                <label htmlFor="categories">Catégories <span className="required-asterisk">*</span></label>
+                <select
                     name="categories"
                     value={props.selectedCategory}
                     onChange={handleInputChange(props.onChangeCategory)}
@@ -129,7 +126,8 @@ const AddHealthInformationsForm = (props) => {
                         <option key={category.id} value={category.id}>{category.name}</option>
                     ))}
                 </select>
-                <button className="add-information-button">Valider la création de l&apos; information</button>
+
+                <button className="add-information-button">Valider la création de l&apos;information</button>
             </form>
         </section>
     ) 

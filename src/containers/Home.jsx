@@ -1,14 +1,11 @@
 import { useRef, useEffect } from 'react'
-
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faArrowUp} from '@fortawesome/free-solid-svg-icons'
-
 import Welcome from "../components/componentsHome/Welcome"
 import Emergencies from "../components/componentsHome/Emergencies"
 import News from "../components/componentsHome/News"
 import Specializations from "../components/componentsHome/Specializations"
 import ExternalPros from "../components/componentsHome/ExternalPros"
-
 import "../styles/home.css"
 
 const Home = () => {
@@ -54,8 +51,6 @@ const Home = () => {
                 <FontAwesomeIcon icon={faArrowUp}/>
             </button>
         </>
-
-        
     )
 }
 

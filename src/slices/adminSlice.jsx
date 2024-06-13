@@ -1,26 +1,24 @@
 import {createSlice} from '@reduxjs/toolkit'
 
-/*Defining the initial state for the admin slice*/
 const initialState = {
-    infos: {}, /*Empty object to hold admin's info*/
-    isLogged: false /*Flag to indicate if the admin is logged in or not*/
+    infos: {}, //Objet vide pour stocker les informations de l'admin 
+    isLogged: false 
 }
 
-/*Creating a Redux slice named "admin"*/
 export const adminSlice = createSlice({
-    name: "admin", /*Slice name*/
-    initialState, /*Initial state for the slice*/
-    reducers: {   /*Reducer functions to modify the state*/
+    name: "admin", 
+    initialState, 
+    reducers: {  
         initializeAdmin: (state, action) => {
-            state.infos = action.payload /*Updating the admin's info with the provided payload  */ 
-            state.isLogged = true         /*Setting the logged in flag to true*/
+            state.infos = action.payload //Mise à jour des informations de l'admin avec les données fournies dans le payload
+            state.isLogged = true  
         },
-        /*Connects the admin by setting the state with the provided data*/
+        //Connecte l'admin en mettant à jour l'état avec les données fournies
         connectAdmin: (state, action) => {
             state.infos = action.payload /*Updating the admin's info with the provided payload*/
             state.isLogged = true /*Setting the logged in flag to true*/
         },
-        /*Logs out the admin by resetting the state to its initial values*/
+        //Déconnecte l'admin en réinitialisant l'état à ses valeurs initiales
         logoutAdmin: (state) => {
             state.infos = {} /*Clearing the admin's info*/
             state.isLogged = false /*Setting the logged in flag to false*/
@@ -28,9 +26,9 @@ export const adminSlice = createSlice({
     }
 })
 
-/*Exporting the actions to be used by components*/
+//Exportation des actions pour être utilisées par les composants
 export const {connectAdmin, logoutAdmin, initializeAdmin} = adminSlice.actions
-/*A selector to get the admin slice from the Redux store*/
+//Sélecteur pour obtenir le slice admin depuis le store Redux
 export const selectAdmin = (state) => state.admin
-/*Exporting the reducer function to be used by the Redux store*/
+//Exportation de la fonction réductrice pour être utilisée par le store Redux
 export default adminSlice.reducer

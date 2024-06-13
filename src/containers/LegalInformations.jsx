@@ -1,13 +1,13 @@
 import "../styles/legalInformations.css"
 
 const LegalInformations = () => {
-  return (
-    <section className="container-legal-informations">
-        <div className="bloc-identity">
-            <h1>Mentions légales</h1>
-        </div>
+    return (
+        <section className="container-legal-informations">
+            <div className="bloc-identity">
+                <h1>Mentions légales</h1>
+            </div>
 
-        <h2>Propriétaire du site www.sante-varennes-sur-allier.fr</h2>
+            <h2>Propriétaire du site www.sante-varennes-sur-allier.fr</h2>
             <ul>
                 <li>Docteur Benoît Provent</li>
                 <li>19 rue de Vouroux </li>
@@ -16,7 +16,7 @@ const LegalInformations = () => {
                 <li>espvarennes@gmail.com</li>
             </ul>
 
-        <h2>Hébergement du site</h2>
+            <h2>Hébergement du site</h2>
             <ul>
                 <li>Société Hostinger</li>
                 <li>Kaunas, Lituanie </li>
@@ -25,7 +25,7 @@ const LegalInformations = () => {
                 <li>https://www.hostinger.fr/contact</li>
             </ul>
 
-        <h2>Droites d&apos; auteur</h2>
+            <h2>Droites d&apos; auteur</h2>
             <p>
                 En application du Code Français de la Propriété Intellectuelle, vous vous interdirez, pour
                 un usage autre que privé, de reproduire, de vendre, de distribuer, d&apos; émettre, de diffuser, d&apos; adapter, de modifier,
@@ -35,14 +35,14 @@ const LegalInformations = () => {
                 à l&apos; œuvre, à la présentation ou à l&apos; organisation du site ou à la donnée reproduite.
             </p>
 
-        <h2>Données personnelles</h2>
+            <h2>Données personnelles</h2>
             <p>
                 Les informations collectées sont destinées uniquement à l&apos; usage de la Maison de santé de Varennes-Sur-Allier. Conformément à la loi du
                 6 janvier 1978, relative à l&apos; informatique, aux fichiers et aux libertés, vous disposez d&apos; un droit d&apos; accès, de modification,
                 de rectification et de suppression, pour toute information vous concernant en vous adressant à la MSP de Varennes Sur Allier.
             </p>
 
-        <h2>Liens hypertexte et responsabilités</h2>
+            <h2>Liens hypertexte et responsabilités</h2>
             <p>
                 La présence de liens hypertexte renvoyant vers d&apos; autres sites ne constitue pas une garantie sur la qualité de contenu
                 et de bon fonctionnement des dits sites. Notre responsabilité ne saurait être engagée quant au contenu de ces sites.
@@ -53,14 +53,14 @@ const LegalInformations = () => {
                 Les informations sur ce site sont fournies à titre informatif uniquement. La responsabilité de l&apos; utilisation des informations incombe à l&apos; utilisateur.
             </p>
 
-        <h2>Courriers électroniques </h2>
+            <h2>Courriers électroniques </h2>
             <p>
                 Pour correspondre avec le site par courrier électronique, vous devez remplir le formulaire de correspondance électronique proposé sur le site. Les réponses formulées par le site aux courriers électroniques, ainsi que l&apos; accès au site et aux contenus ne peuvent être assimilés ou ne peuvent constituer la preuve de l&apos; exercice d&apos; une activité publicitaire, promotionnelle ou commerciale, sur le territoire du pays où se situe l&apos; internaute.    
             </p>
 
-       <h2>Crédits</h2>
+            <h2>Crédits</h2>
             <h4>Crédits des images</h4>
-                <p>Certains éléments graphiques utilisés sur ce site sont fournis par Freepik (www.freepik.com) et Pexels(https://www.pexels.com/fr-fr/). Nous tenons à remercier les auteurs pour leur créativité et leur contribution. Les images sont utilisées conformément aux termes de la licence de l&apos; auteur.Les images sont utilisées sous free licence de Freepik.</p>
+            <p>Certains éléments graphiques utilisés sur ce site sont fournis par Freepik (www.freepik.com) et Pexels(https://www.pexels.com/fr-fr/). Nous tenons à remercier les auteurs pour leur créativité et leur contribution. Les images sont utilisées conformément aux termes de la licence de l&apos; auteur.Les images sont utilisées sous free licence de Freepik.</p>
 
             <h4>Attributions :</h4>
 
@@ -85,12 +85,7 @@ const LegalInformations = () => {
             <h4>Dernière mise à jour : </h4>
         
        
-       
-       
-
-
-
-    </section>
-  )
+        </section>
+    ) 
 }
 export default LegalInformations

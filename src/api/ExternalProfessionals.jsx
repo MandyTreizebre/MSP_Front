@@ -1,7 +1,7 @@
 import axios from "axios"
 import {config} from "../config"
 
-//Retrieve external pros
+//Display tous les professionnels externes
 export function displayExternalProfessionals(){
 
     return axios.get(`${config.api_url}/api/external-professionals`)
@@ -22,7 +22,7 @@ export function displayExternalProfessionals(){
     })
 }
 
-// Retrieve one external professional by his ID 
+//Display un professionnel externe par son ID
 export function displayOneExternalProfessional(id){
 
     return axios.get(`${config.api_url}/api/external-professional/${id}`)
@@ -43,7 +43,7 @@ export function displayOneExternalProfessional(id){
     })
 }
 
-// Add external pro
+//Ajouter un professionnel externe
 export function addExternalProfessional(datas, token){
 
     return axios.post(`${config.api_url}/api/save-external-professional`, datas, {
@@ -79,7 +79,7 @@ export function addExternalProfessional(datas, token){
     })
 }
 
-// Update external pro
+//Modifier un professionnel externe
 export function updateExternalProfessional(datas, id, token){
 
     return axios.put(`${config.api_url}/api/update/external-pro/${id}`, datas, {
@@ -115,10 +115,10 @@ export function updateExternalProfessional(datas, id, token){
     })
 }
 
-// Delete external pro
-export function deleteExternalPro(datas, id, token){
+//Supprimer un professionnel externe 
+export function deleteExternalPro(id, token){
 
-    return axios.delete(`${config.api_url}/api/delete/external-pro/${id}`, datas, {
+    return axios.delete(`${config.api_url}/api/delete/external-pro/${id}`, {
 
         headers: {
             "Authorization": `Bearer ${token}` 
@@ -126,7 +126,6 @@ export function deleteExternalPro(datas, id, token){
         withCredentials: true 
     })
     .then((res)=> {
-        console.log(res)
         if (res.status < 200 || res.status >= 300) {
             throw new Error( "Erreur lors de la connexion")
         }
@@ -134,7 +133,6 @@ export function deleteExternalPro(datas, id, token){
         return res
     })
     .catch((error)=> {
-        console.log(error)
         if (error.response.status === 500) {
             throw new Error("Erreur interne du serveur")
         }

@@ -1,7 +1,7 @@
-import { useState } from "react"
+import { useState } from "react" 
 
 const EditNewsForm = (props) => {
-
+    // États pour les messages d'erreur de validation
     const [errors, setErrors] = useState({
         title: "",
         details: "",
@@ -9,12 +9,14 @@ const EditNewsForm = (props) => {
         picture: ""
     }) 
 
+    // Gestionnaire de changement de valeur pour les champs du formulaire
     const handleInputChange = (setter) => (e) => {
         setter(e.currentTarget.value) 
     } 
 
     const maxFileSize = 5 * 1024 * 1024  // 5MB
 
+    // Fonction de gestion du changement d'image
     const handleImageChange = (e) => {
         const file = e.target.files[0] 
         if (file) {
@@ -39,8 +41,9 @@ const EditNewsForm = (props) => {
         }
     } 
 
+    // Fonction de validation du formulaire
     const validateForm = () => {
-        let errorsForm = {...errors} 
+        let errorsForm = { ...errors } 
 
         if (!props.title || props.title.length > 50) {
             errorsForm.title = "Titre invalide" 
@@ -59,61 +62,60 @@ const EditNewsForm = (props) => {
         return !Object.values(errorsForm).some(error => error !== "") 
     } 
 
-  return (
+    return (
+        <section className="container-form">
+            <form 
+                className="form-admin"
+                onSubmit={(e) => {
+                    e.preventDefault() 
+                    if (validateForm()) {
+                        props.handleSubmit() 
+                    }
+                }}
+            >
+                <label htmlFor="title">Titre</label>
+                <input
+                    type="text"
+                    name="title"
+                    value={props.title}
+                    onChange={handleInputChange(props.onChangeTitle)}
+                    maxLength={50}
+                />
+                {errors.title && <p className="error-message">{errors.title}</p>}
 
-    <section className="container-form">
-        <form 
-        className="form-admin"
-        onSubmit={(e) => {
-            e.preventDefault() 
-            if (validateForm()) {
-                props.handleSubmit() 
-            }
-        }}>
+                <label htmlFor="details">Détails</label>
+                <textarea
+                    type="text"
+                    name="details"
+                    value={props.details}
+                    onChange={handleInputChange(props.onChangeDetails)}
+                    maxLength={200}
+                />
+                {errors.details && <p className="error-message">{errors.details}</p>}
 
-            <label htmlFor="title">Titre</label>
-            <input
-                type="text"
-                name="title"
-                value={props.title}
-                onChange={handleInputChange(props.onChangeTitle)}
-                maxLength={50}
-            />
-            {errors.title && <p className="error-message">{errors.title}</p>}
+                <label htmlFor="picture">Image</label>
+                <input
+                    type="file"
+                    name="picture"
+                    onChange={handleImageChange}
+                    encType="multipart/form-data"
+                />
+                {errors.picture && <p className="error-message">{errors.picture}</p>}
 
-            <label htmlFor="details">Détails</label>
-            <textarea
-                type="text"
-                name="details"
-                value={props.details}
-                onChange={handleInputChange(props.onChangeDetails)}
-                maxLength={200}
-            />
-            {errors.details && <p className="error-message">{errors.details}</p>}
+                <label htmlFor="external_link">Lien externe</label>      
+                <input
+                    type="text"
+                    name="external_link"
+                    value={props.externalLink}
+                    onChange={handleInputChange(props.onChangeExternalLink)}
+                    maxLength={150}
+                />
+                {errors.externalLink && <p className="error-message">{errors.externalLink}</p>}
 
-            <label htmlFor="picture">Image</label>
-            <input
-                type="file"
-                name="picture"
-                onChange={handleImageChange}
-                encType="multipart/form-data"
-            />
-            {errors.picture && <p className="error-message">{errors.picture}</p>}
+                <button className="add-new-button">Valider la modification du professionnel</button>
+            </form>
+        </section>
+    ) 
+} 
 
-            <label htmlFor="external_link">Lien externe</label>      
-            <input
-                type="text"
-                name="external_link"
-                value={props.externalLink}
-                onChange={handleInputChange(props.onChangeExternalLink)}
-                maxLength={150}
-            />
-            {errors.externalLink && <p className="error-message">{errors.externalLink}</p>}
-
-            <button className="add-new-button">Valider la modification du professionnel</button>
-        </form>
-    </section>
-    
-  )
-}
-export default EditNewsForm
+export default EditNewsForm 

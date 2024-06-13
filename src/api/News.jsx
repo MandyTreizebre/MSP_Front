@@ -2,7 +2,7 @@ import axios from 'axios'
 import {config} from '../config'
 
 
-// Retrieve news 
+//Display toutes les actualités
 export function displayAllNews() {
 
     return axios.get(`${config.api_url}/api/news`)
@@ -23,7 +23,7 @@ export function displayAllNews() {
     })
 }
 
-// Retrieve One new by his ID 
+//Display une actualité par son ID
 export function displayNewById(id){
     
     return axios.get(`${config.api_url}/api/new/${id}`)
@@ -44,7 +44,7 @@ export function displayNewById(id){
     })
 }
 
-// Add a new 
+//Ajouter une actualité
 export function addNew(datas, token) {
 
     return axios.post(`${config.api_url}/api/save-new`, datas, {
@@ -84,7 +84,7 @@ export function addNew(datas, token) {
     })
 }
 
-// Update a new
+//Mettre à jours une actualité
 export function updateNew(datas, id, token) {
 
     return axios.put(`${config.api_url}/api/update-new/${id}`, datas, {
@@ -124,10 +124,10 @@ export function updateNew(datas, id, token) {
     })
 }
 
-/*Function to delete a new */ 
-export function deleteNew(id, datas, token) { 
+//Supprime rune actualité
+export function deleteNew(id, token) { 
 
-    return axios.delete(`${config.api_url}/api/delete-new/${id}`, datas, {
+    return axios.delete(`${config.api_url}/api/delete-new/${id}`, {
 
         headers: {
             "Authorization": `Bearer ${token}` 

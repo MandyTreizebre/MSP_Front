@@ -9,7 +9,6 @@ const ExternalPros = () => {
     const [externalPros, setExternalPros] = useState([])
     const [error, setError] = useState(null)
 
-
     useEffect(() => {
         displayExternalProfessionals()
         .then((res) => {

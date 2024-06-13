@@ -20,7 +20,7 @@ const Welcome = () => {
                     Ce projet a été présenté devant plusieurs instances, ARS, CPAM, Ordres des médecins, kinés, infirmiers.. afin d&apos;être labellisé pour obtenir le nom déposé de « Maison de Santé Pluriprofessionnelle ».
                 </p>
                 <Link
-                    to="/msp"
+                    to="/decouvrir-notre-msp"
                     className="welcome-button"
                     aria-label="Aller à la page MSP"
                 >
@@ -28,7 +28,7 @@ const Welcome = () => {
                 </Link>
             </section>
         </div>
-    );
+    )
 }
 
 export default Welcome

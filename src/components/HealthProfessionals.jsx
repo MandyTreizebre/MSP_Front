@@ -50,17 +50,11 @@ const HealthProfessionals = () => {
                         <strong>En cas d&apos;urgence médicale nécessitant une assistance immédiate, veuillez composer le 15.</strong>
                     </div>
 
-                </section>
-                
-
-
-
-                
+                </section> 
+                    
             </section>
 
-            {/* Container component to handle the rendering of the professionals list */}
             <ProfessionalsContainer professionals={professionals} />
-            {/* Conditional rendering of an error message  */}
             {error && <div className="error">{error}</div>}
         </>
     )

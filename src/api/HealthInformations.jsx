@@ -1,7 +1,7 @@
 import axios from "axios"
 import {config} from "../config"
 
-// Retrieve informations 
+//Display toutes les informations
 export function displayAllInformations() {
 
     return axios.get(`${config.api_url}/api/informations`)
@@ -22,6 +22,7 @@ export function displayAllInformations() {
     })
 }
 
+//Display une information par son ID
 export function displayInformationById(id) {
     
     return axios.get(`${config.api_url}/api/information/${id}`)
@@ -42,7 +43,7 @@ export function displayInformationById(id) {
     })
 }
 
-// Retrieve informations by category 
+//Informations par catégorie
 export function getInformationsByCategory(category) {
 
     return axios.get(`${config.api_url}/api/informations/${category}`)
@@ -63,7 +64,7 @@ export function getInformationsByCategory(category) {
     })
 }
 
-// Retrieve categories 
+//Display toutes les catégories
 export function displayCategories() {
 
     return axios.get(`${config.api_url}/api/categories`)
@@ -84,7 +85,7 @@ export function displayCategories() {
     })
 }
 
-// Add an information
+//Ajouter une information
 export function addInformation(datas, token) {
 
     return axios.post(`${config.api_url}/api/save-information`, datas, {
@@ -123,7 +124,7 @@ export function addInformation(datas, token) {
     })
 }
 
-// Update an information
+//Mettre à jour une information
 export function udpdateInformation(datas, id, token) {
 
     return axios.put(`${config.api_url}/api/update-information/${id}`, datas, {
@@ -167,10 +168,10 @@ export function udpdateInformation(datas, id, token) {
     })
 }
 
-// Delete an information
-export function deleteInformation(id, datas, token){
+//Supprimer une information
+export function deleteInformation(id, token){
 
-    return axios.delete(`${config.api_url}/api/delete-information/${id}`, datas, {
+    return axios.delete(`${config.api_url}/api/delete-information/${id}`, {
 
         headers: {
             "Authorization": `Bearer ${token}` 

@@ -2,7 +2,7 @@ import axios from 'axios'
 import {config} from '../config'
 
 
-// Retrieve professionals and their opening hours 
+//Display les professionnels et leurs horaires
 export function displayAllProfessionals() {
 
     return axios.get(`${config.api_url}/api/professionals-and-hours`)
@@ -23,7 +23,7 @@ export function displayAllProfessionals() {
     })
 }
 
-// Retrieve professionals
+//Display uniquement les professionnels
 export function displayProfessionals() {
 
     return axios.get(`${config.api_url}/api/professionals`)
@@ -44,7 +44,7 @@ export function displayProfessionals() {
     })
 }
 
-// Retrieve a professional by his ID 
+//Display un professionnel par son ID
 export function displayOneProfessional(id) {
 
     return axios.get(`${config.api_url}/api/professional/${id}`)
@@ -65,7 +65,7 @@ export function displayOneProfessional(id) {
     })
 }
 
-// Add a professional 
+//Ajouter un professionnel
 export function saveOneProfessional(datas, token) {
 
     return axios.post(`${config.api_url}/api/save/pro`, datas, {
@@ -117,7 +117,7 @@ export function saveOneProfessional(datas, token) {
     })
 }
 
-// Update a professional 
+//Mettre à jour un professionnel 
 export function editOneProfessional(datas, id, token) {
 
     return axios.put(`${config.api_url}/api/edit/pro/${id}`, datas, {
@@ -169,7 +169,7 @@ export function editOneProfessional(datas, id, token) {
     })
 }
 
-// Change the status of a professional 
+//Changer le statut d'un professionnel 
 export function changeStatusProfessionnal(id, token) {
 
     return axios.put(`${config.api_url}/api/status/pro/${id}`, {}, {
@@ -195,7 +195,7 @@ export function changeStatusProfessionnal(id, token) {
     })
 }
 
-// Retrieve professionals by their specializations 
+//Display les professionnels par leurs specialisations
 export function getProfessionalBySpe(speciality_id) {
     return axios.get(`${config.api_url}/api/pro/${speciality_id}`)
     .then((res)=>{
@@ -215,7 +215,7 @@ export function getProfessionalBySpe(speciality_id) {
 }
 
 
-// Retrieve specializations
+//Display les spécialisations
 export function displaySpecializations() {
 
     return axios.get(`${config.api_url}/api/specializations`)
@@ -236,7 +236,7 @@ export function displaySpecializations() {
     })  
 }
 
-/* Function to retrieve professionals on guards*/
+//Display les professionnels de guarde
 export function displayProfessionalsGuards() {
 
     return axios.get(`${config.api_url}/api/professionals-guards`)

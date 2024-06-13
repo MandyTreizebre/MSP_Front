@@ -13,8 +13,9 @@ const DarkMode = () => {
         }
     }, [isDarkMode])
 
-  return (
-    null
-  )
+    return (
+        null
+    )
 }
+
 export default DarkMode

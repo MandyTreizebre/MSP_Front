@@ -1,48 +1,47 @@
-import "../../../styles/adminForms.css"
+import "../../../styles/adminForms.css" 
 
 const EditFormHours = (props) => {
 
-    /*Function to handle input change events*/
+    /* Fonction pour gérer les événements de changement de valeur des champs */
     const handleInputChange = (setter) => (e) => {
-        let value = e.currentTarget.value
-        
-        /*If the name of the current target is 'dayId', parse the value to integer*/
+        let value = e.currentTarget.value 
+
+        /* Si le nom de la cible actuelle est 'dayId', analyser la valeur en entier */
         if(e.currentTarget.name === "dayId"){
-            value = parseInt(value, 10)
+            value = parseInt(value, 10) 
         }
-        /*Calling the setter function passed in props with the new value*/
-        setter(value)
-    }
+        /* Appeler la fonction setter passée dans les props avec la nouvelle valeur */
+        setter(value) 
+    } 
 
-    /*Function to handle hours input and format the value*/
+    /* Fonction pour gérer l'entrée des heures et formater la valeur */
     function handleHoursInput(callback){
-    return (e) => {
-        const value = e.target.value 
+        return (e) => {
+            const value = e.target.value 
 
-        /*Adding a colon after the 2nd character if it doesn't already contain a colon*/
-        if(value.length === 2 && !value.includes(":")) {
-            e.target.value = value + ":"
-            /*Adding a colon after the 5th character if the 5th character is not a colon*/
-        } else if (value.length === 5 && value.charAt(4) !== ":") {
-            e.target.value = value + ":"
-        }
+            /* Ajouter un deux-points après le 2e caractère si il n'y a pas déjà un deux-points */
+            if(value.length === 2 && !value.includes(":")) {
+                e.target.value = value + ":" 
+            /* Ajouter un deux-points après le 5e caractère si le 5e caractère n'est pas un deux-points */
+            } else if (value.length === 5 && value.charAt(4) !== ":") {
+                e.target.value = value + ":" 
+            }
 
-        /*If a callback is provided, call it with the event*/
-        if(callback){
-            callback(e)
-        }
-    }  
-}
+            /* Si un callback est fourni, l'appeler avec l'événement */
+            if(callback){
+                callback(e) 
+            }
+        } 
+    }
 
     return (
         <section className="container-form">
             <form onSubmit={(e) => {
                 e.preventDefault() 
                 props.handleSubmitHours() 
-            }}
-            className="form-admin">
+            }} className="form-admin">
     
-                {/* Day selection dropdown */}
+                {/* Menu déroulant pour la sélection du jour */}
                 <label htmlFor="dayId">Sélectionner un jour</label>
                 <select
                     name="dayId"
@@ -51,13 +50,13 @@ const EditFormHours = (props) => {
                     className="select-admin-form"
                 >
                     <option value="">Sélectionner un jour</option>
-                    {props.dayList.map(day=> (
+                    {props.dayList.map(day => (
                         <option key={day.id} value={day.id}>{day.day_name}</option>
                     ))}
                 </select>
         
                 <label htmlFor="hStartMorning">Heure de début (matin)</label>
-                {/* Morning start time input */}
+
                 <input
                     type="text"
                     name="hStartMorning"
@@ -69,7 +68,7 @@ const EditFormHours = (props) => {
                 />
 
                 <label htmlFor="hEndMorning">Heure de fin (matin)</label>
-                {/* Morning end time input */}
+
                 <input
                     type="text"
                     name="hEndMorning"
@@ -81,7 +80,7 @@ const EditFormHours = (props) => {
                 />
 
                 <label htmlFor="hStartAfternoon">Heure de début (après-midi)</label>
-                {/* Afternoon start time input */}
+
                 <input
                     type="text"
                     name="hStartAfternoon"
@@ -93,7 +92,7 @@ const EditFormHours = (props) => {
                 />
 
                 <label htmlFor="hEndAfternoon">Heure de fin (après-midi)</label>
-                {/* Afternoon end time input */}
+
                 <input
                     type="text"
                     name="hEndAfternoon"
@@ -103,11 +102,11 @@ const EditFormHours = (props) => {
                     onChange={handleHoursInput(handleInputChange(props.onChangeHEndAfternoon))}
                     disabled={!props.isHoursAvailable}
                 />
-                {/* Submit button */}
+
                 <button className="edit-hours-button">Valider la modification des horaires</button>
             </form>
         </section>  
-    )
-}
+    ) 
+} 
 
-  export default EditFormHours
+export default EditFormHours 

@@ -1,7 +1,7 @@
 import axios from "axios"
 import {config} from "../config"
 
-// Add an admin 
+//Ajouter un admin
 export function registerAdmin(datas,  token) {
 
     return axios.post(`${config.api_url}/api/register`, datas, { 
@@ -69,7 +69,7 @@ export function loginAdmin(datas) {
     })
 }
 
-// Send an email if admin forgot his password 
+//Envoi un email si l'admin oublie son mot de passe 
 export function forgotPassword(email) {
 
     return axios.post(`${config.api_url}/api/forgot-password`, {email})
@@ -108,7 +108,7 @@ export function forgotPassword(email) {
     })
 }
 
-// Reset password
+//Réinitialisation du mot de passe 
 export function resetPassword(data) {
 
     return axios.post(`${config.api_url}/api/reset-password`, data)
@@ -121,6 +121,7 @@ export function resetPassword(data) {
         return res
     })
     .catch((error)=> {
+        console.log("error dans le fichier api =>", error)
         if (error.response.data.msg === "Adresse email invalide") {
             throw new Error("Adresse email invalide")
         }
@@ -139,7 +140,7 @@ export function resetPassword(data) {
     })
 }
 
-// Check the token
+//Vérif du token
 export function checkMyToken(token) {
 
     return axios.get(`${config.api_url}/api/admin/checkToken`, { 
@@ -157,7 +158,7 @@ export function checkMyToken(token) {
     })
 }
 
-// Function to logout 
+//Déconnexion
 export function logout() {
 
     return axios.get(`${config.api_url}/api/logout`, {

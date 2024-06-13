@@ -29,7 +29,6 @@ const InformationsByCategory = () => {
 
     return (
         <section>
-            {/* Pass down the received information data as a prop to the InformationsContainer component */}
             <InformationsContainer informations={categoryData} />
         </section>
     )

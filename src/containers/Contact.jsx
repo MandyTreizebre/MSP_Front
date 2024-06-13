@@ -52,21 +52,22 @@ const Contact = () => {
             'g-recaptcha-response': captchaValue
         }
 
-    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, sanitizedData, EMAILJS_PUBLIC_KEY)
-      .then((result) => {
-          if(result.status === 200){
-            setOpenModal(true) /
-            setTimeout(()=> {
-                handleCloseModal() 
-            }, 5000)
-          }
-          e.target.reset() 
-          setMessage('')
-          setCaptchaValue(null)
-      }, (error) => {
-          return(error.text) 
-      })
-  }
+        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, sanitizedData, EMAILJS_PUBLIC_KEY)
+        .then((result) => {
+            if(result.status === 200){
+                setOpenModal(true) /
+                setTimeout(()=> {
+                    handleCloseModal() 
+                }, 5000)
+            }
+            e.target.reset() 
+            setMessage('')
+            setCaptchaValue(null)
+        }, (error) => {
+                return(error.text) 
+        })
+    }
+    
     return (
         <>
             <section className="container-contact">
@@ -78,52 +79,49 @@ const Contact = () => {
 
                 <div className="container-form-contact">
                     <div className="container-img-contact">
-                    <img src={ImgMedicalTeam} alt="Image d'une équipe médicale" id="img-medical-team"/>
-                </div>
-                
-                <form ref={form} onSubmit={sendEmail}>
-
-                    <label>Nom</label>
-                    <input type="text" 
-                        name="user_name"
-                        maxLength="50"
-                        placeholder="Ex: Dupont Marie"
-                        required 
-                    />
-
-                    <label>Email</label>
-                    <input type="email" 
-                        name="user_email"
-                        maxLength="50"
-                        placeholder="Ex: votreemail@gmail.com"
-                        required 
-                    />
-
-                    <label>Message</label>
-                    <textarea name="message" 
-                            maxLength={maxCharacters} 
-                            onChange={handleChange}
-                            placeholder="Ecrivez votre message ou votre question ici"
-                    />
-                    <div className="character-count">
-                        {maxCharacters - message.length} caractères restants
+                        <img src={ImgMedicalTeam} alt="Image d'une équipe médicale" id="img-medical-team"/>
                     </div>
-
-                    <ReCAPTCHA
-                        sitekey={import.meta.env.VITE_CAPTCHA_KEY}
-                        onChange={onCaptchaChange} />
-
-                    <div className="container-button-contact">
-                        <button type="submit" className="contact-button">
-                            Envoyer
-                           <FontAwesomeIcon icon={faPaperPlane} className="icon-button-contact" />
-                        </button>
-                    </div>
-                    
-                </form>
-            
-                </div>
                 
+                    <form ref={form} onSubmit={sendEmail}>
+
+                        <label>Nom</label>
+                        <input type="text" 
+                            name="user_name"
+                            maxLength="50"
+                            placeholder="Ex: Dupont Marie"
+                            required 
+                        />
+
+                        <label>Email</label>
+                        <input type="email" 
+                            name="user_email"
+                            maxLength="50"
+                            placeholder="Ex: votreemail@gmail.com"
+                            required 
+                        />
+
+                        <label>Message</label>
+                        <textarea name="message" 
+                                maxLength={maxCharacters} 
+                                onChange={handleChange}
+                                placeholder="Ecrivez votre message ou votre question ici"
+                        />
+                        <div className="character-count">
+                            {maxCharacters - message.length} caractères restants
+                        </div>
+
+                        <ReCAPTCHA
+                            sitekey={import.meta.env.VITE_CAPTCHA_KEY}
+                            onChange={onCaptchaChange} />
+
+                        <div className="container-button-contact">
+                            <button type="submit" className="contact-button">
+                                Envoyer
+                            <FontAwesomeIcon icon={faPaperPlane} className="icon-button-contact" />
+                            </button>
+                        </div>   
+                    </form>
+                </div>  
             </section>
             <Modal open={openModal} onClose={handleCloseModal} message="Message envoyé" />
         </>
