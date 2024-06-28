@@ -14,9 +14,7 @@ const ForgotPasswordForm = () => {
             setMessage("Un email de réinitialisation a été envoyé si l'adresse existe dans notre système.")
             return res
         })
-        .catch(error => {
-            setMessage("Une erreur s'est produite lors de la demande de réinitilisation")
-            
+        .catch(error => {            
             if (error.message === "Adresse email invalide") {
                 setError(error.message)
             }

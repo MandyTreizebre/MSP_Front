@@ -20,7 +20,6 @@ const Admin = () => {
     const admin = useSelector(selectAdmin) 
     const [professionals, setProfessionals] = useState([]) 
     const [externalProfessionals, setExternalProfessionals] = useState([]) 
-
     const [healthInformations, setHealthInformations] = useState([])  
     const [news, setNews] = useState([]) 
     const [error, setError] = useState(null)
@@ -130,8 +129,11 @@ const Admin = () => {
     return (
         <>
             <section className="container-admin">
+            
                 <section className='admin-panel'>
                     {admin.infos && <h1>Vous êtes connecté(e) en tant que {admin.infos.firstname}.</h1>}
+
+                        <Link to="/pharmacies-gardes">Page des pharmacies</Link>
 
                     <div className='menu-admin-panel'>
                         <div className='card-menu' onClick={() => scrollToSection('professionals')}>

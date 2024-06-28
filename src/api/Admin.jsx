@@ -1,5 +1,24 @@
 import axios from "axios"
-import {config} from "../config"
+import { useNavigate } from "react-router-dom"
+import { config } from "../config"
+import store from "../slices/store"
+import { logoutAdmin } from "../slices/adminSlice"
+
+axios.interceptors.response.use(
+    response => response,
+    error => {
+      if (error.response && error.response.status === 401 && error.response.data.msg === "Token introuvable, veuillez vous connecter") {
+        // Dispatch l'action pour déconnecter l'admin
+        store.dispatch(logoutAdmin());
+        
+        // Redirection vers la page de connexion avec un message de session expirée
+        const navigate = useNavigate();
+        navigate('/login', { state: { message: "Session expirée, veuillez vous reconnecter" } });
+      }
+      return Promise.reject(error);
+    }
+  );
+
 
 //Ajouter un admin
 export function registerAdmin(datas,  token) {
@@ -172,3 +191,5 @@ export function logout() {
         return err
     })
 }
+
+
