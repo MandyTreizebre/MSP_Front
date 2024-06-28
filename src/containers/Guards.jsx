@@ -5,6 +5,7 @@ import Clock from "../components/Clock"
 import PharmaciesForGuards from "../components/componentsGuards/PharmaciesForGuards"
 import DentistsForGuards from "../components/componentsGuards/DentistsForGuards"
 import DoctorsForGuards from "../components/componentsGuards/DoctorsForGuards"
+import PharmaciesOnCall from "./PharmaciesOnCall"
 
 const Guards = () => {
 
@@ -114,11 +115,14 @@ const Guards = () => {
             
 
             <div className="guards-container">
+                <PharmaciesOnCall />
+                
                 {pharmacies.length > 0 && <PharmaciesForGuards pharmacies={pharmacies} />}
 
                 {dentists.length > 0 && <DentistsForGuards dentists={dentists} />}
 
                 {doctors.length > 0 && <DoctorsForGuards doctors={doctors} />}
+                
             </div>
         </section>
     )

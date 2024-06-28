@@ -6,7 +6,7 @@ export function checkCookie(dispatch, done) {
         if (response.status === 200) {
             dispatch(initializeAdmin(response.data.admin))
         } else {
-            console.error('Token verification failed:', response)
+            console.error('Token verification failed:')
         }
         done()
     }).catch(error => {

@@ -1,5 +1,4 @@
 import {configureStore} from '@reduxjs/toolkit'
-
 import adminReducer from "./adminSlice"
 import darkModeReducer from "./darkModeSlice"
 

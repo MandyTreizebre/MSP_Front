@@ -41,6 +41,10 @@ import PrivacyPolicy from "./containers/PrivacyPolicy"
 import ForgotPassword from "./containers/admin/ResetPassword"
 import ForgotPasswordForm from "./containers/admin/ForgotPasswordForm"
 
+//Pharmacies de gardes
+import PagePharmaciesOnCall from "./containers/admin/pharmacies-on-call/PagePharmaciesOnCall"
+import AddPharmaciesOnCallAndSchedules from "./containers/admin/pharmacies-on-call/AddPharmaciesOnCallAndSchedules"
+
 function App() {
     const [isLoading, setIsLoading] = useState(true) 
     const dispatch = useDispatch() 
@@ -95,6 +99,10 @@ function App() {
                     
                     <Route path="/ajouter/actualite" element={<CheckAuth component={AddNews} />} />
                     <Route path="/modifier/actualite/:id" element={<CheckAuth component={EditNews} />} />
+
+                    <Route path="/pharmacies-gardes" element={<CheckAuth component={PagePharmaciesOnCall} />} />
+                    <Route path="/ajouter-pharmacie-gardes" element={<CheckAuth component={AddPharmaciesOnCallAndSchedules} />} />
+
                 </Routes>
             )}
             <Footer />

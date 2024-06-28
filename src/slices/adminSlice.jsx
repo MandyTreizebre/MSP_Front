@@ -2,7 +2,7 @@ import {createSlice} from '@reduxjs/toolkit'
 
 const initialState = {
     infos: {}, //Objet vide pour stocker les informations de l'admin 
-    isLogged: false 
+    isLogged: false,
 }
 
 export const adminSlice = createSlice({
@@ -20,9 +20,10 @@ export const adminSlice = createSlice({
         },
         //Déconnecte l'admin en réinitialisant l'état à ses valeurs initiales
         logoutAdmin: (state) => {
-            state.infos = {} /*Clearing the admin's info*/
-            state.isLogged = false /*Setting the logged in flag to false*/
+            state.infos = {} 
+            state.isLogged = false 
         }
+
     }
 })
 
